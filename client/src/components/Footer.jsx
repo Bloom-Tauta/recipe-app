@@ -8,61 +8,39 @@ import { FaInstagram } from "react-icons/fa"
 
 function Footer(){
     return(
-        <footer
-        // className="bg-gray-800 py-6"
-        >
+        <footer className="bg-gray-800 py-6">
 
-        <div
-        // className=" w-full lg:w-7xl mx-auto px-4 text-center"
-        >
-          <div
-        //   className="flex flex-wrap items-center justify-between"
-          >
-            <div
-            // className="w-full"
-            >
-              <h4
-            //   className="text-3xl text-white font-semibold text-center"
-              >
+        <div className=" w-full lg:w-7xl mx-auto px-4 text-center">
+          <div className="flex flex-wrap items-center justify-between">
+            <div className="w-full">
+              <h4 className="text-3xl text-white font-semibold text-center">
                 Let's keep in touch!
               </h4>
-              <h5
-            //   className="text-lg mt-0 mb-2 text-gray-400"
-              >
+              <h5 className="text-lg mt-0 mb-2 text-gray-400">
                 Reach us on any of these platforms.
               </h5>
             </div>
-            <div
-            // className=" w-full px-8 text-center"
-            >
-              <ul
-            //   className="flex flex-wrap list-none pl-0 mb-0 justify-center text-center"
-              >
-                <li
-                // className="nav-item"
-                >
+            <div className=" w-full px-8 text-center">
+              <ul className="flex flex-wrap list-none pl-0 mb-0 justify-center text-center">
+                <li className="nav-item">
                   <NavLink to="#"
-                    // className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   >
                     <FaTwitter size ={20} className="mr-5" />
                     <span>Twitter</span>
                   </NavLink>
                 </li>
-                <li
-                // className="nav-item"
-                >
+                <li className="nav-item">
                   <NavLink to="#"
-                    // className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   >
                     <FaFacebook size ={20} className="mr-5" />
                     <span>Facebook</span>
                   </NavLink>
                 </li>
-                <li
-                //  className="nav-item"
-                >
+                <li className="nav-item">
                   <NavLink to="/"
-                    // className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   >
                     <FaInstagram size ={20} className="mr-5" />
                     <span>Instagram</span>
@@ -71,22 +49,13 @@ function Footer(){
               </ul>
             </div>
           </div>
-          <hr
-        //   className=" w-full my-6 border-gray-700"
-          />
-          <div
-        //   className=" w-full flex flex-wrap items-center  justify-around"
-          >
+          <hr className=" w-full my-6 border-gray-700" />
+          <div className=" w-full flex flex-wrap items-center  justify-around">
 
-          <div
-        //    className="w-full lg:w-4/12 px-4"
-
-          >
-              <div
-            //   className="flex flex-row items-center text-lg text-left text-gray-500 gap-2 font-semibold py-1"
-              >
-                        {/* <MdCopyright/> */}
-                        {/* <span className="text-white">2023 Recipe-Share</span> */}
+          <div className="w-full lg:w-4/12 px-4">
+              <div className="flex flex-row items-center text-lg text-left text-gray-500 gap-2 font-semibold py-1">
+                        <MdCopyright/>
+                        <span className="text-white">2023 Recipe-Share</span>
                     </div>
               </div>
             {/* <div className=" lg:w-8/12 px-4 ">
