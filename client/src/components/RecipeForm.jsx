@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { RxCrossCircled } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
-// import { FiCamera } from "react-icons/fi"
+import { FiCamera } from "react-icons/fi"
 
 function RecipeForm(){
 
@@ -84,22 +84,24 @@ function RecipeForm(){
                             focus:ring-primary-600 p-2"></textarea>
                     </div>
                   </div>
-                  {/* <div className="flex-grow"> */}
-                  {/* <div className="border border-black rounded-md flex flex-col justify-center items-center ml-2 mt-6 w-80 h-40 p-4">
+                  <div className="flex-grow">
+                  <div className="border border-black rounded-md flex flex-col justify-center items-center ml-2 mt-6 w-80 h-40 p-4">
                     <label htmlFor="uploadInput">
                       <input
                         type="file"
                         id="uploadInput"
                         accept=".jpg, .jpeg, .png, .gif"
-                        onChange={handleChange}
+                        // onChange={handleChange}
                         style={{ display: "none" }}
                     className=""  />
                       <span>Upload a photo</span>
-                      <span><FiCamera/></span>
+                      <span>
+                        <FiCamera/>
+                      </span>
                     </label>
-                  </div> */}
-                  {/* <p className="text-center">use JPEG, JPG,  PNG  </p> */}
-                  {/* </div> */}
+                  </div>
+                  <p className="text-center">use JPEG, JPG,  PNG  </p>
+                  </div>
                 </div>
         <div>
           <h2 className="font-bold">Ingredient</h2>
