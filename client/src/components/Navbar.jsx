@@ -11,7 +11,7 @@ function NavBar(){
             //  className="text-white text-4xl"
             >Recipe-Share</span> */}
             {/* <Search/> */}
-            {/* <div>
+            <div>
                 <ul
                 // className=" flex gap-4 text-blue-300 text-base "
                 >
@@ -28,7 +28,7 @@ function NavBar(){
                     // className="hover:text-blue-800 font-bold"
                      >Favorite Recipes</NavLink>
                 </ul>
-            </div> */}
+            </div>
         </div>
     )
 }
