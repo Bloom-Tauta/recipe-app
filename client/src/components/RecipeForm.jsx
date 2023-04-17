@@ -1,11 +1,27 @@
+import React, { useState } from "react";
+// import { RxCrossCircled } from "react-icons/rx";
+import { FaPlus } from "react-icons/fa";
+// import { FiCamera } from "react-icons/fi"
 
 function RecipeForm(){
+
+    const [ingredients, setIngredient] = useState([""]);
+
+    const handleInputChange = (e, index) => {
+
+        const newIngredients = [...ingredients];
+
+        newIngredients[index] = e.target.value;
+        setIngredient(newIngredients);
+
+      };
+
     return(
         <div>
             <form>
       <div className="flex flex-row items-center justify-center">
           <div className="border border-black rounded-full">
-          {/* <FaPlus/> */}
+          <FaPlus/>
           </div>
           <h3 className="text-xl font-bold leading-tight
                 tracking-tight text-gray-900 text-center md:text-2xl">Add a Recipe</h3>
@@ -62,7 +78,7 @@ function RecipeForm(){
         <div>
           <h2 className="font-bold">Ingredient</h2>
           <p>Enter one ingredient per line. Include the quantity (i.e. cups, tablespoons) and any special preparation (i.e. sifted, softened, chopped)</p>
-          {/* <div>
+          <div>
           {ingredients.map((ingredient, index) => (
             <div key={index}>
               <label>Ingredient {index + 1}: </label>
@@ -73,11 +89,13 @@ function RecipeForm(){
                     onChange={(e) => handleInputChange(e, index)}
                     className="py-1 my-2 border border-black rounded-md"
                 />
-                <button type="button" onClick={() => handleDeleteIngredient(index)}>
-                <RxCrossCircled/>
+                <button type="button"
+                // onClick={() => handleDeleteIngredient(index)}
+                >
+                {/* <RxCrossCircled/> */}
                 </button>
-                <div className="border border-black rounded-md p-2">
-                <label htmlFor="uploadInput">
+                {/* <div className="border border-black rounded-md p-2"> */}
+                {/* <label htmlFor="uploadInput">
                       <input
                         type="file"
                         id="uploadInput"
@@ -87,12 +105,12 @@ function RecipeForm(){
                     className="border"  />
                       <span>Upload a photo</span>
                       <span><FiCamera/></span>
-                    </label>
-                  </div>
+                    </label> */}
+                  {/* </div> */}
               </div>
             </div>
         ))}
-      </div> */}
+      </div>
       </div>
         <button type="button"
         // onClick={handleAddIngredient}
