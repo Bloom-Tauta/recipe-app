@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { RxCrossCircled } from "react-icons/rx";
+import { RxCrossCircled } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 // import { FiCamera } from "react-icons/fi"
 
@@ -14,6 +14,10 @@ function RecipeForm(){
         newIngredients[index] = e.target.value;
         setIngredient(newIngredients);
 
+      };
+
+      const handleAddIngredient = () => {
+        setIngredient([...ingredients, ""]);
       };
 
     return(
@@ -92,7 +96,7 @@ function RecipeForm(){
                 <button type="button"
                 // onClick={() => handleDeleteIngredient(index)}
                 >
-                {/* <RxCrossCircled/> */}
+                <RxCrossCircled/>
                 </button>
                 {/* <div className="border border-black rounded-md p-2"> */}
                 {/* <label htmlFor="uploadInput">
@@ -113,7 +117,7 @@ function RecipeForm(){
       </div>
       </div>
         <button type="button"
-        // onClick={handleAddIngredient}
+        onClick={handleAddIngredient}
          className="flex flex-row items-center border boder-black bg-green-100 p-2 rounded-lg hover:bg-green-800">
           {/* <FaPlus/> */}
           Add Ingredient
