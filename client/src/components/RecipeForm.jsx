@@ -3,63 +3,63 @@ import { RxCrossCircled } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 import { FiCamera } from "react-icons/fi"
 
-function RecipeForm(){
-
-    const [ingredients, setIngredients] = useState([""]);
-    const [steps, setSteps] = useState([""]);
-    const [file, setFile] = useState(null);
+const RecipeForm= () => {
+  const [steps, setSteps] = useState([""]);
+  const [ingredients, setIngredient] = useState([""]);
+  const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
 
-    const handleInputChange = (e, index) => {
-        const newSteps = [...steps];
-        const newIngredients = [...ingredients];
-        newIngredients[index] = e.target.value;
-        newSteps[index] = e.target.value;
-        setIngredients(newIngredients);
-        setSteps(newSteps);
 
-      };
+  // Function to handle input change
+  const handleInputChange = (e, index) => {
+    const newSteps = [...steps];
+    const newIngredients = [...ingredients];
+    newSteps[index] = e.target.value;
+    newIngredients[index] = e.target.value;
+    setIngredient(newIngredients);
+    setSteps(newSteps);
+  };
 
-      const handleAddIngredient = () => {
-        setIngredients([...ingredients, ""]);
-      };
+  const handleChange = (e) => {
+    const selectedFile = e.target.files[0];
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
 
-      const handleDeleteIngredient = (index) => {
-        const newIngredients = [...ingredients];
-        newIngredients.splice(index, 1);
-        setIngredients(newIngredients);
-      };
+    if (selectedFile && allowedTypes.includes(selectedFile.type)) {
+      setFile(selectedFile);
+      setError(null);
+    } else {
+      setFile(null);
+      setError("Please select a valid image file (JPEG, PNG, or GIF).");
+    }
+  };
 
-      const handleAddStep = () => {
-        setSteps([...steps, ""]);
-      };
+  // Function to handle deleting a step
+  const handleDeleteStep = (index) => {
+    const newSteps = [...steps];
+    newSteps.splice(index, 1);
+    setSteps(newSteps);
+  };
+  const handleDeleteIngredient = (index) => {
+    const newIngredients = [...steps];
+    newIngredients.splice(index, 1);
+    setIngredient(newIngredients);
+  };
 
-      const handleDeleteStep = (index) => {
-        const newSteps = [...steps];
-        newSteps.splice(index, 1);
-        setSteps(newSteps);
-      };
+  // Function to handle adding a new step
+  const handleAddStep = () => {
+    setSteps([...steps, ""]);
+  };
+  const handleAddIngredient = () => {
+    setIngredient([...ingredients, ""]);
+  };
 
-      const handleChange = (e) => {
-        const selectedFile = e.target.files[0];
-        const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+  function handleSubmit(e){
+    e.preventDefault();
+  }
 
-        if (selectedFile && allowedTypes.includes(selectedFile.type)) {
-          setFile(selectedFile);
-          setError(null);
-        } else {
-          setFile(null);
-          setError("Please select a valid image file (JPEG, PNG, or GIF).");
-        }
-      };
-
-      function handleSubmit(e){
-        e.preventDefault();
-      }
-
-    return(
-        <div>
-            <form>
+  return (
+    <div className="flex flex-row items-center justify-center bg-fuchsia-50 px-12 py-8 mx-auto max-w-2xl mt-4 ">
+      <form>
       <div className="flex flex-row items-center justify-center">
           <div className="border border-black rounded-full">
           <FaPlus/>
@@ -110,9 +110,7 @@ function RecipeForm(){
                         style={{ display: "none" }}
                     className=""  />
                       <span>Upload a photo</span>
-                      <span>
-                        <FiCamera/>
-                      </span>
+                      <span><FiCamera/></span>
                     </label>
                   </div>
                   <p className="text-center">use JPEG, JPG,  PNG  </p>
@@ -132,9 +130,7 @@ function RecipeForm(){
                     onChange={(e) => handleInputChange(e, index)}
                     className="py-1 my-2 border border-black rounded-md"
                 />
-                <button type="button"
-                onClick={() => handleDeleteIngredient(index)}
-                >
+                <button type="button" onClick={() => handleDeleteIngredient(index)}>
                 <RxCrossCircled/>
                 </button>
                 <div className="border border-black rounded-md p-2">
@@ -155,11 +151,8 @@ function RecipeForm(){
         ))}
       </div>
       </div>
-        <button type="button"
-        onClick={handleAddIngredient}
-         className="flex flex-row items-center border boder-black bg-green-100 p-2 rounded-lg hover:bg-green-800">
-          <FaPlus/>
-          Add Ingredient
+        <button type="button" onClick={handleAddIngredient} className="flex flex-row items-center border boder-black bg-green-100 p-2 rounded-lg hover:bg-green-800">
+          <FaPlus/>Add Ingredient
         </button>
 
         <div className="mt-3">
@@ -177,36 +170,25 @@ function RecipeForm(){
               className="py-1 my-2 border border-black rounded-md w-full"
             />
 
-            <button type="button"
-            onClick={() => handleDeleteStep(index)}
-            >
+            <button type="button" onClick={() => handleDeleteStep(index)}>
             <RxCrossCircled/>
             </button>
             </div>
           </div>
         ))}
-        <button type="button"
-        onClick={handleAddStep}
-        //  className="flex flex-row items-center border boder-black bg-green-100 p-2 rounded-lg hover:bg-green-800"
-        >
-          {/* <FaPlus/> */}
-          Add Step
+        <button type="button" onClick={handleAddStep} className="flex flex-row items-center border boder-black bg-green-100 p-2 rounded-lg hover:bg-green-800">
+          <FaPlus/>Add Step
         </button>
         <div className="flex flex-row items-center gap-3 justify-end">
-          <input type="submit" value="Cancel"
-          onClick={handleSubmit}
-          className="text-blue-500 hover:underline"
-          />
-          <button type="submit"
-          onClick={handleSubmit}
-          className="border border-black p-2 bg-green-100 hover:bg-green-800"
-          >Submit</button>
+          <input type="submit" value="Cancel" onClick={handleSubmit} className="text-blue-500 hover:underline"/>
+          <button type="submit" onClick={handleSubmit} className="border border-black p-2 bg-green-100 hover:bg-green-800">Submit</button>
         </div>
 
         </div>
         </div>
       </form>
-        </div>
-    )
-}
+    </div>
+  );
+};
+
 export default RecipeForm;
