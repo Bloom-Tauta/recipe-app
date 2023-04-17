@@ -38,6 +38,10 @@ function RecipeForm(){
         setSteps(newSteps);
       };
 
+      function handleSubmit(e){
+        e.preventDefault();
+      }
+
     return(
         <div>
             <form>
@@ -173,12 +177,12 @@ function RecipeForm(){
         </button>
         <div className="flex flex-row items-center gap-3 justify-end">
           <input type="submit" value="Cancel"
-        //   onClick={handleSubmit}
-        //   className="text-blue-500 hover:underline"
+          onClick={handleSubmit}
+          className="text-blue-500 hover:underline"
           />
           <button type="submit"
-        //   onClick={handleSubmit}
-        //   className="border border-black p-2 bg-green-100 hover:bg-green-800"
+          onClick={handleSubmit}
+          className="border border-black p-2 bg-green-100 hover:bg-green-800"
           >Submit</button>
         </div>
 
