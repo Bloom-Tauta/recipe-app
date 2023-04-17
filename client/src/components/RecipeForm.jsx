@@ -32,6 +32,12 @@ function RecipeForm(){
         setSteps([...steps, ""]);
       };
 
+      const handleDeleteStep = (index) => {
+        const newSteps = [...steps];
+        newSteps.splice(index, 1);
+        setSteps(newSteps);
+      };
+
     return(
         <div>
             <form>
@@ -151,7 +157,7 @@ function RecipeForm(){
             />
 
             <button type="button"
-            // onClick={() => handleDeleteStep(index)}
+            onClick={() => handleDeleteStep(index)}
             >
             <RxCrossCircled/>
             </button>
