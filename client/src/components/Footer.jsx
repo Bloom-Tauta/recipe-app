@@ -1,9 +1,9 @@
 
 import { NavLink  } from "react-router-dom";
-// import { MdCopyright } from "react-icons/md"
-// import { FaFacebook } from "react-icons/fa"
-// import { FaTwitter } from "react-icons/fa"
-// import { FaInstagram } from "react-icons/fa"
+import { MdCopyright } from "react-icons/md"
+import { FaFacebook } from "react-icons/fa"
+import { FaTwitter } from "react-icons/fa"
+import { FaInstagram } from "react-icons/fa"
 
 
 function Footer(){
@@ -44,7 +44,7 @@ function Footer(){
                   <NavLink to="#"
                     // className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   >
-                    {/* <FaTwitter size ={20} className="mr-5" /> */}
+                    <FaTwitter size ={20} className="mr-5" />
                     <span>Twitter</span>
                   </NavLink>
                 </li>
@@ -54,7 +54,7 @@ function Footer(){
                   <NavLink to="#"
                     // className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   >
-                    {/* <FaFacebook size ={20} className="mr-5" /> */}
+                    <FaFacebook size ={20} className="mr-5" />
                     <span>Facebook</span>
                   </NavLink>
                 </li>
@@ -64,7 +64,7 @@ function Footer(){
                   <NavLink to="/"
                     // className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   >
-                    {/* <FaInstagram size ={20} className="mr-5" /> */}
+                    <FaInstagram size ={20} className="mr-5" />
                     <span>Instagram</span>
                   </NavLink>
                 </li>
