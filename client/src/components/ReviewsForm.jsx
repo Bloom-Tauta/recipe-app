@@ -1,6 +1,34 @@
-
+import React, { useState } from 'react';
+import { BiStar } from 'react-icons/bi'
 
 function ReviewsForm(){
+
+    const [rating, setRating] = useState(0);
+    const [remark, setRemark] = useState("");
+
+    const handleStarClick = (star) => {
+        setRating(star);
+        switch (star) {
+            case 1:
+              setRemark("Coudn't eat it!");
+              break;
+            case 2:
+              setRemark("Didn't like it!");
+              break;
+            case 3:
+              setRemark("Fair enough");
+              break;
+            case 4:
+              setRemark("Liked it!");
+              break;
+            case 5:
+              setRemark("Loved it!");
+              break;
+            default:
+              setRemark("");
+          }
+      };
+
     return(
         <div>
             <h3 className='text-center '>Your ratings</h3>
@@ -15,7 +43,7 @@ function ReviewsForm(){
                 // color: star <= rating ? 'red' : 'gray'
                 }}
             >
-            {/* <BiStar/> */}
+            <BiStar/>
             </span>
             ))}
           </div>
