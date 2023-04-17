@@ -1,0 +1,18 @@
+development:
+  cloud_name: diwaw1swe
+  api_key: '122115316712759'
+  api_secret: "vRA4LAKiMYl1TqP7iiaNcNRUA60"
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: diwaw1swe
+  api_key: '122115316712759'
+  api_secret: "vRA4LAKiMYl1TqP7iiaNcNRUA60"
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: diwaw1swe
+  api_key: '122115316712759'
+  api_secret: "vRA4LAKiMYl1TqP7iiaNcNRUA60"
+  enhance_image_tag: true
+  static_file_support: false
