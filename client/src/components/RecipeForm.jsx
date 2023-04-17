@@ -5,19 +5,25 @@ import { FaPlus } from "react-icons/fa";
 
 function RecipeForm(){
 
-    const [ingredients, setIngredient] = useState([""]);
+    const [ingredients, setIngredients] = useState([""]);
 
     const handleInputChange = (e, index) => {
 
         const newIngredients = [...ingredients];
 
         newIngredients[index] = e.target.value;
-        setIngredient(newIngredients);
+        setIngredients(newIngredients);
 
       };
 
       const handleAddIngredient = () => {
-        setIngredient([...ingredients, ""]);
+        setIngredients([...ingredients, ""]);
+      };
+
+      const handleDeleteIngredient = (index) => {
+        const newIngredients = [...ingredients];
+        newIngredients.splice(index, 1);
+        setIngredients(newIngredients);
       };
 
     return(
@@ -94,7 +100,7 @@ function RecipeForm(){
                     className="py-1 my-2 border border-black rounded-md"
                 />
                 <button type="button"
-                // onClick={() => handleDeleteIngredient(index)}
+                onClick={() => handleDeleteIngredient(index)}
                 >
                 <RxCrossCircled/>
                 </button>
@@ -119,7 +125,7 @@ function RecipeForm(){
         <button type="button"
         onClick={handleAddIngredient}
          className="flex flex-row items-center border boder-black bg-green-100 p-2 rounded-lg hover:bg-green-800">
-          {/* <FaPlus/> */}
+          <FaPlus/>
           Add Ingredient
         </button>
 
