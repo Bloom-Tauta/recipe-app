@@ -58,34 +58,21 @@ function Footer(){
                         <span className="text-white">2023 Recipe-Share</span>
                     </div>
               </div>
-            <div
-            // className=" lg:w-8/12 px-4 "
-            >
-              <ul
-            //   className="flex flex-wrap list-none pl-0 mb-0 gap-5"
-              >
-                <li
-                // className="nav-item"
-                >
-
+            <div className=" lg:w-8/12 px-4 ">
+              <ul className="flex flex-wrap list-none pl-0 mb-0 gap-5">
+                <li className="nav-item">
                   <NavLink to="about"
-                    // className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   >
-                    <span
-                    // className="ml-2"
-                    >About Us</span>
+                    <span className="ml-2">About Us</span>
                   </NavLink>
                 </li>
 
-                <li
-                // className="nav-item"
-                >
+                <li className="nav-item">
                   <NavLink to="contact"
-                    // className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   >
-                    <span
-                    // className="ml-2"
-                    >Contact Us</span>
+                    <span className="ml-2">Contact Us</span>
                   </NavLink>
                 </li>
               </ul>
