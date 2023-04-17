@@ -7,6 +7,8 @@ function RecipeForm(){
 
     const [ingredients, setIngredients] = useState([""]);
     const [steps, setSteps] = useState([""]);
+    const [file, setFile] = useState(null);
+  const [error, setError] = useState(null);
 
     const handleInputChange = (e, index) => {
         const newSteps = [...steps];
@@ -36,6 +38,19 @@ function RecipeForm(){
         const newSteps = [...steps];
         newSteps.splice(index, 1);
         setSteps(newSteps);
+      };
+
+      const handleChange = (e) => {
+        const selectedFile = e.target.files[0];
+        const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+
+        if (selectedFile && allowedTypes.includes(selectedFile.type)) {
+          setFile(selectedFile);
+          setError(null);
+        } else {
+          setFile(null);
+          setError("Please select a valid image file (JPEG, PNG, or GIF).");
+        }
       };
 
       function handleSubmit(e){
@@ -91,7 +106,7 @@ function RecipeForm(){
                         type="file"
                         id="uploadInput"
                         accept=".jpg, .jpeg, .png, .gif"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         style={{ display: "none" }}
                     className=""  />
                       <span>Upload a photo</span>
@@ -128,7 +143,7 @@ function RecipeForm(){
                         type="file"
                         id="uploadInput"
                         accept=".jpg, .jpeg, .png, .gif"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         style={{ display: "none" }}
                     className="border"  />
                       <span>Upload a photo</span>
