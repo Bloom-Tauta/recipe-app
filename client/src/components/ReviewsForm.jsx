@@ -5,6 +5,7 @@ function ReviewsForm(){
 
     const [rating, setRating] = useState(0);
     const [remark, setRemark] = useState("");
+    const [comment, setComment] = useState('');
 
     const handleStarClick = (star) => {
         setRating(star);
@@ -37,10 +38,10 @@ function ReviewsForm(){
             {[1, 2, 3, 4, 5].map((star) => (
             <span
                 key={star}
-                // onClick={() => handleStarClick(star)}
+                onClick={() => handleStarClick(star)}
                 style={{
                 cursor: 'pointer',
-                // color: star <= rating ? 'red' : 'gray'
+                color: star <= rating ? 'red' : 'gray'
                 }}
             >
             <BiStar/>
@@ -48,7 +49,7 @@ function ReviewsForm(){
             ))}
           </div>
           <p className='border-l border-black p-1'>
-            {/* {remark} */}
+            {remark}
           </p>
         </div>
 
@@ -56,7 +57,7 @@ function ReviewsForm(){
         <label htmlFor="Comment" className='text-start'>Comment:</label>
         <textarea
           id="Comment"
-        //   value={comment}
+          value={comment}
         //   onChange={handleCommentChange}
           rows={4}
           cols={50}
