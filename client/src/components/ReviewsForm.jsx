@@ -30,6 +30,10 @@ function ReviewsForm(){
           }
       };
 
+      const handleCommentChange = (event) => {
+        setComment(event.target.value);
+      };
+
     return(
         <div>
             <h3 className='text-center '>Your ratings</h3>
@@ -58,7 +62,7 @@ function ReviewsForm(){
         <textarea
           id="Comment"
           value={comment}
-        //   onChange={handleCommentChange}
+          onChange={handleCommentChange}
           rows={4}
           cols={50}
           className='bg-gray-50 border border-gray-300
