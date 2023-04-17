@@ -1,46 +1,45 @@
 import React, { useState } from 'react';
 import { BiStar } from 'react-icons/bi'
 
-function ReviewsForm(){
+const ReviewsForm = () => {
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
+  const [remark, setRemark] = useState("");
 
-    const [rating, setRating] = useState(0);
-    const [remark, setRemark] = useState("");
-    const [comment, setComment] = useState('');
 
-    const handleStarClick = (star) => {
-        setRating(star);
-        switch (star) {
-            case 1:
-              setRemark("Coudn't eat it!");
-              break;
-            case 2:
-              setRemark("Didn't like it!");
-              break;
-            case 3:
-              setRemark("Fair enough");
-              break;
-            case 4:
-              setRemark("Liked it!");
-              break;
-            case 5:
-              setRemark("Loved it!");
-              break;
-            default:
-              setRemark("");
-          }
-      };
+  function handleSubmit(e){
+    e.preventDefault();
+  }
 
-      const handleCommentChange = (event) => {
-        setComment(event.target.value);
-      };
-
-      function handleSubmit(e){
-        e.preventDefault();
+  const handleStarClick = (star) => {
+    setRating(star);
+    switch (star) {
+        case 1:
+          setRemark("Coudn't eat it!");
+          break;
+        case 2:
+          setRemark("Didn't like it!");
+          break;
+        case 3:
+          setRemark("Fair enough");
+          break;
+        case 4:
+          setRemark("Liked it!");
+          break;
+        case 5:
+          setRemark("Loved it!");
+          break;
+        default:
+          setRemark("");
       }
+  };
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  };
 
-    return(
-        <div>
-            <h3 className='text-center '>Your ratings</h3>
+  return (
+    <div className='flex flex-col items-center  justify-center border border-black px-12 py-8 mx-auto max-w-lg mt-4'>
+        <h3 className='text-center '>Your ratings</h3>
         <div className='flex items-center '>
             <div className='text-center p-6 flex flex-row'>
             {[1, 2, 3, 4, 5].map((star) => (
@@ -56,9 +55,7 @@ function ReviewsForm(){
             </span>
             ))}
           </div>
-          <p className='border-l border-black p-1'>
-            {remark}
-          </p>
+          <p className='border-l border-black p-1'>{remark}</p>
         </div>
 
       <div className='flex flex-col'>
@@ -82,8 +79,8 @@ function ReviewsForm(){
         onClick={handleSubmit}
           className="border border-black p-2 bg-green-100 hover:bg-green-800">Submit</button>
         </div>
-        </div>
-    )
-}
+    </div>
+  );
+};
 
 export default ReviewsForm;
