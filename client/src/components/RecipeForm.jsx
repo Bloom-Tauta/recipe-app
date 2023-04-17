@@ -9,11 +9,12 @@ function RecipeForm(){
     const [steps, setSteps] = useState([""]);
 
     const handleInputChange = (e, index) => {
-
+        const newSteps = [...steps];
         const newIngredients = [...ingredients];
-
         newIngredients[index] = e.target.value;
+        newSteps[index] = e.target.value;
         setIngredients(newIngredients);
+        setSteps(newSteps);
 
       };
 
@@ -25,6 +26,10 @@ function RecipeForm(){
         const newIngredients = [...ingredients];
         newIngredients.splice(index, 1);
         setIngredients(newIngredients);
+      };
+
+      const handleAddStep = () => {
+        setSteps([...steps, ""]);
       };
 
     return(
@@ -141,7 +146,7 @@ function RecipeForm(){
             <input
               type="text"
               value={step}
-            //   onChange={(e) => handleInputChange(e, index)}
+              onChange={(e) => handleInputChange(e, index)}
               className="py-1 my-2 border border-black rounded-md w-full"
             />
 
@@ -154,7 +159,7 @@ function RecipeForm(){
           </div>
         ))}
         <button type="button"
-        // onClick={handleAddStep}
+        onClick={handleAddStep}
         //  className="flex flex-row items-center border boder-black bg-green-100 p-2 rounded-lg hover:bg-green-800"
         >
           {/* <FaPlus/> */}
