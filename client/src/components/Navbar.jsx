@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-// import Search from "./Search";
+import Search from "./Search";
 
 
 function NavBar(){
@@ -7,10 +7,10 @@ function NavBar(){
         <div
         // className="bg-gray-700 p-4 items-center justify-between flex "
         >
-            {/* <span
+            <span
             //  className="text-white text-4xl"
-            >Recipe-Share</span> */}
-            {/* <Search/> */}
+            >Recipe-Share</span>
+            <Search/>
             <div>
                 <ul
                 // className=" flex gap-4 text-blue-300 text-base "
