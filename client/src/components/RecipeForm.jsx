@@ -6,6 +6,7 @@ import { FaPlus } from "react-icons/fa";
 function RecipeForm(){
 
     const [ingredients, setIngredients] = useState([""]);
+    const [steps, setSteps] = useState([""]);
 
     const handleInputChange = (e, index) => {
 
@@ -132,26 +133,26 @@ function RecipeForm(){
         <div className="mt-3">
           <h2 className="font-bold">Steps</h2>
           <p>Explain how to make your recipe, including oven temperatures, baking or cooking times, and pan sizes, etc.</p>
-          {/* <div className="py-2"> */}
-        {/* {steps.map((step, index) => (
+          <div className="py-2">
+        {steps.map((step, index) => (
           <div key={index} className="flex flex-col">
             <label>Step {index + 1}: </label>
             <div className="flex flex-row gap-2">
             <input
               type="text"
               value={step}
-              onChange={(e) => handleInputChange(e, index)}
+            //   onChange={(e) => handleInputChange(e, index)}
               className="py-1 my-2 border border-black rounded-md w-full"
             />
 
             <button type="button"
-            onClick={() => handleDeleteStep(index)}
+            // onClick={() => handleDeleteStep(index)}
             >
             <RxCrossCircled/>
             </button>
             </div>
           </div>
-        ))} */}
+        ))}
         <button type="button"
         // onClick={handleAddStep}
         //  className="flex flex-row items-center border boder-black bg-green-100 p-2 rounded-lg hover:bg-green-800"
@@ -170,7 +171,7 @@ function RecipeForm(){
           >Submit</button>
         </div>
 
-        {/* </div> */}
+        </div>
         </div>
       </form>
         </div>
