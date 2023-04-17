@@ -122,19 +122,19 @@ function RecipeForm(){
                 >
                 <RxCrossCircled/>
                 </button>
-                {/* <div className="border border-black rounded-md p-2"> */}
-                {/* <label htmlFor="uploadInput">
+                <div className="border border-black rounded-md p-2">
+                <label htmlFor="uploadInput">
                       <input
                         type="file"
                         id="uploadInput"
                         accept=".jpg, .jpeg, .png, .gif"
-                        onChange={handleChange}
+                        // onChange={handleChange}
                         style={{ display: "none" }}
                     className="border"  />
                       <span>Upload a photo</span>
                       <span><FiCamera/></span>
-                    </label> */}
-                  {/* </div> */}
+                    </label>
+                  </div>
               </div>
             </div>
         ))}
