@@ -5,6 +5,7 @@ ruby "2.7.4"
 
 gem "jwt"
 gem 'pundit'
+gem 'sendgrid-ruby'
 
 #serializer
 gem 'active_model_serializers'
