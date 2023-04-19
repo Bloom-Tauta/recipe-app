@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recipe_name: MyString
+  description: MyText
+  country_of_origin: MyString
+  number_of_people_served: MyString
+  ingredients: MyText
+  instructions: MyText
+  date_time: 2023-04-20 00:23:29
+  user_id: 1
+  admin_id: 1
+
+two:
+  recipe_name: MyString
+  description: MyText
+  country_of_origin: MyString
+  number_of_people_served: MyString
+  ingredients: MyText
+  instructions: MyText
+  date_time: 2023-04-20 00:23:29
+  user_id: 1
+  admin_id: 1
