@@ -107,6 +107,8 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jsonapi-renderer (0.2.2)
+    jsonapi-serializer (2.2.0)
+      activesupport (>= 4.2)
     jwt (2.7.0)
     loofah (2.20.0)
       crass (~> 1.0.2)
@@ -220,6 +222,7 @@ DEPENDENCIES
   capybara
   debug
   jbuilder
+  jsonapi-serializer (~> 2.2)
   jwt
   pg (~> 1.1)
   puma (~> 5.0)

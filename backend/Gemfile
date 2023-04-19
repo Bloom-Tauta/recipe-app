@@ -5,6 +5,7 @@ ruby "2.7.4"
 
 gem "jwt"
 gem 'pundit'
+gem 'jsonapi-serializer', '~> 2.2'
 
 #serializer
 gem 'active_model_serializers'
