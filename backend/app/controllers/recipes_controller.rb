@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  skip_before_action :verify_authenticity_token
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
     def index
@@ -29,7 +30,7 @@ class RecipesController < ApplicationController
         Recipe.find(params[:id])
     end
     def recipe_params
-        params.require(:recipe).permit(:recipe_image, :recipe_name, :description, :country_of_origin, :number_of_people_served, :ingredients, :instructions, :date_time, :user_id, :admin_id)
+        params.permit(:recipe_image, :recipe_name, :description, :country_of_origin, :number_of_people_served, :ingredients, :instructions, :date_time, :user_id, :admin_id)
     end
     def render_not_found_response
         render json: { error: "Recipe not found" }, status: :not_found
