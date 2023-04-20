@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "users#logout"
   root "users#index"
 
+  resources :reviews
+  get '/users', to: 'users#index'
+
 end

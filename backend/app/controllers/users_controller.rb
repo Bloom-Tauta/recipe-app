@@ -19,19 +19,19 @@ class UsersController < ApplicationController
 
 
     def login
-        @user = User.find_by(username: params[:username])
-        if @user && @user.authenticate(params[:password])
-          token = encode_token({ user_id: @user.id })
-          render json: { user: @user.as_json(except: [:created_at, :updated_at]), token: token, authorized: true  }
-        else
-          render json: { error: 'Invalid username or password' }, status: :unauthorized
-        end
+      @user = User.find_by(username: params[:username])
+      if @user && @user.authenticate(params[:password])
+        token = encode_token({ user_id: @user.id })
+        render json: { user: @user.as_json(except: [:created_at, :updated_at]), token: token, authorized: true  }
+      else
+        render json: { error: 'Invalid username or password' }, status: :unauthorized
       end
+    end
 
-      def logout
-        session.delete(:user_id)
-        render json: { message: 'Logged out successfully' }
-      end
+    def logout
+      session.delete(:user_id)
+      render json: { message: 'Logged out successfully' }
+    end
     
       private
 
@@ -40,5 +40,8 @@ class UsersController < ApplicationController
   end
   def authorized
     render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
+  end
+  def logged_in?
+    !!current_user
   end
 end
