@@ -1,19 +1,17 @@
 class ReviewsController < ApplicationController
-    skip_before_action :authorized
+    before_action :authorized
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
-    #GET /reviews/:id
-    # def show
-    #     @review = find_review
-    #     render json: @review
-    # end
+    #GET /reviews
 
     def index
-        @review.all
-        render json: reviews
+        @reviews = Review.all
+        render json: @reviews
     end
+
+    #GET /reviews/:id
 
     def show
         review = find_review
@@ -38,13 +36,12 @@ class ReviewsController < ApplicationController
       end
 
     #DESTROY/reviews/:id
+
     def destroy
         @review = find_review
         @review.destroy
         head :no_content
     end
-
-
 
     private
 

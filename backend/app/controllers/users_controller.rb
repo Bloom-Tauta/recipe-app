@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       private
 
   def user_params
-    params.permit(:username, :password, :email)
+    params.permit(:username, :password, :email, :admin)
   end
   def authorized
     render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
