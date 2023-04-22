@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { Routes, Route } from 'react-router-dom'
-=======
-
->>>>>>> d278d3921a43d22d032c7f38b803f42162422e9e
 import './App.css';
 import About from './Components/About';
 import LandingPage from './components/LandingPage';
