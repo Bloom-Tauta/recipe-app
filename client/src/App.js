@@ -1,63 +1,42 @@
-import { Routes, Route } from 'react-router-dom'
-import './App.css';
-import About from './Components/About';
-import LandingPage from './components/LandingPage';
-import RecipeForm from './components/RecipeForm';
-import RatingForm from './components/RatingsForm';
-import Signup from './components/Signup';
-import Login from './components/Login';
 
+import './App.css';
+import { Route, Routes } from "react-router-dom"
+import React,{ useState} from 'react';
+import LandingPage from './components/LandingPage';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+// import TheDetails from './components/TheDetails';
+import UserDashboard from './components/UserDashboard';
+import RecipePage from './components/RecipePage';
+import Share from './components/Share';
+import ReviewsForm from './components/ReviewsForm';
+import RecipeDetailPage from './components/RecipeDetailPage';
 
 function App() {
-  // function handleSubmit (e){
-  //   e.preventDefault()
-  //   const formData=new FormData()
-  //   formData.append("recipe[recipeName]",e.target.recipeName.value)
-  //   formData.append("recipe[recipeimage]",e.target.recipeImage.files[0])
-  //   formData.append("recipe[description]",e.target.description.value)
-  //   formData.append("recipe[countryOfOrigin]",e.target.countryOfOrigin.value)
-  //   formData.append("recipe[numberOfPeopleServed]",e.target.numberOfPeopleServed.value)
-  //   formData.append("recipe[ingredients]",e.target.ingredients.value)
-  //   formData.append("recipe[instructions]",e.target.instructions.value)
-  //   formData.append("recipe[dateTime]",e.target.dateTime.value)
-  //    sendDataToBackEnd(formData)
-  //   console.log(e.target.image.files[0])
-  //   console.log(e.target.title.value)
-  //   console.log(e.target.description.value)
-  // }
-  // function sendDataToBackEnd(formData){
-  //   fetch("http://localhost:3000/recipes",{
-  //     method: "POST",
-  //     body: formData
-  //   }).then(res=> res.json())
-  //   .then(data=>{
-  //     console.log(data)
-  //   })
-  // }
+
+  const [recipes, setRecipes] =useState([])
+  const [search, setSearch] = useState('')
+  function handleSearch(value){
+    setSearch(value)
+  }
+
+
   return (
     <div className="App">
-      {/* { <form onSubmit={(e)=>handleSubmit(e)}>
-        <input placeholder='recipe-name' type="text" name="recipe-name" />
-        <input type="file" name="recipe-image" accept="image/jpg, image/png" />
-        <input placeholder='description' type="text" name="description" />
-        <input placeholder='countrty-of -origin' type="text" name="country-of-origin" />
-        <input placeholder='number-of-people-served' type="text" name="number-of-people served" />
-        <input placeholder='ingredients' type="text" name="ingredients" />
-        <input placeholder='instructions' type="text" name="instructions" />
-        <input placeholder='datetime' type="text" name="datetime" />
-
-        <input type="submit"  />
-      </form> } */}
+      <NavBar search={search} handleSearch={handleSearch} />
+      <div className='min-h-[70vh]'>
       <Routes>
-        <Route path="/" element={<LandingPage/>}/>
-        <Route path="/recipe-form" element={<RecipeForm/>}/>
-        <Route path="/rating" element={<RatingForm/>}/>
-        <Route path="/sign-up" element={<Signup/>}/>
-        <Route path="/login" element={<Login/>}/>
-
+        <Route path="/" element={<LandingPage search={search}/>}/>
+        <Route path="/viewmeals/:id" element={<RecipePage/>}/>
+        <Route path="/user-dashboard" element={<UserDashboard/>}/>
+        <Route path="/viewmeal/:id" element={<RecipeDetailPage />}/>
+        <Route path="/share" element={<Share/>}/>
+        <Route path="/reviews" element={<ReviewsForm/>}/>
       </Routes>
-
+      </div>
+      <Footer />
     </div>
   );
 }
+
 export default App;
