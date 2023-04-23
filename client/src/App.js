@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import './App.css';
-import About from './Components/About';
+import About from './components/About';
 import LandingPage from './components/LandingPage';
 import RecipeForm from './components/RecipeForm';
 import RatingForm from './components/RatingsForm';
@@ -11,7 +11,7 @@ import Login from './components/Login';
 
 function App() {
   return(
-  <About/>
+    <About/>
   )
 }
 export default App;
