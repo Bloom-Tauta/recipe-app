@@ -107,6 +107,8 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jsonapi-renderer (0.2.2)
+    jsonapi-serializer (2.2.0)
+      activesupport (>= 4.2)
     jwt (2.7.0)
     loofah (2.20.0)
       crass (~> 1.0.2)
@@ -173,7 +175,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
-    regexp_parser (2.7.0)
+    regexp_parser (2.8.0)
     reline (0.3.3)
       io-console (~> 0.5)
     rexml (3.2.5)
@@ -223,6 +225,7 @@ DEPENDENCIES
   capybara
   debug
   jbuilder
+  jsonapi-serializer (~> 2.2)
   jwt
   pg (~> 1.1)
   puma (~> 5.0)
@@ -240,4 +243,4 @@ RUBY VERSION
    ruby 2.7.4p191
 
 BUNDLED WITH
-   2.4.12
+   2.4.7
