@@ -1,52 +1,100 @@
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+
+import Card from "./Card";
+import { useState, useEffect } from "react";
 
 
 
 
-function LandingPage(){
-
-    const recipes = [
-        { id: 1, name: 'burger', image: 'https://media.istockphoto.com/id/182744943/photo/burger.jpg?b=1&s=170667a&w=0&k=20&c=Zcd1pQz6GNoL9CjT8jVckQy02iV9fEokhBeUyKxsnxM='  },
-        { id: 2, name: ' hotdog', image: 'https://media.istockphoto.com/id/182744943/photo/burger.jpg?b=1&s=170667a&w=0&k=20&c=Zcd1pQz6GNoL9CjT8jVckQy02iV9fEokhBeUyKxsnxM='  },
-        { id: 3, name: ' chicken', image: 'https://media.istockphoto.com/id/182744943/photo/burger.jpg?b=1&s=170667a&w=0&k=20&c=Zcd1pQz6GNoL9CjT8jVckQy02iV9fEokhBeUyKxsnxM='  },
-        { id: 4, name: ' sushi', image: 'https://media.istockphoto.com/id/182744943/photo/burger.jpg?b=1&s=170667a&w=0&k=20&c=Zcd1pQz6GNoL9CjT8jVckQy02iV9fEokhBeUyKxsnxM='  },
-        { id: 5, name: ' bread', image: 'https://media.istockphoto.com/id/182744943/photo/burger.jpg?b=1&s=170667a&w=0&k=20&c=Zcd1pQz6GNoL9CjT8jVckQy02iV9fEokhBeUyKxsnxM='  },
-        { id: 6, name: ' french fries', image: 'https://media.istockphoto.com/id/182744943/photo/burger.jpg?b=1&s=170667a&w=0&k=20&c=Zcd1pQz6GNoL9CjT8jVckQy02iV9fEokhBeUyKxsnxM='  },
-        // { id: 7, name: ' sausage', image: 'https://media.istockphoto.com/id/182744943/photo/burger.jpg?b=1&s=170667a&w=0&k=20&c=Zcd1pQz6GNoL9CjT8jVckQy02iV9fEokhBeUyKxsnxM='  },
-        // { id: 8, name: ' sausage', image: 'https://cdn.pixabay.com/photo/2014/06/21/02/28/sushi-373587__340.jpg'},
-        // { id: 9, name: ' sausage', image: 'https://cdn.pixabay.com/photo/2014/06/21/02/28/sushi-373587__340.jpg'},
-        // { id: 10, name: ' sausage', image: 'https://cdn.pixabay.com/photo/2014/06/21/02/28/sushi-373587__340.jpg'},
-        // { id: 11, name: ' sausage', image: 'https://cdn.pixabay.com/photo/2014/06/21/02/28/sushi-373587__340.jpg'},
-        // { id: 12, name: ' sausage', image: 'https://cdn.pixabay.com/photo/2014/06/21/02/28/sushi-373587__340.jpg'},
-        // { id: 13, name: ' sausage', image: 'https://cdn.pixabay.com/photo/2014/06/21/02/28/sushi-373587__340.jpg'},
-        // { id: 14, name: ' sausage', image: 'https://cdn.pixabay.com/photo/2014/06/21/02/28/sushi-373587__340.jpg'},
+function LandingPage({search}){
 
 
-      ];
 
+    const [itemsPerPage, setItemsPerPage] = useState(6)
+    const [recipes, setRecipes] = useState([])
+    const [currentPage, setCurrentPage] = useState(0)
+    const [searchBy, setSearchBy] = useState("area")
+
+    useEffect(() =>{
+        fetch("http://localhost:3000/meals",{
+        })
+        .then((response) =>response.json())
+        .then((data) =>{
+            setRecipes(organizePages([...data,...data], itemsPerPage))
+        })
+    }, [])
+
+    function organizePages(data, perPage) {
+        let temp = []
+        for(let i=0;i<data.length;i+=perPage){
+            temp.push(data.slice(i,i+perPage))
+        }
+        return temp
+    }
+
+    //filter by name
+
+    let filteredMeals = []
+    if(recipes.length > 0) {
+        filteredMeals = (organizePages(recipes.flat().filter(meal => {
+            return meal.strMeal.toLowerCase().includes(search.toLowerCase())
+        }), itemsPerPage))
+    }
+
+    function handleChange(e){
+        setSearchBy(e.target.value)
+    }
+
+    // const filteredRecipes = recipes.filter()
+    console.log(search)
 
 
     return(
-        <div>
-            <Navbar/>
-            <div  className="min-h-screen">
-            <h1 className="text-center p-2">Delicious Recipes</h1>
-            <div className="flex">
-                {recipes.map(recipe => (
-                <div className="recipe-card" key={recipe.id}>
-                    <div className="recipe-image">
-                    <img src={recipe.image} alt={`Recipe ${recipe.id}`} />
-                    </div>
-                    <div className="flex flex-col items-center">
-                    <h2 className="text-center">{recipe.name}</h2>
-                    <button className="border border-black p-1 rounded-lg bg-green-200 mt-4">View More</button>
-                    </div>
+        <div className="">
+            <div className="flex justify-center w-full gap-3">
+                <div className="flex gap-2">
+                    <input type="radio" value="area" onChange={handleChange} name="search"/>
+                    <label>Area</label>
                 </div>
-                ))}
+                <div className="flex gap-2">
+                    <input type="radio" value="ratings" onChange={handleChange} name="search"/>
+                    <label>Ratings</label>
+                </div>
+                <div className="flex gap-2">
+                    <input type="radio" value="ingredients" onChange={handleChange} name="search"/>
+                    <label>Ingredients</label>
+                </div>
+                <div className="flex gap-2">
+                    <input type="radio" value="servings" onChange={handleChange} name="search"/>
+                    <label>Servings</label>
+                </div>
+                <div className="flex gap-2">
+                    <input type="radio" value="createdat" onChange={handleChange} name="search"/>
+                    <label>Created on</label>
+                </div>
             </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-0 place-content-stretch md:w-3/4 mx-auto">
+                {/* to be replaced by : filteredMeals */}
+                { filteredMeals.length > 0 && filteredMeals[currentPage].map((meal, index) =>{
+                    return (
+                        <Card key={index} meal={meal} />
+                    )
+                })}
+
             </div>
-            <Footer/>
+            <Pagination totalPages={filteredMeals.length} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        </div>
+    )
+}
+
+function Pagination({totalPages, currentPage,  setCurrentPage}) {
+
+    return (
+        <div className="flex justify-center gap-3 my-4">
+            {
+                new Array(totalPages).fill(0).map((page, index) => {
+                    return <button key={index} className={`h-6 w-6 ${index === currentPage ? "bg-blue-800 text-white" : "ring-1"} rounded-full font-bold`} onClick={() => setCurrentPage(index)}>{index+1}</button>
+                })
+            }
         </div>
     )
 }

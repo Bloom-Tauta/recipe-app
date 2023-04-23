@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { NavLink  } from 'react-router-dom';
 import Searchbar from './Searchbar'
-// import './navbar.css'
+//import './navbar.css';
 
 function Navbar(){
 
     const [search, setSearch] = useState('')
-// 
+
     return(
         <div className="bg-gray-700 p-4 items-center justify-between flex">
             <span className="text-white text-4xl">Recipe-Share</span>
