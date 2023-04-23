@@ -22,7 +22,7 @@ const Signup = () => {
   
   return (
     <div className='bg-white py-4 mx-5 rounded-3xl mb-1 mt-1 w-[90%] ml-auto mr-auto'>
-      <div className='bg-[#160194] opacity-80 w-[500px] h-[650px] rounded-3xl flex flex-col items-center ml-auto mr-auto mt-2 p-20'>
+      <div className='bg-[#98D6DB] opacity-80 w-[500px] h-[650px] rounded-3xl flex flex-col items-center ml-auto mr-auto mt-2 p-20'>
         <form onSubmit={handleSubmit}
         className='bg-white shadow-lg  rounded-3xl px-8 pt-3 pb-3 mb-3 w-full'>
           <div >
@@ -47,7 +47,7 @@ const Signup = () => {
 
           </div> */}
           <div className="flex items-center flex-col">
-            <button className="bg-[#160194] hover:bg-blue-900 text-white font-bold py-2 px-12 rounded-md focus:outline-none focus:shadow-outline">Sign Up</button>
+            <button className="bg-[#0C54BF] hover:bg-blue-900 text-white font-bold py-2 px-12 rounded-md focus:outline-none focus:shadow-outline">Sign Up</button>
             <h6>Already have an account? <Link to="/login" className="inline-block align-baseline font-bold text-sm text-[#160194] hover:text-blue-800">Login</Link></h6>
           </div>
           

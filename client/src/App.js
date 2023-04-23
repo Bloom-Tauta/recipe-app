@@ -4,6 +4,9 @@ import About from './Components/About';
 import LandingPage from './components/LandingPage';
 import RecipeForm from './components/RecipeForm';
 import RatingForm from './components/RatingsForm';
+import Signup from './components/Signup';
+import Login from './components/Login';
+
 
 
 function App() {
