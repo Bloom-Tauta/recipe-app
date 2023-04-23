@@ -10,6 +10,7 @@ class CreateRecipes < ActiveRecord::Migration[7.0]
       t.datetime :date_time
       t.integer :user_id
       t.integer :admin_id
+      t.boolean :approved, default: false
 
       t.timestamps
     end
