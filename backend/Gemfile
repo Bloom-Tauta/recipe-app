@@ -1,11 +1,11 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.1"
+ruby "2.4.7"
 
 gem "jwt"
 gem 'pundit'
-# gem 'jsonapi-serializer', '~> 2.2'
+gem 'jsonapi-serializer', '~> 2.2'
 gem 'sendgrid-ruby'
 
 #serializer
