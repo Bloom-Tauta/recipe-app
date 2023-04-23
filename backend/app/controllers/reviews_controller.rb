@@ -14,9 +14,9 @@ class ReviewsController < ApplicationController
     #GET /reviews/:id
 
     def show
-        review = find_review
-        if review.present?
-          render json: review, status: :ok
+        @review = find_review
+        if @review.present?
+          render json: @review, status: :ok
         else
           render json: { error: "Review not found" }, status: :not_found
         end
@@ -26,14 +26,14 @@ class ReviewsController < ApplicationController
     #POST /reviews
 
     def create
-        review = Review.create(review_params)
-        
-        if review.save
-          render json: review, status: :created
-        else
-          render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
-        end
+      @review = Review.create(review_params)
+      
+      if @review.save
+        render json: @review, status: :created
+      else
+        render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
       end
+    end
 
     #DESTROY/reviews/:id
 
