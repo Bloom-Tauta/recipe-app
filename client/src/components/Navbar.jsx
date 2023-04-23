@@ -1,12 +1,15 @@
-import { NavLink } from "react-router-dom";
-import Search from "./Search";
+import { useState } from 'react';
+import { NavLink  } from 'react-router-dom';
+import Searchbar from './Searchbar'
 
+function Navbar(){
 
-function NavBar(){
+    const [search, setSearch] = useState('')
+
     return(
         <div className="bg-gray-700 p-4 items-center justify-between flex ">
             <span className="text-white text-4xl">Recipe-Share</span>
-            <Search/>
+            <Searchbar search={search} setSearch={setSearch} />
             <div>
                 <ul className=" flex gap-4 text-blue-300 text-base ">
                     <NavLink to="/" className="hover:text-blue-800 font-bold" >Home</NavLink>
@@ -19,6 +22,4 @@ function NavBar(){
     )
 }
 
-export default NavBar;
-
-
+export default Navbar;
