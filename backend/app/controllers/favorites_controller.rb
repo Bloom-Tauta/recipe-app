@@ -3,7 +3,17 @@ class FavoritesController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-    
+
+    def index
+        @favorites = Facvorite.all
+        render json: @favorites
+    end
+
+    def show
+        @favorite = find_favorite
+        render json: @favorite
+    end
+
     def create
         @favorite = Favorite.create(favorite_params)
         if @favorite.save
@@ -21,6 +31,12 @@ class FavoritesController < ApplicationController
         else
             render json: { errors: @favorite.errors.full_messages }, status: :unprocessable_entity
         end
+    end
+
+    def destroy
+        @favorite = find_favorite
+        @favorite.destroy
+        head :no_content
     end
 
     private
