@@ -85,7 +85,7 @@ function RecipeDetailPage() {
         </div>
 
       <div className='mt-3 flex flex-col gap-2 text-blue-900'>
-        {meal.strInstructions.split(/[\r\n]+/).map((step, index) => (
+        {meal.instructions.split(/[\r\n]+/).map((step, index) => (
           <div className='text-black' key={index}>{step}</div>
         ))}
       </div>

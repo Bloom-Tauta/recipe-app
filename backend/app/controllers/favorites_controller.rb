@@ -4,15 +4,23 @@ class FavoritesController < ApplicationController
 
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
     
+    # def create
+    #     @favorite = Favorite.create(favorite_params)
+    #     if @favorite.save
+    #       render json: favorite, status: :created
+    #     else
+    #       render json: { errors: @favorite.errors.full_messages }, status: :unprocessable_entity
+    #     end
+    #   end
     def create
-        @favorite = Favorite.create(favorite_params)
+        @favorite = current_user.favorites.build(favorite_params)
+      
         if @favorite.save
-          render json: favorite, status: :created
+          render json: { favorite: @favorite, user: current_user }, status: :created
         else
           render json: { errors: @favorite.errors.full_messages }, status: :unprocessable_entity
         end
       end
-
     def update
         @favorite = find_favorite
         if @favorite
@@ -45,4 +53,4 @@ class FavoritesController < ApplicationController
         render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
     end
 end
- b
+ 
