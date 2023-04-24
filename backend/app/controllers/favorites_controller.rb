@@ -12,6 +12,17 @@ class FavoritesController < ApplicationController
     #       render json: { errors: @favorite.errors.full_messages }, status: :unprocessable_entity
     #     end
     #   end
+
+    def index
+        @favorites = Facvorite.all
+        render json: @favorites
+    end
+
+    def show
+        @favorite = find_favorite
+        render json: @favorite
+    end
+
     def create
         @favorite = current_user.favorites.build(favorite_params)
       
@@ -29,6 +40,12 @@ class FavoritesController < ApplicationController
         else
             render json: { errors: @favorite.errors.full_messages }, status: :unprocessable_entity
         end
+    end
+
+    def destroy
+        @favorite = find_favorite
+        @favorite.destroy
+        head :no_content
     end
 
     private

@@ -36,7 +36,20 @@ function LandingPage({search}){
     let filteredMeals = []
     if(recipes.length > 0) {
         filteredMeals = (organizePages(recipes.flat().filter(meal => {
-            return meal.strMeal.toLowerCase().includes(search.toLowerCase())
+            if(searchBy === 'meal') {
+                return meal.strMeal.toLowerCase().includes(search.toLowerCase())
+            }
+            if(searchBy === 'area') {
+                return meal.strArea.toLowerCase().includes(search.toLowerCase())
+            } else if(searchBy === 'createdat') {
+
+            } else if(searchBy === 'ratings') {
+                return parseInt(meal.rating) === parseInt(search)
+            } else if(searchBy === 'ingredients') {
+                return Object.keys(meal).filter(f => f.startsWith("strIngredient")).map(key => ""+meal[key]).filter(v => v !==  "").map(ingr => ingr.toLowerCase()).includes(search.toLowerCase())
+            } else if(searchBy === 'servings') {
+                return parseInt(meal.strServes) === parseInt(search)
+            }
         }), itemsPerPage))
     }
 
@@ -44,13 +57,16 @@ function LandingPage({search}){
         setSearchBy(e.target.value)
     }
 
-    // const filteredRecipes = recipes.filter()
-    console.log(search)
+
 
 
     return(
         <div className="">
             <div className="flex justify-center w-full gap-3">
+                <div className="flex gap-2">
+                    <input type="radio" value="meal" onChange={handleChange} name="search"/>
+                    <label>Meal</label>
+                </div>
                 <div className="flex gap-2">
                     <input type="radio" value="area" onChange={handleChange} name="search"/>
                     <label>Area</label>
@@ -69,7 +85,7 @@ function LandingPage({search}){
                 </div>
                 <div className="flex gap-2">
                     <input type="radio" value="createdat" onChange={handleChange} name="search"/>
-                    <label>Created on</label>
+                    <label>Created Date</label>
                 </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-0 place-content-stretch md:w-3/4 mx-auto">

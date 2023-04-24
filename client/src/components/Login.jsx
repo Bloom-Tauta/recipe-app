@@ -14,12 +14,13 @@ const Login = () => {
     e.preventDefault()
     login(username, password)
     // console.log(username)
+    console.log(username)
 }
   return (
 
 
     <div className=' bg-white py-4 mt-1 mx-5 mb-1 rounded-3xl'>
-    <div className='bg-[#160194] opacity-80 w-[50%] h-[90%] rounded-3xl flex flex-wrap flex-col items-center ml-auto mr-auto mt-2 p-20'>
+    <div className='bg-[#49D5F3] opacity-80 w-[50%] h-[90%] rounded-3xl flex flex-wrap flex-col items-center ml-auto mr-auto mt-2 p-20'>
     <form  onSubmit={handleSubmit}
     className='bg-white shadow-md rounded-3xl px-8 pt-6 pb-6 mb-4 w-full relative'>
       <div className="mb-4">
@@ -35,7 +36,7 @@ const Login = () => {
       </div>
       <div className="flex items-center flex-col">
       <a href='#signup' className="inline-block align-baseline font-bold text-sm text-[#160194] hover:text-blue-800 mb-2">Forgot Password?</a>
-        <button disabled={!password||!username} className="bg-[#160194] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
+        <button disabled={!password||!username} className="bg-[#0C54BF] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
 
         <h6>Don't have an account?<Link to="/signup" className="inline-block align-baseline font-bold text-sm text-[#160194] hover:text-blue-800">Signup</Link></h6>
       </div>

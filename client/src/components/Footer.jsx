@@ -8,7 +8,7 @@ import { FaInstagram } from "react-icons/fa"
 
 function Footer(){
     return(
-        <footer className="bg-gray-800 py-6">
+        <footer className="bg-[#4F9FD9] py-6">
 
         <div className=" w-full lg:w-7xl mx-auto px-4 text-center">
           <div className="flex flex-wrap items-center justify-between">
