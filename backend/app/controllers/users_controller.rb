@@ -20,6 +20,22 @@ class UsersController < ApplicationController
       render json: { error: @user.errors.full_messages }, status: :unprocessable_entity
     end
   end
+
+  # def destroy
+  #   @user = user.find_by(id: params[:id])
+  #   if @users.admin?
+  #     @users.destroy
+  #     render json: { message: "users deleted!" }, status: :no_content
+  #   else
+  #     render json: { message: "Only admins can delete users." }, status: :unauthorized
+  #   end
+  # end
+
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+    head :no_content
+  end
   
     def login
       @user = User.find_by(username: params[:username])

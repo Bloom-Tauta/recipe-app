@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
+
 const Login = () => {
 
   const{login}=useContext(AuthContext)
@@ -13,7 +14,7 @@ const Login = () => {
     // send Data to rails
     e.preventDefault()
     login(username, password)
-    console.log(username)
+    // console.log(username)
 }
   return (
 

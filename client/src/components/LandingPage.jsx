@@ -15,7 +15,7 @@ function LandingPage({search}){
     const [searchBy, setSearchBy] = useState("area")
 
     useEffect(() =>{
-        fetch("http://localhost:3000/meals",{
+        fetch("http://localhost:3001/meals",{
         })
         .then((response) =>response.json())
         .then((data) =>{
@@ -41,9 +41,11 @@ function LandingPage({search}){
             }
             if(searchBy === 'area') {
                 return meal.strArea.toLowerCase().includes(search.toLowerCase())
-            } else if(searchBy === 'createdat') {
+            } 
+            // else if(searchBy === 'createdat') {
 
-            } else if(searchBy === 'ratings') {
+            // } 
+            else if(searchBy === 'ratings') {
                 return parseInt(meal.rating) === parseInt(search)
             } else if(searchBy === 'ingredients') {
                 return Object.keys(meal).filter(f => f.startsWith("strIngredient")).map(key => ""+meal[key]).filter(v => v !==  "").map(ingr => ingr.toLowerCase()).includes(search.toLowerCase())
@@ -83,10 +85,10 @@ function LandingPage({search}){
                     <input type="radio" value="servings" onChange={handleChange} name="search"/>
                     <label>Servings</label>
                 </div>
-                <div className="flex gap-2">
+                {/* <div className="flex gap-2">
                     <input type="radio" value="createdat" onChange={handleChange} name="search"/>
                     <label>Created Date</label>
-                </div>
+                </div> */}
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-0 place-content-stretch md:w-3/4 mx-auto">
                 {/* to be replaced by : filteredMeals */}

@@ -15,7 +15,7 @@ function RecipeDetailPage() {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:3000/meals/${id}`)
+    fetch(`http://localhost:3001/meals/${id}`)
       .then(response => response.json())
       .then(data => {
         setMeal(data)

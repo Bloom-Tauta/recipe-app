@@ -13,6 +13,8 @@ function Navbar({search, handleSearch}){
                     <NavLink to="/signup"  className="hover:text-white font-bold" >Sign Up</NavLink>
                     <NavLink to="/login"  className="hover:text-white font-bold" >Login</NavLink>
                     <NavLink to="/favorite-recipes"  className="hover:text-white font-bold" >Favorite Recipes</NavLink>
+                    <NavLink to="/forms"  className="hover:text-white font-bold" >Add Recipe</NavLink>
+                    <NavLink to="/about"  className="hover:text-white font-bold" >About</NavLink>
                 </ul>
             </div>
         </div>
