@@ -14,7 +14,7 @@ const Login = () => {
     // send Data to rails
     e.preventDefault()
     login(username, password)
-    // console.log(username)
+    console.log(username)
 }
   return (
 

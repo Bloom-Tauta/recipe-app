@@ -26,9 +26,14 @@ class RecipesController < ApplicationController
       #   @recipe.destroy
       #   head :no_content
       # end
+      # def approved
+      #   @recipe = Recipe.find(params[:id])
+      #   @recipe.update(admin: true)
+      #   render json: { message: "Recipe approved!" }
+      # end
       def approved
         @recipe = Recipe.find(params[:id])
-        @recipe.update(admin: true)
+        @recipe.update(approved: true)
         render json: { message: "Recipe approved!" }
       end
     
@@ -58,4 +63,4 @@ class RecipesController < ApplicationController
     def render_unprocessable_entity_response(invalid)
         render json: { errors: invalid.record.errors }, status: :unprocessable_entity
     end
-end
+

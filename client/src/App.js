@@ -16,6 +16,10 @@ import RecipeDetailPage from './components/RecipeDetailPage';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import AuthProvider from './context/AuthContext';
+<<<<<<< HEAD
+=======
+import Admin from './components/Admin';
+>>>>>>> 0e56a86a7a1a98a9be7ad0438b4c90999793591c
 
 function App() {
 
@@ -27,29 +31,27 @@ function App() {
 
 
   return (
-    // <BrowserRouter>
-      <div className="App">
-          <AuthProvider>
-              <Navbar search={search} handleSearch={handleSearch} />
-              <div className='min-h-[70vh]'>
-                <Routes>
-                  <Route path="/" element={<LandingPage search={search}/>}/>
-                  {/* <Route path="/viewmeals/:id" element={<RecipePage/>}/> */}
-                  {/* <Route path="/user-dashboard" element={<UserDashboard/>}/> */}
-                  <Route path="/viewmeal/:id" element={<RecipeDetailPage />}/>
-                  <Route path="/share" element={<Share/>}/>
-                  <Route path="/signup" element={<Signup/>}/>
-                  <Route path="/login" element={<Login/>}/>
-                  <Route path="/reviews" element={<ReviewsForm/>}/>
-                  <Route path="/forms" element={<RecipeForm/>}/>
-                  <Route path="/about" element={<About/>}/>
-                </Routes>
-              </div>
-            <Footer />
-          </AuthProvider>
+    <div className="App">
+      <AuthProvider>
+      <Navbar search={search} handleSearch={handleSearch} />
+      <div className='min-h-[70vh]'>
+      <Routes>
+        <Route path="/" element={<LandingPage search={search}/>}/>
+        {/* <Route path="/viewmeals/:id" element={<RecipePage/>}/> */}
+        {/* <Route path="/user-dashboard" element={<UserDashboard/>}/> */}
+        <Route path="/viewmeal/:id" element={<RecipeDetailPage />}/>
+        <Route path="/share" element={<Share/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/reviews" element={<ReviewsForm/>}/>
+        <Route path="/admin" element={<Admin/>}/>
+        
+      </Routes>
       </div>
-    // </BrowserRouter>
-    
+      </AuthProvider>
+      <Footer />
+    </div>
+   
   );
 }
 
