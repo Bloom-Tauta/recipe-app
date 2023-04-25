@@ -16,10 +16,7 @@ import RecipeDetailPage from './components/RecipeDetailPage';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import AuthProvider from './context/AuthContext';
-<<<<<<< HEAD
-=======
 import Admin from './components/Admin';
->>>>>>> 0e56a86a7a1a98a9be7ad0438b4c90999793591c
 
 function App() {
 
@@ -45,6 +42,8 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/reviews" element={<ReviewsForm/>}/>
         <Route path="/admin" element={<Admin/>}/>
+        <Route path="/about" element={<About/>}/>
+
         
       </Routes>
       </div>

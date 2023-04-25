@@ -50,12 +50,11 @@ const Signup = () => {
           <div onSubmit={handleSubmitAdmin}>
             <label htmlFor="admin" className="block text-black text-lg font-bold mb-2">Admin</label>
             <div className="shadow appearance-none border border-[#160194] rounded-md w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline">
-              {/* <input checked id="checked-checkbox" type="checkbox" onChange={e=>setIsAdmin(e.target.value)} value="!true" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-              <label htmlFor="checked-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">True</label> */}
               <label htmlFor="checked-checkbox" >
                 <input type="checkbox" checked={isAdmin} onChange={handleCheckboxChange} className="pt-4 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                 Are you an admin?
               </label>
+              
             </div>
           </div>
 {/* className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" */}
