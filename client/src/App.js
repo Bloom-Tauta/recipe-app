@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 // import RecipePage from './components/RecipePage';
 import Share from './components/Share';
 import ReviewsForm from './components/ReviewsForm';
-import RecipeForm from './components/RecipeForm';
+// import RecipeForm from './components/RecipeForm';
 import About from './components/About';
 import RecipeDetailPage from './components/RecipeDetailPage';
 import Login from './components/Login';
