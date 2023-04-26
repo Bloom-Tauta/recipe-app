@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import ReviewsForm from './ReviewsForm';
 // import {IoMdShareAlt } from 'react-icons/io'
+import{FaHeart} from 'react-icons/fa'
 import {AiOutlineStar} from 'react-icons/ai';
 import Share from './Share'
+// import { AuthContext } from '../context/AuthContext';
 
 function RecipeDetailPage() {
   const [meal, setMeal] = useState({});
+  // const {user} = useContext(AuthContext)
 
   const { id } = useParams();
 
@@ -15,7 +18,7 @@ function RecipeDetailPage() {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:3000/meals/${id}`)
+    fetch(`http://localhost:3000/recipes/${id}`)
       .then(response => response.json())
       .then(data => {
         setMeal(data)
@@ -26,9 +29,10 @@ function RecipeDetailPage() {
   function handleAddToFavorites(e){
     e.preventDefault();
     const favorites ={
-     
+      // user_id: user.id,
+      // recipe_id: recipe.id
     }
-    fetch("/",{
+    fetch("/favorites",{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,35 +45,47 @@ function RecipeDetailPage() {
     <div className='ml-10 mt-5'>
     { meal.id ?
     <div className='p-2'>
-      <h1 className='text-5xl '>{meal.strMeal}</h1>
-      <div className='flex items-center gap-3'>
-        <p className='py-2'>{meal.strArea}</p>
-        <p className=''>{meal.strServes}</p>
-      </div>
-
-      <p>{meal.strDescription}</p>
-      {/* mealcipe.ratings}{recipe.reviews}</p> */}
-
-      <div className='grid grid-cols-3 divide-x max-w-lg my-3 gap-2 items-center'>
-        <button
-        className='rounded-l-lg  p-2 bg-red-200 hover:underline'
-        onClick={handleAddToFavorites}
-        >Add to Favorite</button>
+      <div className='flex flex-row gap-12'>
+        <div className=''>
+        <h1 className='text-5xl '>{meal.strMeal}</h1>
+      <p className='py-2 ml-32'>{meal.strArea}</p>
+      <div className='grid grid-cols-3 divide-x max-w-lg my-3 gap-2 items-center mt-20'>
+        <div className='flex items-center rounded-l-lg  p-2 gap-2 bg-red-200'>
+          <button
+            className=' hover:underline'
+            onClick={handleAddToFavorites}
+            >Add to Favorite</button>
+          <div className='text-white'>
+            <FaHeart size={24}/>
+            </div>
+        </div>
         <div className='flex items-center border-l gap-2 p-2 bg-gray-100'>
           <button onClick={handleClick} className='hover:underline'>Rate</button>
           <div className='text-red-400'>
-            <AiOutlineStar/>
+            <AiOutlineStar size={24}/>
           </div>
         </div>
         <div className='border-r border-black p-1 bg-gray-100 hover:underline'>
           <Share/>
         </div>
       </div>
+        </div>
+      <img src={meal.strMealThumb} alt={meal.strMeal} className='max-w-lg'/>
+      </div>
+
+      <div className='text-center my-4'>
+        <p>{meal.strDescription}</p>
+        {/* mealcipe.ratings}{recipe.reviews}</p> */}
+      </div>
         <div className='flex gap-16 '>
-          <img src={meal.strMealThumb} alt={meal.strMeal} className='max-w-lg'/>
-          <div className='flex flex-col'>
-            <h2>Ingredients:</h2>
-            <div>
+
+          <div className=''>
+            <div className='text-center my-6'>
+            <h2 className='text-2xl text-red-400'>Ingredients:</h2>
+            <p className=''>{meal.strServes}</p>
+            </div>
+
+            <div className='grid grid-cols-3 gap-2 place-items-stretch my-6'>
             {Object.keys(meal).filter(key => {
               if(key.startsWith('strIngredient')) {
                 return true;
@@ -77,15 +93,17 @@ function RecipeDetailPage() {
                 return false
               }
             }).filter(key =>  meal[key] !== "").map((ingredient, index) => (
-              <li key={index}>{meal[ingredient]}</li>
+              <li key={index} className='grid grid-cols-3 gap-2 place-items-stretch'>{meal[ingredient]}</li>
             ))}
             </div>
           </div>
 
         </div>
-
-      <div className='mt-3 flex flex-col gap-2 text-blue-900'>
-        {meal.instructions.split(/[\r\n]+/).map((step, index) => (
+      <div className='text-center mt-4'>
+      <h2 className='text-2xl text-red-400'>Instructions:</h2>
+      </div>
+      <div className='mt-3 items-center flex flex-col gap-4 text-blue-900'>
+        {meal.strInstructions.split(/[\r\n]+/).map((step, index) => (
           <div className='text-black' key={index}>{step}</div>
         ))}
       </div>
@@ -93,7 +111,7 @@ function RecipeDetailPage() {
     :
     <div className='flex justify-center mt-52 text-6xl'>Loading...</div>
     }
-    <div id="ratings"className='mt-8'>
+    <div id="ratings"className='mt-40 mb-6'>
       <ReviewsForm/>
     </div>
 

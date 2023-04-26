@@ -37,12 +37,12 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedToken && storedUser) {
-      setUser(storedUser);
-      setToken(storedToken);
-    }
+    // const storedToken = localStorage.getItem('token');
+    // const storedUser = JSON.parse(localStorage.getItem('user'));
+    // if (storedToken && storedUser) {
+    //   setUser(storedUser);
+    //   setToken(storedToken);
+    // }
   }, []);
 
   const logout = () => {
@@ -50,8 +50,8 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     setUser(null);
     setToken(null);
-    
- 
+
+
   };
 
   const signup = async (userData) => {

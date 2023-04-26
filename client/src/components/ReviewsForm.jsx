@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BiStar } from 'react-icons/bi'
 
-const ReviewsForm = () => {
+const ReviewsForm = ({postReviews}) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [remark, setRemark] = useState("");
@@ -9,7 +9,15 @@ const ReviewsForm = () => {
 
   function handleSubmit(e){
     e.preventDefault();
+    const reviewsFormData = (e) => {
+      // rating,
+      // remark,
+      // comment
+
+    }
+    postReviews(reviewsFormData)
   }
+
 
   const handleStarClick = (star) => {
     setRating(star);
@@ -39,9 +47,9 @@ const ReviewsForm = () => {
 
   return (
     <div className='flex flex-col items-center  justify-center border border-black px-12 py-8 mx-auto max-w-lg mt-4'>
-        <h3 className='text-center '>Your ratings</h3>
+        <h3 className=' '>Your ratings</h3>
         <div className='flex items-center '>
-            <div className='text-center p-6 flex flex-row'>
+            <div className='text-start p-6 flex flex-row'>
             {[1, 2, 3, 4, 5].map((star) => (
             <span
                 key={star}
@@ -51,7 +59,7 @@ const ReviewsForm = () => {
                 color: star <= rating ? 'red' : 'gray'
                 }}
             >
-            <BiStar/>
+            <BiStar size={32}/>
             </span>
             ))}
           </div>
@@ -67,7 +75,7 @@ const ReviewsForm = () => {
           rows={4}
           cols={50}
           className='bg-gray-50 border border-gray-300
-          text-gray-900 sm:text-sm rounded-lg
+          text-gray-900 sm:text-sm
           focus:ring-primary-600 p-2'
         />
       </div>
@@ -77,7 +85,7 @@ const ReviewsForm = () => {
           className="text-blue-500 hover:underline"/>
           <button type="submit"
         onClick={handleSubmit}
-          className="border border-black p-2 bg-green-100 hover:bg-green-800">Submit</button>
+          className="border border-black p-2 bg-green-100 rounded-lg hover:bg-green-800 ">Submit</button>
         </div>
     </div>
   );

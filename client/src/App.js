@@ -15,15 +15,44 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import AuthProvider from './context/AuthContext';
 import Admin from './components/Admin';
+import AddRecipeForm from './components/AddRecipeForm';
 
 function App() {
 
   const [recipes, setRecipes] =useState([])
+  const [reviews, setReviews] = useState([]);
   const [search, setSearch] = useState('')
   function handleSearch(value){
     setSearch(value)
   }
 
+  function postRecipe(recipeFormData){
+    fetch('http://localhost:3000/meals', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(recipeFormData)
+  })
+  .then(response => response.json())
+  .then(data =>{
+    setRecipes([...recipes, data])
+    })
+  }
+
+  function postReviews(reviewsFormData){
+    fetch('http://localhost:3000/reviews', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(reviewsFormData)
+  })
+  .then(response => response.json())
+  .then(data =>{
+    setReviews([...reviews, data])
+    })
+  }
 
   return (
     <div className="App">
@@ -38,15 +67,16 @@ function App() {
         <Route path="/share" element={<Share/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/reviews" element={<ReviewsForm/>}/>
+        <Route path="/reviews" element={<ReviewsForm postReviews={postReviews}/>}/>
         <Route path="/admin" element={<Admin/>}/>
-        
+        <Route path="/addrecipe" element={<AddRecipeForm postRecipe={postRecipe}/>}/>
+
       </Routes>
       </div>
       </AuthProvider>
       <Footer />
     </div>
-   
+
   );
 }
 
