@@ -36,10 +36,13 @@ class ApplicationController < ActionController::Base
 #     end
 #  end
 
-      # def authenticate_admin
-      # current_admin
+  # def authenticate_admin
+  #   if current_user && current_user.admin
 
-      # end
+  #   else
+  #     render json: {message: “You are not authorized to do this”}, status: :unauthorized
+  #   end
+  # end
 
   private
   def authorized
