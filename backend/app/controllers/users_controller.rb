@@ -3,14 +3,14 @@ class UsersController < ApplicationController
 
   def index 
     @users= User.all 
-    render json: @users
+    render json: @users.map { |user| UserSerializer.new(user).serializable_hash[:data][:attributes] }
   end
 
   def create
     @user = User.new(user_params)
     
     if @user.save
-      token = encode_token({ user_id: @user.id })
+      token = encode_token({ user_id: @user.id, admin: @user.admin})
       @from = "leah.wanjiku@student.moringaschool.com"
       @subject = "New User Account"
       @content = "Thank you for registering with us #{@user.username}. Your account has been created successfully"
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     def login
       @user = User.find_by(username: params[:username])
       if @user && @user.authenticate(params[:password])
-        token = encode_token({ user_id: @user.id })
+        token = encode_token({ user_id: @user.id, admin: @user.admin})
         render json: { user: @user.as_json(except: [:created_at, :updated_at]), token: token, authorized: true  }
       else
         render json: { error: 'Invalid username or password' }, status: :unauthorized
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
       private
 
   def user_params
-    params.permit(:username, :password, :email, :admin)
+    params.permit(:username, :password, :email, :admin, :profile_pic)
   end
   def authorized
     render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?

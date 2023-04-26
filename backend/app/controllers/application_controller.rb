@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
     before_action :authorized
 
   def encode_token(payload)
-    JWT.encode(payload, 'my_s3cr3t')
+    JWT.encode({id: user.id, username: user.username, admin: user.admin}, 'my_s3cr3t')
   end
   
   def decoded_token
@@ -30,14 +30,16 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !!current_user
   end
+#   def current_admin
+#     if current_user&.admin == true
+#      current_user
+#     end
+#  end
 
-  # def authenticate_admin
-  #   if current_user && current_user.admin
+      # def authenticate_admin
+      # current_admin
 
-  #   else
-  #     render json: {message: “You are not authorized to do this”}, status: :unauthorized
-  #   end
-  # end
+      # end
 
   private
   def authorized
