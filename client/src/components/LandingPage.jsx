@@ -15,7 +15,7 @@ function LandingPage({search}){
     const [searchBy, setSearchBy] = useState("area")
 
     useEffect(() =>{
-        fetch("http://localhost:3001/meals",{
+        fetch("http://localhost:3000/recipes",{
         })
         .then((response) =>response.json())
         .then((data) =>{
@@ -64,8 +64,9 @@ function LandingPage({search}){
 
     return(
         <div className="">
-            <div className="flex justify-center w-full gap-3">
+            <div className="flex justify-end w-full gap-3 mr-6">
                 <div className="flex gap-2">
+<<<<<<< HEAD
                     <input type="radio" value="meal" onChange={handleChange} name="search"/>
                     <label>Meal</label>
                 </div>
@@ -89,6 +90,18 @@ function LandingPage({search}){
                     <input type="radio" value="createdat" onChange={handleChange} name="search"/>
                     <label>Created Date</label>
                 </div> */}
+=======
+                    <label>Search by:</label>
+                        <select value={searchBy} onChange={handleChange} >
+                            <option value="">--Select an option--</option>
+                            <option  value="meal">Meal</option>
+                            <option  value="area">Area</option>
+                            <option  value="ratings">Ratings</option>
+                            <option  value="ingredients">Ingredients</option>
+                            <option  value="servings">Servings</option>
+                        </select>
+                </div>
+>>>>>>> b3573428e6c49300355ac5252d5c3bca526ab252
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-0 place-content-stretch md:w-3/4 mx-auto">
                 {/* to be replaced by : filteredMeals */}

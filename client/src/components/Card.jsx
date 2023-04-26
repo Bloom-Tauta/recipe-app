@@ -13,7 +13,31 @@ function Card({meal}){
 
     const navigate = useNavigate()
 
+    // function deleteRecipe(e) {
+    //     e.preventDefault();
+    //     fetch(`/recipess/${e.target.id}`,{
+    //       method: "DELETE",
+    //     })
+    //     .then((res) => {
+    //       res.json();
+    //       if (res.status === 204) {
+    //         Swal.fire({
+    //           title: "Your have been successfully deleted the recipe",
+    //           icon: "success",
+    //           timer: 2000,
+    //         });
+    //       } else {
+    //         Swal.fire({
+    //           title: "There was an error deleting the recipe",
+    //           icon: "error",
+    //           timer: 2000,
+    //         });
+    //       }
+    //     });
+    //   }
     return(
+
+
         <div className='relative'>
         { meal.id ?
         <div className=' mt-4 ml-4 shadow-lg shadow-black' onClick={() => navigate(`/viewmeal/${meal.id}`)}>
@@ -32,7 +56,7 @@ function Card({meal}){
                 </div>
                 <div>
                     {/* {meal.ratings} */}
-                    {123456789} ratings
+                    {12} ratings
                 </div>
             </div>
         </div>
@@ -47,6 +71,18 @@ function Card({meal}){
             <div className='h-4 bg-black/50 w-[90%] mx-auto my-1'></div>
         </div>
         }
+         {/* {admin && (
+             <button className="btn-btn">
+                 <Link to={`/update/${meal.id}`}>Update</Link>
+            </button>
+         <button
+              onClick={deleteRecipe}
+              id={meal.id}
+              className="border bg-red-500 px-2 text-right rounded-lg"
+            >
+              Delete
+            </button>
+            )} */}
         </div>
     )
 }
