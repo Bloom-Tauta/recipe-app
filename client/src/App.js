@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 // import RecipePage from './components/RecipePage';
 import Share from './components/Share';
 import ReviewsForm from './components/ReviewsForm';
-// import RecipeForm from './components/RecipeForm';
+import RecipeForm from './components/RecipeForm';
 import About from './components/About';
 import RecipeDetailPage from './components/RecipeDetailPage';
 import Login from './components/Login';
@@ -41,6 +41,7 @@ function App() {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/reviews" element={<ReviewsForm/>}/>
+        <Route path="/forms" element={<RecipeForm/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/about" element={<About/>}/>
 
