@@ -69,19 +69,12 @@ function App() {
         <Route path="/share" element={<Share/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
-<<<<<<< HEAD
-        <Route path="/reviews" element={<ReviewsForm/>}/>
-        <Route path="/forms" element={<RecipeForm/>}/>
-        <Route path="/admin" element={<Admin/>}/>
-        <Route path="/about" element={<About/>}/>
-
-        
-=======
         <Route path="/reviews" element={<ReviewsForm postReviews={postReviews}/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/addrecipe" element={<AddRecipeForm postRecipe={postRecipe}/>}/>
+        <Route path="/about" element={<About/>}/>
 
->>>>>>> b3573428e6c49300355ac5252d5c3bca526ab252
+
       </Routes>
       </div>
       </AuthProvider>

@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authorized
+  skip_before_action :authorized, only: [:index]
   before_action :authenticate_admin, only: [:destroy, :approve]
   # skip_before_action :verify_authenticity_token
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
         @recipe = find_recipe
         @recipe.update!(recipe_params)
         render json: @recipe
-      end
+    end
       # def destroy
       #   @recipe = find_recipe
       #   @recipe.destroy

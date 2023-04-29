@@ -57,7 +57,7 @@ const Signup = () => {
               
             </div>
           </div>
-{/* className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" */}
+          {/* className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" */}
           <div className="mt-1">
             <label htmlFor="password" className="block text-back text-lg font-bold mb-2">Password</label>
             <input type="password" onChange={e=>setPassword(e.target.value)}

@@ -8,9 +8,9 @@ function Navbar({search, handleSearch}){
             <span className="text-white text-4xl">Recipe-Share</span>
             <Search search={search} handleSearch={handleSearch} />
             <div>
-                <ul className=" flex gap-4 text-[#] text-base ">
+                <ul className=" flex gap-4 text-[#fff] text-base ">
                     <NavLink to="/" className="hover:text-white font-bold" >Home</NavLink>
-                    <NavLink to="/signup"  className="hover:text-white font-bold" >Sign Up</NavLink>
+                    <NavLink to="/signup"  className="hover:text-black font-bold" >Sign Up</NavLink>
                     <NavLink to="/login"  className="hover:text-white font-bold" >Login</NavLink>
                     <NavLink to="/favorite-recipes"  className="hover:text-white font-bold" >Favorite Recipes</NavLink>
                     <NavLink to="/forms"  className="hover:text-white font-bold" >Add Recipe</NavLink>
