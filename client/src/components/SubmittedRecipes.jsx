@@ -1,25 +1,23 @@
 import React, { useState , useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { GoPin } from "react-icons/go"
-import { BsShareFill, BsFacebook, BsTwitter } from "react-icons/bs"
-import{ RiWhatsappFill } from "react-icons/ri"
 
-function RecipeDetails() {
+function SubmittedRecipes() {
 
     const [recipe, setRecipe] = useState(null)
 
     const { id } = useParams()
 
     useEffect(() => {
-        fetch(`http://localhost:3000/recipes/${id}`)
+        fetch("http://localhost:3000/recipes/")
         .then(res => res.json())
         .then(data => setRecipe(data))
     }, [])
 
     let ingredients = [], instructions = []
     if(recipe) {
-        ingredients = recipe.ingredients.split("\r\n")
-        instructions = recipe.instructions.split("\r\n")
+        ingredients = recipe.ingredients
+        instructions = recipe.instructions
     }
 
 
@@ -36,21 +34,13 @@ function RecipeDetails() {
                         <div className="flex-grow flex flex-col items-center justify-center p-6">
                             <img className="rounded-lg" src={recipe.recipe_thumb} alt={recipe.strMeal} />
                         </div>
-                        <div className="rounded my-4 bg-slate-100">
-                            <div className="py-1  px-4 text-sm flex items-center gap-4"><BsShareFill /> Share</div>
-                            <div className="grid grid-cols-3 gap-4 w-max text-xl py-2 px-6">
-                                <button className="hover:text-orange-500"><RiWhatsappFill /></button>
-                                <button className="hover:text-orange-500"><BsFacebook /></button>
-                                <button className="hover:text-orange-500"><BsTwitter /></button>
-                            </div>
-                        </div>
                     </div>
                     <div className="flex items-center justify-center flex-col">
                         <h2 className="text-center my-2 font-bold text-orange-500">Ingredients</h2>
                         <div className="grid grid-cols-3 gap-4">
                             {
                                 ingredients.map((ingredient, index) => {
-                                    const [ ingr, measure ] = ingredient.split("|")
+                                    const [ ingr, measure ] = ingredient
                                     return (
                                         <div key={index} className="flex items-center p-2 bg-slate-100 shadow-lg flex-col rounded">
                                             <div className="grid grid-cols-2 gap-2 items-center">
@@ -98,4 +88,4 @@ function RecipeDetails() {
     )
 }
 
-export default RecipeDetails;
+export default SubmittedRecipes;

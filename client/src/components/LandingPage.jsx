@@ -9,10 +9,10 @@ function LandingPage({search}){
 
 
 
-    const [itemsPerPage, setItemsPerPage] = useState(6)
+    const [itemsPerPage, setItemsPerPage] = useState(8)
     const [recipes, setRecipes] = useState([])
     const [currentPage, setCurrentPage] = useState(0)
-    const [searchBy, setSearchBy] = useState("area")
+    const [searchBy, setSearchBy] = useState("name")
 
     useEffect(() =>{
         fetch("http://localhost:3000/recipes",{
@@ -33,25 +33,25 @@ function LandingPage({search}){
 
     //filter by name
 
-    let filteredMeals = []
-    if(recipes.length > 0) {
-        filteredMeals = (organizePages(recipes.flat().filter(meal => {
-            if(searchBy === 'meal') {
-                return meal.strMeal.toLowerCase().includes(search.toLowerCase())
-            }
-            if(searchBy === 'area') {
-                return meal.strArea.toLowerCase().includes(search.toLowerCase())
-            } else if(searchBy === 'createdat') {
+    let filteredRecipe = recipes
+    // if(recipes.length > 0) {
+    //     filteredRecipe = (organizePages(recipes.flat().filter(recipe => {
+    //         if(searchBy === 'recipe') {
+    //             return recipe.recipe_name.toLowerCase().includes(search.toLowerCase())
+    //         }
+    //         if(searchBy === 'countryoforigin') {
+    //             return recipe.country_of_origin.toLowerCase().includes(search.toLowerCase())
+    //         } else if(searchBy === 'createdat') {
 
-            } else if(searchBy === 'ratings') {
-                return parseInt(meal.rating) === parseInt(search)
-            } else if(searchBy === 'ingredients') {
-                return Object.keys(meal).filter(f => f.startsWith("strIngredient")).map(key => ""+meal[key]).filter(v => v !==  "").map(ingr => ingr.toLowerCase()).includes(search.toLowerCase())
-            } else if(searchBy === 'servings') {
-                return parseInt(meal.strServes) === parseInt(search)
-            }
-        }), itemsPerPage))
-    }
+    //         } else if(searchBy === 'ratings') {
+    //             return parseInt(recipe.rating) === parseInt(search)
+    //         } else if(searchBy === 'ingredients') {
+    //             return Object.keys(recipe).filter(f => f.startsWith("strIngredient")).map(key => ""+recipe[key]).filter(v => v !==  "").map(ingr => ingr.toLowerCase()).includes(search.toLowerCase())
+    //         } else if(searchBy === 'numberofpeopleserved') {
+    //             return parseInt(recipe.number_of_people) === parseInt(search)
+    //         }
+    //     }), itemsPerPage))
+    // }
 
     function handleChange(e){
         setSearchBy(e.target.value)
@@ -67,24 +67,24 @@ function LandingPage({search}){
                     <label>Search by:</label>
                         <select value={searchBy} onChange={handleChange} >
                             <option value="">--Select an option--</option>
-                            <option  value="meal">Meal</option>
-                            <option  value="area">Area</option>
+                            <option  value="meal">Name</option>
+                            <option  value="area">Country of origin</option>
                             <option  value="ratings">Ratings</option>
                             <option  value="ingredients">Ingredients</option>
-                            <option  value="servings">Servings</option>
+                            <option  value="servings">Number of people served</option>
                         </select>
                 </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-0 place-content-stretch md:w-3/4 mx-auto">
-                {/* to be replaced by : filteredMeals */}
-                { filteredMeals.length > 0 && filteredMeals[currentPage].map((meal, index) =>{
+                {/* to be replaced by : filteredRecipe */}
+                { filteredRecipe.length > 0 && filteredRecipe[currentPage].map((recipe, index) =>{
                     return (
-                        <Card key={index} meal={meal} />
+                        <Card key={index} recipe={recipe} />
                     )
                 })}
 
             </div>
-            <Pagination totalPages={filteredMeals.length} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+            <Pagination totalPages={filteredRecipe.length} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </div>
     )
 }

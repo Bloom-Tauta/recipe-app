@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :authorized
-  before_action :authenticate_admin, only: [:destroy, :approve]
+
+  #before_action :authenticate_admin, only: [:destroy, :approve, :index, :create, :show, :update]
   # skip_before_action :verify_authenticity_token
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
         @recipe.update(approved: true)
         render json: { message: "Recipe approved!" }
       end
-    
+
       def destroy
         @recipe = Recipe.find(params[:id])
         if @recipe.admin?

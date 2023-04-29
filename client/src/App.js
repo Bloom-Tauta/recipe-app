@@ -16,6 +16,14 @@ import Signup from './components/Signup';
 import AuthProvider from './context/AuthContext';
 import Admin from './components/Admin';
 import AddRecipeForm from './components/AddRecipeForm';
+import HomePage from './components/HomePage';
+import AdminDashboard from './components/AdminDashboard';
+import Dashboard from './components/Dashboard';
+// import UpdateRecipes from './components/UpdateRecipe';
+import SubmittedRecipes from './components/SubmittedRecipes';
+// import Topbar from './components/Topbar';
+// import TheForm from './components/TheForm';
+// import RecipeAdd from './components/RecipeAdd';
 
 function App() {
 
@@ -27,7 +35,7 @@ function App() {
   }
 
   function postRecipe(recipeFormData){
-    fetch('http://localhost:3000/meals', {
+    fetch('http://localhost:3000/recipes', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -60,9 +68,9 @@ function App() {
       <Navbar search={search} handleSearch={handleSearch} />
       <div className='min-h-[70vh]'>
       <Routes>
+        <Route path="/home" element={<HomePage/>}/>
         <Route path="/" element={<LandingPage search={search}/>}/>
-        {/* <Route path="/viewmeals/:id" element={<RecipePage/>}/> */}
-        {/* <Route path="/user-dashboard" element={<UserDashboard/>}/> */}
+        <Route path="/admindashboard" element={<AdminDashboard/>}/>
         <Route path="/viewmeal/:id" element={<RecipeDetailPage />}/>
         <Route path="/share" element={<Share/>}/>
         <Route path="/signup" element={<Signup/>}/>
@@ -70,7 +78,10 @@ function App() {
         <Route path="/reviews" element={<ReviewsForm postReviews={postReviews}/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/addrecipe" element={<AddRecipeForm postRecipe={postRecipe}/>}/>
-
+        {/* <Route path="/update" element={<UpdateRecipes/> }/> */}
+        <Route path="/dash" element={<Dashboard/>}/>
+        <Route path="/submitted" element={<SubmittedRecipes/>}/>
+        {/* <Route path="/top" element={<Topbar/>}/> */}
       </Routes>
       </div>
       </AuthProvider>

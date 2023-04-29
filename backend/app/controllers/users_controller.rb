@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
-  skip_before_action :authorized, only: [:create, :login]
+  # skip_before_action :authorized, only: [:create, :login]
+  # before_action :authorized, only: [:create, :destroy]
 
-  def index 
-    @users= User.all 
+  def index
+    @users= User.all
     render json: @users
   end
 
   def create
     @user = User.new(user_params)
-    
+
     if @user.save
       token = encode_token({ user_id: @user.id })
       @from = "leah.wanjiku@student.moringaschool.com"
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
       render json: { error: @user.errors.full_messages }, status: :unprocessable_entity
     end
   end
-  
+
     def login
       @user = User.find_by(username: params[:username])
       if @user && @user.authenticate(params[:password])
@@ -35,7 +36,7 @@ class UsersController < ApplicationController
       session.delete(:user_id)
       render json: { message: 'Logged out successfully' }
     end
-    
+
       private
 
   def user_params
