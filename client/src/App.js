@@ -16,7 +16,7 @@ import Signup from './components/Signup';
 import AuthProvider from './context/AuthContext';
 import Admin from './components/Admin';
 import AddRecipeForm from './components/AddRecipeForm';
-import HomePage from './components/HomePage';
+// import HomePage from './components/HomePage';
 import AdminDashboard from './components/AdminDashboard';
 import Dashboard from './components/Dashboard';
 // import UpdateRecipes from './components/UpdateRecipe';
@@ -68,7 +68,7 @@ function App() {
       <Navbar search={search} handleSearch={handleSearch} />
       <div className='min-h-[70vh]'>
       <Routes>
-        <Route path="/home" element={<HomePage/>}/>
+        {/* <Route path="/home" element={<HomePage/>}/> */}
         <Route path="/" element={<LandingPage search={search}/>}/>
         <Route path="/admindashboard" element={<AdminDashboard/>}/>
         <Route path="/viewmeal/:id" element={<RecipeDetailPage />}/>

@@ -44,10 +44,10 @@ function Card({recipe}){
             <div className='h-4 bg-black/50 w-[90%] mx-auto my-1'></div>
         </div>
         }
-        {/* <div className='flex gap-1'>
+        <div className='flex gap-1'>
                 <button className='border w-1/2 mx-auto block p-2 my-1 bg-green-400'>Update</button>
                 <button className='border w-1/2 mx-auto block p-2 my-1 bg-red-600'>Delete</button>
-            </div> */}
+            </div>
         </div>
     )
 }
