@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
+
 const Login = () => {
 
   const{login}=useContext(AuthContext)
@@ -13,7 +14,6 @@ const Login = () => {
     // send Data to rails
     e.preventDefault()
     login(username, password)
-    // console.log(username)
     console.log(username)
 }
   return (
@@ -32,7 +32,6 @@ const Login = () => {
         <label htmlFor="password" className="block text-black text-lg font-bold mb-2">Password</label>
         <input type="password" onChange={e => setPassword(e.target.value)}
         className="shadow  outline-none appearance-none border border-[#160194] rounded-3xl w-full py-2 px-3 text-black mb-3  focus:outline-none focus:shadow-outline"  placeholder=' password'/>
-        {/* <p className="text-red-500 text-xs italic">Please enter your password</p> */}
       </div>
       <div className="flex items-center flex-col">
       <a href='#signup' className="inline-block align-baseline font-bold text-sm text-[#160194] hover:text-blue-800 mb-2">Forgot Password?</a>

@@ -14,7 +14,7 @@ class FavoritesController < ApplicationController
     #   end
 
     def index
-        @favorites = Facvorite.all
+        @favorites = Favorite.all
         render json: @favorites
     end
 
@@ -24,7 +24,7 @@ class FavoritesController < ApplicationController
     end
 
     def create
-        @favorite = current_user.favorites.build(favorite_params)
+        @favorite = current_user.favorites.create(favorite_params)
       
         if @favorite.save
           render json: { favorite: @favorite, user: current_user }, status: :created
@@ -42,11 +42,33 @@ class FavoritesController < ApplicationController
         end
     end
 
+    # def destroy
+    #     @favorite = find_favorite
+    #     @favorite.destroy
+    #     head :no_content
+    # end
+    # def destroy
+    #     @favorite = find_favorite
+    #     if current_user == @favorite.user
+    #       @favorite.destroy
+    #       head :no_content
+    #     else
+    #       render json: { error: "Unauthorized" }, status: :unauthorized
+    #     end
+    #   end
     def destroy
-        @favorite = find_favorite
-        @favorite.destroy
-        head :no_content
+      favorite = Favorite.find_by(id: params[:id], user_id: current_user.id)
+      if favorite
+        recipe_id = favorite.recipe_id
+        favorite.destroy
+        render json: { message: "Favorite recipe successfully deleted", recipe_id: recipe_id }, status: :ok
+      else
+        render json: { error: "Favorite not found" }, status: :not_found
+      end
     end
+    
+    
+
 
     private
 

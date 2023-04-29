@@ -17,8 +17,8 @@ function Card({meal}){
         <div className='relative'>
         { meal.id ?
         <div className=' mt-4 ml-4 shadow-lg shadow-black' onClick={() => navigate(`/viewmeal/${meal.id}`)}>
-            <img src={meal.strMealThumb} alt={meal.strMeal} className=''/>
-            <h2 className='text-center p-1'>{meal.strMeal}</h2>
+            <img src={meal.image_url} alt={meal.recipe_name} className=''/>
+            <h2 className='text-center p-1'>{meal.recipe_name}</h2>
             <div className='flex gap-3 items-center pl-4'>
                 <div className='flex'>
                     <BsStarFill/>

@@ -55,10 +55,10 @@ const AuthProvider = ({ children }) => {
   };
 
   const signup = async (userData) => {
-    if (!userData.email || !userData.password) {
+    if (!userData.email || !userData.password ) {
+        console.log('signup function executed with userData:', userData);
       throw new Error('Email and password are required.');
     }
-
     try {
       const res = await fetch('/users', {
         method: 'POST',
@@ -82,7 +82,7 @@ const AuthProvider = ({ children }) => {
         navigate("/login");
       }
     } catch (error) {
-      console.error(error.message);
+       console.error(error.message);
 
       Swal.fire({
         icon: 'error',
@@ -99,7 +99,9 @@ const AuthProvider = ({ children }) => {
         icon: 'warning',
         title: 'You are already logged in',
       });
+      navigate("/home");
       return;
+     
     }
     try {
       const { user, token } = await loginUser(username, password);
@@ -111,6 +113,7 @@ const AuthProvider = ({ children }) => {
         icon: 'success',
         title: 'Logged in successfully',
       });
+      navigate("/home");
     } catch (error) {
       console.error(error.message);
 
@@ -121,7 +124,9 @@ const AuthProvider = ({ children }) => {
       });
       throw error;
     }
+   
   };
+  
 
   return (
     <AuthContext.Provider value={{ user, token, login, logout, signup }}>
@@ -131,3 +136,5 @@ const AuthProvider = ({ children }) => {
 };
 
 export default AuthProvider;
+
+

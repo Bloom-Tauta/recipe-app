@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :favorites, only: [:create]
-  
-  resources :users, only: [:create, :index]
+   resources :favorites, only: [:destroy, :index, :show, :create, :update] 
+ 
+
+  resources :users, only: [:create, :index, :destroy]
   post "/login", to: "users#login"
   delete "/logout", to: "users#logout"
   # resources :recipes, only:[:index,  :show, :update, :destroy, :create]

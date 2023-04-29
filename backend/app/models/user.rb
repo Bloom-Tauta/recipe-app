@@ -1,9 +1,9 @@
 class User < ApplicationRecord
     has_many :reviews
-    # has_many :recipes
-    # has_many :favorites
+    has_many :recipes
     has_many :favorites
-    has_many :recipes, through: :favorite
+    # has_many :favorites
+    # has_many :recipes, through: :favorite
 
     has_secure_password
     validates_format_of :email, with: /@/
