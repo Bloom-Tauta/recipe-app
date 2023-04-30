@@ -3,8 +3,11 @@ import { AiOutlineWhatsApp } from 'react-icons/ai'
 import { FaFacebook } from "react-icons/fa"
 import { FaTwitter } from "react-icons/fa"
 import { IoMdShareAlt } from 'react-icons/io'
+import { useParams } from 'react-router-dom';
 
-const Share = ({ info }) => {
+const Share = ({ url}) => {
+
+  const { id } = useParams();
   const [isSocialMediaVisible, setSocialMediaVisible] = useState(false);
   const [selectedSocialMedia, setSelectedSocialMedia] = useState('');
 
@@ -19,24 +22,28 @@ const Share = ({ info }) => {
 
   const handleShare = () => {
     // Logic to share information via selected social media
-    const message = `Check out this information: ${info}`;
-    let url = '';
+    const phone = '+254742604943'
+    let url = `http://localhost:4000/viewmeal/${id}`;
+    const message = encodeURIComponent(`Check out this recipe: ${url}`)
+    // let url = `https://wa.me/${phone}/?text=${message}`
+
+    // const message = `Check out this recipe: ${url}`;
 
     switch (selectedSocialMedia) {
       case 'whatsapp':
-        url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+        url = `https://wa.me/${phone}/?text=${message}`;
         break;
       case 'twitter':
-        url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
+        url = `https://twitter.com/intent/tweet?text=${message}`;
         break;
       case 'facebook':
-        url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(message)}`;
+        url = `https://www.facebook.com/sharer/sharer.php?u=${message}`;
         break;
       default:
         break;
     }
 
-    if (url !== '') {
+    if (url !== `http://localhost:4000/viewmeal/${id}`) {
       window.open(url, '_blank');
     }
   };

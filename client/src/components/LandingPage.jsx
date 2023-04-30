@@ -125,7 +125,7 @@ function LandingPage({search}){
     const [itemsPerPage, setItemsPerPage] = useState(8)
     const [recipes, setRecipes] = useState([])
     const [currentPage, setCurrentPage] = useState(0)
-    const [searchBy, setSearchBy] = useState("country_of_origin")
+    const [searchBy, setSearchBy] = useState("name")
 
     useEffect(() =>{
         fetch("http://localhost:3000/recipes",{
@@ -146,25 +146,25 @@ function LandingPage({search}){
 
     //filter by name
 
-    let filteredRecipe = []
-    if(recipes.length > 0) {
-        filteredRecipe = (organizePages(recipes.flat().filter(recipe => {
-            if(searchBy === 'recipe') {
-                return recipe.recipe_name.toLowerCase().includes(search.toLowerCase())
-            }
-            if(searchBy === 'countryoforigin') {
-                return recipe.country_of_origin.toLowerCase().includes(search.toLowerCase())
-            } else if(searchBy === 'createdat') {
+    let filteredRecipe = recipes
+    // if(recipes.length > 0) {
+    //     filteredRecipe = (organizePages(recipes.flat().filter(recipe => {
+    //         if(searchBy === 'recipe') {
+    //             return recipe.recipe_name.toLowerCase().includes(search.toLowerCase())
+    //         }
+    //         if(searchBy === 'countryoforigin') {
+    //             return recipe.country_of_origin.toLowerCase().includes(search.toLowerCase())
+    //         } else if(searchBy === 'createdat') {
 
-            } else if(searchBy === 'ratings') {
-                return parseInt(recipe.rating) === parseInt(search)
-            } else if(searchBy === 'ingredients') {
-                return Object.keys(recipe).filter(f => f.startsWith("strIngredient")).map(key => ""+recipe[key]).filter(v => v !==  "").map(ingr => ingr.toLowerCase()).includes(search.toLowerCase())
-            } else if(searchBy === 'numberofpeopleserved') {
-                return parseInt(recipe.number_of_people) === parseInt(search)
-            }
-        }), itemsPerPage))
-    }
+    //         } else if(searchBy === 'ratings') {
+    //             return parseInt(recipe.rating) === parseInt(search)
+    //         } else if(searchBy === 'ingredients') {
+    //             return Object.keys(recipe).filter(f => f.startsWith("strIngredient")).map(key => ""+recipe[key]).filter(v => v !==  "").map(ingr => ingr.toLowerCase()).includes(search.toLowerCase())
+    //         } else if(searchBy === 'numberofpeopleserved') {
+    //             return parseInt(recipe.number_of_people) === parseInt(search)
+    //         }
+    //     }), itemsPerPage))
+    // }
 
     function handleChange(e){
         setSearchBy(e.target.value)

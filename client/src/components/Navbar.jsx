@@ -8,7 +8,6 @@ import { useContext } from 'react'
 function Navbar({search, handleSearch}){
 
     const{user,logout}=useContext(AuthContext)
-  
     const handleOnclick = () => {
      Swal.fire({
       icon: 'success',
@@ -17,7 +16,7 @@ function Navbar({search, handleSearch}){
      }).then(()=>{
       logout();
       window.location.href = '/';
-     }); 
+     });
     };
     return(
         <div className="bg-[#4F9FD9] p-4 items-center justify-between flex ">
@@ -25,7 +24,6 @@ function Navbar({search, handleSearch}){
             <Search search={search} handleSearch={handleSearch} />
             <div>
                 <ul className=" flex gap-4 text-[#] text-base ">
-        
                     <NavLink to="/" className="hover:text-white font-bold" >Home</NavLink>
                     {user?
                     <>
@@ -41,14 +39,12 @@ function Navbar({search, handleSearch}){
                     </>
 }
                 </ul>
-                    
 
-                
+
+
             </div>
         </div>
     )
 }
 
 export default Navbar;
-
-

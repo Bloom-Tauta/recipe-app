@@ -6,21 +6,19 @@ import { FaHeart } from 'react-icons/fa';
 
 
 
-function Card({meal}){
-
-    // added by me
+function Card({recipe}){
 
 
     const navigate = useNavigate()
 
     return(
         <div className='relative'>
-        { meal.id ?
-        <div className=' mt-4 ml-4 shadow-lg shadow-black' onClick={() => navigate(`/viewmeal/${meal.id}`)}>
-            <img src={meal.image_url} alt={meal.recipe_name} className=''/>
-            <h2 className='text-center p-1'>{meal.recipe_name}</h2>
+        { recipe.id ?
+        <div className=' mt-4 ml-4 shadow-lg shadow-black' onClick={() => navigate(`/viewmeal/${recipe.id}`)}>
+            <img src={recipe.recipe_thumb} alt={recipe.recipe_name} className=''/>
+            <h2 className='text-center p-1'>{recipe.recipe_name}</h2>
             <div className='flex gap-3 items-center pl-4'>
-                <div className='flex'>
+                <div className='flex text-yellow-400 mx-auto block'>
                     <BsStarFill/>
                     <BsStarFill/>
                     <BsStarFill/>
@@ -30,10 +28,9 @@ function Card({meal}){
                 <div className='absolute top-5 right-2 text-red-800'>
                     <FaHeart size={32}/>
                 </div>
-                <div>
-                    {/* {meal.ratings} */}
-                    {123456789} ratings
-                </div>
+            </div>
+            <div className='p-3'>
+            <button className='border w-1/2 mx-auto block p-3 bg-red-400'>View More</button>
             </div>
         </div>
         :
@@ -47,6 +44,10 @@ function Card({meal}){
             <div className='h-4 bg-black/50 w-[90%] mx-auto my-1'></div>
         </div>
         }
+        <div className='flex gap-1'>
+                <button className='border w-1/2 mx-auto block p-2 my-1 bg-green-400'>Update</button>
+                <button className='border w-1/2 mx-auto block p-2 my-1 bg-red-600'>Delete</button>
+            </div>
         </div>
     )
 }

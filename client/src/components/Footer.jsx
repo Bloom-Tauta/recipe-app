@@ -84,3 +84,10 @@ function Footer(){
     )
 }
 export default Footer;
+
+{/* <h4 className='text-center p-1'>{recipe.description}</h4>
+            <h4 className='text-center p-1'>{recipe.country_of_origin}</h4>
+            <h4 className='text-center p-1'>{recipe.number_of_people_served}</h4>
+            <h4 className='text-center p-1'>{recipe.ingredients}</h4>
+            <h4 className='text-center p-1'>{recipe.instructions}</h4>
+            <h4 className='text-center p-1'>{recipe.youtube_code}</h4> */}
