@@ -1,5 +1,11 @@
 class RecipesController < ApplicationController
+<<<<<<< HEAD
 skip_before_action :authorized, only: [:index]
+=======
+
+  # before_action :authenticate_admin, only: [:destroy, :approve, :index, :create, :show, :update]
+  skip_before_action :authorized, only: [:index, :show]
+>>>>>>> 43f108f7ab3fc8c6ed3c85161be0c42bb27f64ed
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
     def index
@@ -65,6 +71,7 @@ skip_before_action :authorized, only: [:index]
     end
     def recipe_params
       params.require(:recipe).permit(:recipe_name,  :recipe_image, :description, :country_of_origin, :number_of_people_served, ingredients: [], instructions: [] )
+        params.permit(:recipe_name, :recipe_category,  :description, :recipe_thumb, :country_of_origin, :number_of_people_served, :ingredients, :instructions, :user_id, :approved, :is_local, :youtube_code)
     end
       # params.require(:recipe).permit(:recipe_name, :description, :country_of_origin, :number_of_people_served, ingredients: [], steps: [],:recipe_image )
       # params.require(:recipe).permit(:recipe_image, :recipe_name, :description, :country_of_origin, :number_of_people_served, :ingredients, :instructions, :date_time, :approved)

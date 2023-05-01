@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       @from = "leah.wanjiku@student.moringaschool.com"
       @subject = "New User Account"
       @content = "Thank you for registering with us #{@user.username}. Your account has been created successfully"
-      EmailService.call(from: @from, to: @user.email, subject: @subject, content: @content)
+      # EmailService.call(from: @from, to: @user.email, subject: @subject, content: @content)
       render json: { user: @user.as_json(except: [:created_at, :updated_at]), token: token }, status: :created
     else
       render json: { error: @user.errors.full_messages }, status: :unprocessable_entity

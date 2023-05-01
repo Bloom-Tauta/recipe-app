@@ -5,9 +5,7 @@ import React,{ useState} from 'react';
 import LandingPage from './components/LandingPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-// import TheDetails from './components/TheDetails';
-// import UserDashboard from './components/UserDashboard';
-// import RecipePage from './components/RecipePage';
+
 import Share from './components/Share';
 import ReviewsForm from './components/ReviewsForm';
 import RecipeForm from './components/RecipeForm';
@@ -16,8 +14,9 @@ import RecipeDetailPage from './components/RecipeDetailPage';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import AuthProvider from './context/AuthContext';
-import Admin from './components/Admin';
+// import Admin from './components/Admin';
 import AddRecipeForm from './components/AddRecipeForm';
+<<<<<<< HEAD
 
 // function App() {
 
@@ -26,10 +25,15 @@ import AddRecipeForm from './components/AddRecipeForm';
 // import AdminDashboard from './components/AdminDashboard';
 // import Dashboard from './components/Dashboard';
 // import UpdateRecipes from './components/UpdateRecipe';
+=======
+import AdminDashboard from './components/AdminDashboard';
+import Dashboard from './components/Dashboard';
+
+>>>>>>> 43f108f7ab3fc8c6ed3c85161be0c42bb27f64ed
 import SubmittedRecipes from './components/SubmittedRecipes';
-// import Topbar from './components/Topbar';
-// import TheForm from './components/TheForm';
-// import RecipeAdd from './components/RecipeAdd';
+import HomePage from './components/HomePage';
+// import UserDashboard from './components/UserDashboard';
+
 
 function App() {
 
@@ -44,7 +48,8 @@ function App() {
     fetch('http://localhost:3000/recipes', {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+
       },
       body: JSON.stringify(recipeFormData)
   })
@@ -74,7 +79,6 @@ function App() {
       <Navbar search={search} handleSearch={handleSearch} />
       <div className='min-h-[70vh]'>
       <Routes>
-        {/* <Route path="/home" element={<HomePage/>}/> */}
         <Route path="/" element={<LandingPage search={search}/>}/>
         {/* <Route path="/viewmeals/:id" element={<RecipePage/>}/> */}
         <Route path="/addrecipeform" element={<AddRecipeForm/>}/>
@@ -85,15 +89,18 @@ function App() {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/reviews" element={<ReviewsForm postReviews={postReviews}/>}/>
+<<<<<<< HEAD
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/about" element={<About/>}/>
 
         
+=======
+        <Route path="/home" element={<HomePage/>}/>
+>>>>>>> 43f108f7ab3fc8c6ed3c85161be0c42bb27f64ed
         <Route path="/addrecipe" element={<AddRecipeForm postRecipe={postRecipe}/>}/>
-        {/* <Route path="/update" element={<UpdateRecipes/> }/> */}
         <Route path="/dash" element={<Dashboard/>}/>
         <Route path="/submitted" element={<SubmittedRecipes/>}/>
-        {/* <Route path="/top" element={<Topbar/>}/> */}
+        {/* <Route path="/user" element={<UserDashboard/>}/> */}
       </Routes>
       </div>
       </AuthProvider>
