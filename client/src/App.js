@@ -22,11 +22,12 @@ import AddRecipeForm from './components/AddRecipeForm';
 // function App() {
 
 //   // const [recipes, setRecipes] =useState([])
-// // import HomePage from './components/HomePage';
-// import AdminDashboard from './components/AdminDashboard';
-// import Dashboard from './components/Dashboard';
+ import HomePage from './components/HomePage';
+ import AdminDashboard from './components/AdminDashboard';
+ import Dashboard from './components/Dashboard';
 // import UpdateRecipes from './components/UpdateRecipe';
 import SubmittedRecipes from './components/SubmittedRecipes';
+import DropdownMenu from './components/DropDownMenu';
 // import Topbar from './components/Topbar';
 // import TheForm from './components/TheForm';
 // import RecipeAdd from './components/RecipeAdd';
@@ -72,9 +73,10 @@ function App() {
     <div className="App">
       <AuthProvider>
       <Navbar search={search} handleSearch={handleSearch} />
+      {/* <DropdownMenu/> */}
       <div className='min-h-[70vh]'>
       <Routes>
-        {/* <Route path="/home" element={<HomePage/>}/> */}
+        <Route path="/home" element={<HomePage/>}/>
         <Route path="/" element={<LandingPage search={search}/>}/>
         {/* <Route path="/viewmeals/:id" element={<RecipePage/>}/> */}
         <Route path="/addrecipeform" element={<AddRecipeForm/>}/>
