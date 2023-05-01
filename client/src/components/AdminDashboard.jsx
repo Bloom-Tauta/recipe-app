@@ -114,8 +114,11 @@ function AdminDashboard() {
           Update Profile
         </button>
         <NavLink className="block mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline" to='/admin'>Submitted Recipes</NavLink>
-        <NavLink className="block mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline" to='/addrecipe'>Create a recipe</NavLink>
-        <NavLink className="block mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline" to='/newrecipe'>View Users</NavLink>
+        <NavLink className="block mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline mb-5" to='/addrecipe'>Create a recipe</NavLink>
+        {/* <NavLink className="block mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline" to='/newrecipe'>View Users</NavLink> */}
+        {/* <div className="absolute bottom-0 w-full bg-white py-2 px-4"> */}
+                <a href="/" className="text-blue-500 hover:text-blue-700 mt-5">Back Home</a>
+            {/* </div> */}
       </div>
     );
   };

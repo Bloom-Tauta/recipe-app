@@ -21,6 +21,8 @@ import SubmittedRecipes from './components/SubmittedRecipes';
 import HomePage from './components/HomePage';
 // import UserDashboard from './components/UserDashboard';
 import { AuthContext } from './context/AuthContext';
+import UserDashboard from './components/UserDashboard';
+import Admin from './components/Admin';
 
 
 function App() {
@@ -31,7 +33,7 @@ function App() {
     setSearch(value)
   }
 
- 
+
 
   function postReviews(reviewsFormData){
     fetch('http://localhost:3000/reviews', {
@@ -64,7 +66,8 @@ function App() {
         <Route path="/addrecipe" element={<AddRecipeForm recipes={recipes} setRecipes={setRecipes}/>}/>
         <Route path="/dash" element={<Dashboard/>}/>
         <Route path="/submitted" element={<SubmittedRecipes/>}/>
-        {/* <Route path="/user" element={<UserDashboard/>}/> */}
+        <Route path="/user" element={<UserDashboard/>}/>
+        <Route path="/admin" element={<Admin/>}/>
       </Routes>
       </div>
       </AuthProvider>
