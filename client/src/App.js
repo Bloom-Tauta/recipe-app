@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 // import RecipePage from './components/RecipePage';
 import Share from './components/Share';
 import ReviewsForm from './components/ReviewsForm';
-import RecipeForm from './components/RecipeForm';
+// import RecipeForm from './components/RecipeForm';
 import About from './components/About';
 import RecipeDetailPage from './components/RecipeDetailPage';
 import Login from './components/Login';
@@ -18,7 +18,6 @@ import Signup from './components/Signup';
 import AuthProvider from './context/AuthContext';
 import Admin from './components/Admin';
 import AddRecipeForm from './components/AddRecipeForm';
-
 function App() {
 
   const [recipes, setRecipes] =useState([])
@@ -73,11 +72,13 @@ function App() {
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/addrecipe" element={<AddRecipeForm postRecipe={postRecipe}/>}/>
         <Route path="/about" element={<About/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
 
 
       </Routes>
       </div>
       </AuthProvider>
+      <Dashboard/>
       <Footer />
     </div>
 
