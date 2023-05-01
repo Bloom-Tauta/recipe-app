@@ -39,14 +39,18 @@ class RecipesController < ApplicationController
     #         end
     #      end
     def create
-      @recipe = Recipe.new(recipe_params)
-      @recipe.user = current_user
-    
-      if @recipe.save
-        render json: @recipe, status: :created
-      else
-        render json: { errors: @recipe.errors.full_messages }, status: :unprocessable_entity
-      end
+        @recipe=Recipe.create!(recipe_name: recipe_params[:recipe_name],
+         recipe_category: recipe_params[:recipe_category],
+          description: recipe_params[:description],
+          recipe_thumb: recipe_params[:recipe_thumb],
+          country_of_origin: recipe_params[:country_of_origin],
+          number_of_people_served: recipe_params[:number_of_people_served],
+        ingredients: recipe_params[:ingredients], 
+      instructions:recipe_params[:instructions],
+      youtube_code: recipe_params[:youtube_code],
+      user_id: current_user["id"])
+
+        render json: @recipe , status: :created
     end
     
           
@@ -57,11 +61,13 @@ class RecipesController < ApplicationController
         render json: @recipe
       end
       def destroy
-            
-        @recipe = find_recipe
-        @recipe.destroy
-        head :no_content
-        
+        @recipe = Recipe.find(params[:id])
+        if current_user.admin==true
+          @recipe.destroy
+          render json: { message: "Recipe deleted!" }, status: :no_content
+        else
+          render json: { message: "Only admins can delete recipes." }, status: :unauthorized
+        end
       end
     private
     #strong params
@@ -69,8 +75,7 @@ class RecipesController < ApplicationController
         Recipe.find(params[:id])
     end
     def recipe_params
-     
-        params.permit(:recipe_name, :recipe_category,  :description, :recipe_thumb, :country_of_origin, :number_of_people_served, :ingredients, :instructions, :user_id, :approved, :is_local, :youtube_code)
+        params.permit(:recipe_name, :recipe_category,  :description, :recipe_thumb, :country_of_origin, :number_of_people_served, :ingredients, :instructions,  :approved,  :youtube_code)
     end
       # params.require(:recipe).permit(:recipe_name, :description, :country_of_origin, :number_of_people_served, ingredients: [], steps: [],:recipe_image )
       # params.require(:recipe).permit(:recipe_image, :recipe_name, :description, :country_of_origin, :number_of_people_served, :ingredients, :instructions, :date_time, :approved)
