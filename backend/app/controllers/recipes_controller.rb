@@ -13,7 +13,17 @@ class RecipesController < ApplicationController
         render json: RecipeSerializer.new(@recipe).serializable_hash[:data][:attributes]
     end
     def create
-        @recipe=Recipe.create!(recipe_params)
+        @recipe=Recipe.create!(recipe_name: recipe_params[:recipe_name],
+         recipe_category: recipe_params[:recipe_category],
+          description: recipe_params[:description],
+          recipe_thumb: recipe_params[:recipe_thumb],
+          country_of_origin: recipe_params[:country_of_origin],
+          number_of_people_served: recipe_params[:number_of_people_served],
+        ingredients: recipe_params[:ingredients], 
+      instructions:recipe_params[:instructions],
+      youtube_code: recipe_params[:youtube_code],
+      user_id: current_user["id"])
+
         render json: @recipe , status: :created
     end
     def update
@@ -39,7 +49,8 @@ class RecipesController < ApplicationController
 
       def destroy
         @recipe = Recipe.find(params[:id])
-        if @recipe.admin?
+        byebug
+        if current_user.admin==true
           @recipe.destroy
           render json: { message: "Recipe deleted!" }, status: :no_content
         else
@@ -55,7 +66,7 @@ class RecipesController < ApplicationController
         Recipe.find(params[:id])
     end
     def recipe_params
-        params.permit(:recipe_name, :recipe_category,  :description, :recipe_thumb, :country_of_origin, :number_of_people_served, :ingredients, :instructions, :user_id, :approved, :is_local, :youtube_code)
+        params.permit(:recipe_name, :recipe_category,  :description, :recipe_thumb, :country_of_origin, :number_of_people_served, :ingredients, :instructions,  :approved,  :youtube_code)
     end
     def render_not_found_response
         render json: { error: "Recipe not found" }, status: :not_found

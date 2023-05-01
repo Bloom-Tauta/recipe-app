@@ -5,12 +5,12 @@ import { useState, useEffect } from "react";
 
 
 
-function LandingPage({search}){
+function LandingPage({search, recipes, setRecipes}){
 
 
 
     const [itemsPerPage, setItemsPerPage] = useState(8)
-    const [recipes, setRecipes] = useState([])
+   
     const [currentPage, setCurrentPage] = useState(0)
     const [searchBy, setSearchBy] = useState("name")
 
@@ -92,7 +92,7 @@ function LandingPage({search}){
 function Pagination({totalPages, currentPage,  setCurrentPage}) {
 
     return (
-        <div className="flex justify-center gap-3 my-4">
+        <div className="flex flex-wrap justify-center gap-3 my-4">
             {
                 new Array(totalPages).fill(0).map((page, index) => {
                     return <button key={index} className={`h-6 w-6 ${index === currentPage ? "bg-blue-800 text-white" : "ring-1"} rounded-full font-bold`} onClick={() => setCurrentPage(index)}>{index+1}</button>
