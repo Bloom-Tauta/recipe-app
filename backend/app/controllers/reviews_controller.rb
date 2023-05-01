@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-    before_action :authorized
+    # before_action :authorized
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
@@ -20,14 +20,14 @@ class ReviewsController < ApplicationController
         else
           render json: { error: "Review not found" }, status: :not_found
         end
-        
+
     end
 
     #POST /reviews
 
     def create
       @review = Review.create(review_params)
-      
+
       if @review.save
         render json: @review, status: :created
       else

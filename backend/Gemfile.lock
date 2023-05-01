@@ -96,6 +96,8 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     erubi (1.12.0)
+    faker (3.2.0)
+      i18n (>= 1.8.11, < 2)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -194,6 +196,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.6.2-x86_64-linux)
     thor (1.2.1)
     timeout (0.3.2)
     tzinfo (2.0.6)
@@ -224,6 +227,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  faker (~> 3.2)
   jbuilder
   jsonapi-serializer (~> 2.2)
   jwt
@@ -235,6 +239,7 @@ DEPENDENCIES
   selenium-webdriver
   sendgrid-ruby
   sprockets-rails
+  sqlite3 (~> 1.6)
   tzinfo-data
   web-console
   webdrivers

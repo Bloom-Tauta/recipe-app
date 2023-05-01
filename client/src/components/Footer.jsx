@@ -14,7 +14,7 @@ function Footer(){
           <div className="flex flex-wrap items-center justify-between">
             <div className="w-full">
               <h4 className="text-3xl text-white font-semibold text-center">
-                Let's keep in touch!
+               Get in touch with us
               </h4>
               <h5 className="text-lg mt-0 mb-2 text-white">
                 Reach us on any of these platforms.
@@ -84,3 +84,10 @@ function Footer(){
     )
 }
 export default Footer;
+
+{/* <h4 className='text-center p-1'>{recipe.description}</h4>
+            <h4 className='text-center p-1'>{recipe.country_of_origin}</h4>
+            <h4 className='text-center p-1'>{recipe.number_of_people_served}</h4>
+            <h4 className='text-center p-1'>{recipe.ingredients}</h4>
+            <h4 className='text-center p-1'>{recipe.instructions}</h4>
+            <h4 className='text-center p-1'>{recipe.youtube_code}</h4> */}

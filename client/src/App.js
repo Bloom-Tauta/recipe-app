@@ -5,9 +5,7 @@ import React,{ useState} from 'react';
 import LandingPage from './components/LandingPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-// import TheDetails from './components/TheDetails';
-// import UserDashboard from './components/UserDashboard';
-// import RecipePage from './components/RecipePage';
+
 import Share from './components/Share';
 import ReviewsForm from './components/ReviewsForm';
 // import RecipeForm from './components/RecipeForm';
@@ -16,8 +14,16 @@ import RecipeDetailPage from './components/RecipeDetailPage';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import AuthProvider from './context/AuthContext';
-import Admin from './components/Admin';
+// import Admin from './components/Admin';
 import AddRecipeForm from './components/AddRecipeForm';
+import AdminDashboard from './components/AdminDashboard';
+import Dashboard from './components/Dashboard';
+
+import SubmittedRecipes from './components/SubmittedRecipes';
+import HomePage from './components/HomePage';
+// import UserDashboard from './components/UserDashboard';
+
+
 function App() {
 
   const [recipes, setRecipes] =useState([])
@@ -28,10 +34,11 @@ function App() {
   }
 
   function postRecipe(recipeFormData){
-    fetch('http://localhost:3000/meals', {
+    fetch('http://localhost:3000/recipes', {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+
       },
       body: JSON.stringify(recipeFormData)
   })
@@ -62,19 +69,17 @@ function App() {
       <div className='min-h-[70vh]'>
       <Routes>
         <Route path="/" element={<LandingPage search={search}/>}/>
-        {/* <Route path="/viewmeals/:id" element={<RecipePage/>}/> */}
-        {/* <Route path="/user-dashboard" element={<UserDashboard/>}/> */}
+        <Route path="/admindashboard" element={<AdminDashboard/>}/>
         <Route path="/viewmeal/:id" element={<RecipeDetailPage />}/>
         <Route path="/share" element={<Share/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/reviews" element={<ReviewsForm postReviews={postReviews}/>}/>
-        <Route path="/admin" element={<Admin/>}/>
+        <Route path="/home" element={<HomePage/>}/>
         <Route path="/addrecipe" element={<AddRecipeForm postRecipe={postRecipe}/>}/>
-        <Route path="/about" element={<About/>}/>
-        <Route path="/dashboard" element={<Dashboard/>}/>
-
-
+        <Route path="/dash" element={<Dashboard/>}/>
+        <Route path="/submitted" element={<SubmittedRecipes/>}/>
+        {/* <Route path="/user" element={<UserDashboard/>}/> */}
       </Routes>
       </div>
       </AuthProvider>

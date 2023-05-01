@@ -1,9 +1,8 @@
 class FavoritesController < ApplicationController
-    before_action :authorized
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-    
+
     # def create
     #     @favorite = Favorite.create(favorite_params)
     #     if @favorite.save
@@ -25,7 +24,7 @@ class FavoritesController < ApplicationController
 
     def create
         @favorite = current_user.favorites.build(favorite_params)
-      
+
         if @favorite.save
           render json: { favorite: @favorite, user: current_user }, status: :created
         else
@@ -70,4 +69,3 @@ class FavoritesController < ApplicationController
         render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
     end
 end
- 
