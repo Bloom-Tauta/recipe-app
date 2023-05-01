@@ -20,33 +20,31 @@ const Share = ({ url}) => {
     setSelectedSocialMedia(socialMedia);
   };
 
+ 
+  
   const handleShare = () => {
     // Logic to share information via selected social media
-    const phone = '+254742604943'
-    let url = `http://localhost:4000/viewmeal/${id}`;
-    const message = encodeURIComponent(`Check out this recipe: ${url}`)
-    // let url = `https://wa.me/${phone}/?text=${message}`
-
-    // const message = `Check out this recipe: ${url}`;
-
+    // const recipeUrl = `/recipes/${id}`;
+    const recipeUrl = `http://localhost:4000/viewmeal/${id}`;
+    const message = encodeURIComponent(`Check out this recipe:`);
+  
     switch (selectedSocialMedia) {
       case 'whatsapp':
-        url = `https://wa.me/${phone}/?text=${message}`;
+        window.open(`https://wa.me/?text=${message}%20${recipeUrl}`, '_blank');
         break;
       case 'twitter':
-        url = `https://twitter.com/intent/tweet?text=${message}`;
+        window.open(`https://twitter.com/intent/tweet?text=${message}%20${recipeUrl}`, '_blank');
         break;
       case 'facebook':
-        url = `https://www.facebook.com/sharer/sharer.php?u=${message}`;
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${recipeUrl}`, '_blank');
         break;
       default:
         break;
     }
-
-    if (url !== `http://localhost:4000/viewmeal/${id}`) {
-      window.open(url, '_blank');
-    }
   };
+  
+  
+  
 
   return (
     <div className='p-4'>

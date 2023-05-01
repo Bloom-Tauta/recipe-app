@@ -1,11 +1,10 @@
 class RecipesController < ApplicationController
-<<<<<<< HEAD
-skip_before_action :authorized, only: [:index]
-=======
+
+
 
   # before_action :authenticate_admin, only: [:destroy, :approve, :index, :create, :show, :update]
   skip_before_action :authorized, only: [:index, :show]
->>>>>>> 43f108f7ab3fc8c6ed3c85161be0c42bb27f64ed
+
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
     def index
@@ -18,19 +17,19 @@ skip_before_action :authorized, only: [:index]
         @recipe= find_recipe
       render json: RecipeSerializer.new(@recipe).serializable_hash[:data][:attributes]
     end
-    def create
-        @recipe=Recipe.create(recipe_image: recipe_params[:recipe_image],
-                              recipe_name: recipe_params[:recipe_name],
-                              description: recipe_params[:description],
-                              country_of_origin: recipe_params[:country_of_origin],
-                              number_of_people_served: recipe_params[:number_of_people_served],
-                              ingredients: recipe_params[:ingredients],
-                              instructions: recipe_params[:instructions],
-                              date_time: recipe_params[:date_time],
-                              user_id: current_user["id"]
-        )
-        render json: @recipe , status: :created
-    end
+    # def create
+    #     @recipe=Recipe.create(recipe_image: recipe_params[:recipe_image],
+    #                           recipe_name: recipe_params[:recipe_name],
+    #                           description: recipe_params[:description],
+    #                           country_of_origin: recipe_params[:country_of_origin],
+    #                           number_of_people_served: recipe_params[:number_of_people_served],
+    #                           ingredients: recipe_params[:ingredients],
+    #                           instructions: recipe_params[:instructions],
+    #                           date_time: recipe_params[:date_time],
+    #                           user_id: current_user["id"]
+    #     )
+    #     render json: @recipe , status: :created
+    # end
     # def create
     #         @recipe = current_user.recipes.create(recipe_params)
     #         if @recipe.persisted?
@@ -39,16 +38,16 @@ skip_before_action :authorized, only: [:index]
     #           render json: { errors: @recipe.errors.full_messages }, status: :unprocessable_entity
     #         end
     #      end
-    # def create
-    #   @recipe = Recipe.new(recipe_params)
-    #   @recipe.user = current_user
+    def create
+      @recipe = Recipe.new(recipe_params)
+      @recipe.user = current_user
     
-    #   if @recipe.save
-    #     render json: @recipe, status: :created
-    #   else
-    #     render json: { errors: @recipe.errors.full_messages }, status: :unprocessable_entity
-    #   end
-    # end
+      if @recipe.save
+        render json: @recipe, status: :created
+      else
+        render json: { errors: @recipe.errors.full_messages }, status: :unprocessable_entity
+      end
+    end
     
           
    
@@ -70,7 +69,7 @@ skip_before_action :authorized, only: [:index]
         Recipe.find(params[:id])
     end
     def recipe_params
-      params.require(:recipe).permit(:recipe_name,  :recipe_image, :description, :country_of_origin, :number_of_people_served, ingredients: [], instructions: [] )
+     
         params.permit(:recipe_name, :recipe_category,  :description, :recipe_thumb, :country_of_origin, :number_of_people_served, :ingredients, :instructions, :user_id, :approved, :is_local, :youtube_code)
     end
       # params.require(:recipe).permit(:recipe_name, :description, :country_of_origin, :number_of_people_served, ingredients: [], steps: [],:recipe_image )

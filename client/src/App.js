@@ -10,13 +10,13 @@ import Share from './components/Share';
 import ReviewsForm from './components/ReviewsForm';
 import RecipeForm from './components/RecipeForm';
 import About from './components/About';
-import RecipeDetailPage from './components/RecipeDetailPage';
+import RecipeDetails from './components/RecipeDetails';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import AuthProvider from './context/AuthContext';
 // import Admin from './components/Admin';
 import AddRecipeForm from './components/AddRecipeForm';
-<<<<<<< HEAD
+
 
 // function App() {
 
@@ -25,11 +25,9 @@ import AddRecipeForm from './components/AddRecipeForm';
 // import AdminDashboard from './components/AdminDashboard';
 // import Dashboard from './components/Dashboard';
 // import UpdateRecipes from './components/UpdateRecipe';
-=======
 import AdminDashboard from './components/AdminDashboard';
 import Dashboard from './components/Dashboard';
 
->>>>>>> 43f108f7ab3fc8c6ed3c85161be0c42bb27f64ed
 import SubmittedRecipes from './components/SubmittedRecipes';
 import HomePage from './components/HomePage';
 // import UserDashboard from './components/UserDashboard';
@@ -82,21 +80,20 @@ function App() {
         <Route path="/" element={<LandingPage search={search}/>}/>
         {/* <Route path="/viewmeals/:id" element={<RecipePage/>}/> */}
         <Route path="/addrecipeform" element={<AddRecipeForm/>}/>
-        <Route path="/recipe/:id" element={<RecipeDetailPage />}/>
+        <Route path="/recipe/:id" element={<RecipeDetails/>}/>
         <Route path="/admindashboard" element={<AdminDashboard/>}/>
-        <Route path="/viewmeal/:id" element={<RecipeDetailPage />}/>
+        {/* <Route path="/viewmeal/:id" element={<RecipeDetailPage />}/> */}
         <Route path="/share" element={<Share/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/reviews" element={<ReviewsForm postReviews={postReviews}/>}/>
-<<<<<<< HEAD
-        <Route path="/admin" element={<Admin/>}/>
+
+        {/* <Route path="/admin" element={<Admin/>}/> */}
         <Route path="/about" element={<About/>}/>
 
-        
-=======
+      
         <Route path="/home" element={<HomePage/>}/>
->>>>>>> 43f108f7ab3fc8c6ed3c85161be0c42bb27f64ed
+
         <Route path="/addrecipe" element={<AddRecipeForm postRecipe={postRecipe}/>}/>
         <Route path="/dash" element={<Dashboard/>}/>
         <Route path="/submitted" element={<SubmittedRecipes/>}/>
