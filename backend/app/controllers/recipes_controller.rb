@@ -13,8 +13,14 @@ class RecipesController < ApplicationController
         render json: RecipeSerializer.new(@recipe).serializable_hash[:data][:attributes]
     end
     def create
-        @recipe=Recipe.create!(recipe_params)
-        render json: @recipe , status: :created
+      @recipe = Recipe.new(recipe_params)
+      @recipe
+
+      if @recipe.save
+        render json: @recipe, status: :created
+      else
+        render json: { errors: @recipe.errors.full_messages }, status: :unprocessable_entity
+      end
     end
     def update
         @recipe = find_recipe
@@ -55,7 +61,7 @@ class RecipesController < ApplicationController
         Recipe.find(params[:id])
     end
     def recipe_params
-        params.permit(:recipe_name, :recipe_category,  :description, :recipe_thumb, :country_of_origin, :number_of_people_served, :ingredients, :instructions, :user_id, :approved, :is_local, :youtube_code)
+        params.permit(:recipe_name, :recipe_category,  :description, :recipe_thumb, :country_of_origin, :number_of_people_served, :ingredients: [], : instructions: [], :user_id, :approved, :is_local, :youtube_code)
     end
     def render_not_found_response
         render json: { error: "Recipe not found" }, status: :not_found

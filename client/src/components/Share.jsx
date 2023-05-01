@@ -23,36 +23,36 @@ const Share = ({ url}) => {
   const handleShare = () => {
     // Logic to share information via selected social media
     const phone = '+254742604943'
-    let url = `http://localhost:4000/viewmeal/${id}`;
-    const message = encodeURIComponent(`Check out this recipe: ${url}`)
+    let shareUrl = `http://localhost:4000/viewmeal/${id}`;
+    const message = encodeURIComponent(`Check out this recipe: ${shareUrl}`)
     // let url = `https://wa.me/${phone}/?text=${message}`
 
     // const message = `Check out this recipe: ${url}`;
 
     switch (selectedSocialMedia) {
       case 'whatsapp':
-        url = `https://wa.me/${phone}/?text=${message}`;
+        shareUrl = `https://wa.me/${phone}/?text=${message}`;
         break;
       case 'twitter':
-        url = `https://twitter.com/intent/tweet?text=${message}`;
+        shareUrl = `https://twitter.com/intent/tweet?text=${message}`;
         break;
       case 'facebook':
-        url = `https://www.facebook.com/sharer/sharer.php?u=${message}`;
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${message}`;
         break;
       default:
         break;
     }
 
     if (url !== `http://localhost:4000/viewmeal/${id}`) {
-      window.open(url, '_blank');
+      window.open(shareUrl, '_blank');
     }
   };
 
   return (
     <div className='p-4'>
       {/* Share icon */}
-      <button onClick={handleShareClick}>
-        <IoMdShareAlt />
+      <button onClick={handleShareClick} className='flex items-center gap-2'>
+        <IoMdShareAlt /> Share
       </button>
 <div className='flex gap-5'>
 

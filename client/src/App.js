@@ -1,7 +1,7 @@
 
 import './App.css';
 import { Route, Routes } from "react-router-dom"
-import React,{ useState} from 'react';
+import React,{ useState,useContext} from 'react';
 import LandingPage from './components/LandingPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -20,31 +20,34 @@ import Dashboard from './components/Dashboard';
 import SubmittedRecipes from './components/SubmittedRecipes';
 import HomePage from './components/HomePage';
 // import UserDashboard from './components/UserDashboard';
+import { AuthContext } from './context/AuthContext';
 
 
 function App() {
 
-  const [recipes, setRecipes] =useState([])
+  // const [recipes, setRecipes] =useState([])
   const [reviews, setReviews] = useState([]);
   const [search, setSearch] = useState('')
   function handleSearch(value){
     setSearch(value)
   }
 
-  function postRecipe(recipeFormData){
-    fetch('http://localhost:3000/recipes', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+  // const { token } = useContext(AuthContext);
+  // function postRecipe(recipeFormData){
+  //   fetch('http://localhost:3000/recipes', {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${token}`,
 
-      },
-      body: JSON.stringify(recipeFormData)
-  })
-  .then(response => response.json())
-  .then(data =>{
-    setRecipes([...recipes, data])
-    })
-  }
+  //     },
+  //     body: JSON.stringify(recipeFormData)
+  // })
+  // .then(response => response.json())
+  // .then(data =>{
+  //   setRecipes([...recipes, data])
+  //   })
+  // }
 
   function postReviews(reviewsFormData){
     fetch('http://localhost:3000/reviews', {
@@ -74,7 +77,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/reviews" element={<ReviewsForm postReviews={postReviews}/>}/>
         <Route path="/home" element={<HomePage/>}/>
-        <Route path="/addrecipe" element={<AddRecipeForm postRecipe={postRecipe}/>}/>
+        <Route path="/addrecipe" element={<AddRecipeForm/>}/>
         <Route path="/dash" element={<Dashboard/>}/>
         <Route path="/submitted" element={<SubmittedRecipes/>}/>
         {/* <Route path="/user" element={<UserDashboard/>}/> */}

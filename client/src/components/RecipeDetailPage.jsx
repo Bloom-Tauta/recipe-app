@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { GoPin } from "react-icons/go"
-import { BsShareFill, BsFacebook, BsTwitter } from "react-icons/bs"
+import { BsShareFill, BsFacebook, BsFillHeartFill,BsTwitter } from "react-icons/bs"
 import{ RiWhatsappFill } from "react-icons/ri"
 import Share from "./Share"
 
@@ -37,8 +37,13 @@ function RecipeDetails() {
                         <div className="flex-grow flex flex-col items-center justify-center p-6">
                             <img className="rounded-lg" src={recipe.recipe_thumb} alt={recipe.strMeal} />
                         </div>
-                        <div className="rounded my-4 bg-slate-100">
+                        <div className="rounded my-4 bg-slate-100  flex items-center gap-4">
                             <Share/>
+                            <div className="flex items-center gap-2 border rounded-lg p-2 bg-slate-200">
+                                <button className="">Add to favorites</button>
+                                <BsFillHeartFill className="text-red-500"/>
+                            </div>
+
                             {/* <div className="py-1  px-4 text-sm flex items-center gap-4"><BsShareFill /> Share</div>
                             <div className="grid grid-cols-3 gap-4 w-max text-xl py-2 px-6">
                                 <button className="hover:text-orange-500"><RiWhatsappFill /></button>
