@@ -7974,6 +7974,7 @@ User.create(username: "Me", password: "123")
 
 recipes.each do |recipe|
   recipe.delete(:id)
+  recipe[:is_local] = false
   Recipe.create(recipe)
 end
 

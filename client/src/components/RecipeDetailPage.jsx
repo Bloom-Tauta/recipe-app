@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { GoPin } from "react-icons/go"
 import { BsShareFill, BsFacebook, BsTwitter } from "react-icons/bs"
 import{ RiWhatsappFill } from "react-icons/ri"
+import Share from "./Share"
 
 function RecipeDetails() {
 
@@ -37,12 +38,13 @@ function RecipeDetails() {
                             <img className="rounded-lg" src={recipe.recipe_thumb} alt={recipe.strMeal} />
                         </div>
                         <div className="rounded my-4 bg-slate-100">
-                            <div className="py-1  px-4 text-sm flex items-center gap-4"><BsShareFill /> Share</div>
+                            <Share/>
+                            {/* <div className="py-1  px-4 text-sm flex items-center gap-4"><BsShareFill /> Share</div>
                             <div className="grid grid-cols-3 gap-4 w-max text-xl py-2 px-6">
                                 <button className="hover:text-orange-500"><RiWhatsappFill /></button>
                                 <button className="hover:text-orange-500"><BsFacebook /></button>
                                 <button className="hover:text-orange-500"><BsTwitter /></button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="flex items-center justify-center flex-col">

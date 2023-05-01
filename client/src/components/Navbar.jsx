@@ -30,7 +30,7 @@ function Navbar({search, handleSearch}){
                     {user?
                     <>
                     <NavLink to="/favorite-recipes"  className="hover:text-white font-bold" >Favorite Recipes</NavLink>
-                    <NavLink to="/addrecipeform"  className="hover:text-white font-bold" >Add Recipe</NavLink>
+                    <NavLink to="/addrecipe"  className="hover:text-white font-bold" >Add Recipe</NavLink>
                     <NavLink to="/about"  className="hover:text-white font-bold" >About</NavLink>
                     <NavLink onClick={handleOnclick} > Logout</NavLink>
                     </>

@@ -171,10 +171,12 @@ const Signup = () => {
   };
 
   return (
-    <div className='bg-white py-4 mx-5 rounded-3xl mb-1 mt-1 w-[90%] ml-auto mr-auto'>
-      <div className='bg-[#49D5F3] opacity-80 w-[500px] h-[650px] rounded-3xl flex flex-col items-center ml-auto mr-auto mt-2 p-20'>
+    <div className='bg-gray-50 min-h-screen flex items-center justify-center'>
+      <div className='bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-20'>
+        <div className='sm:block hidden w-full'>
+        <h2 className='font-bold text-2xl text-center'>Sign Up</h2>
         <form onSubmit={handleSubmit}
-          className='bg-white shadow-lg  rounded-3xl px-8 pt-3 pb-3 mb-3 w-full'>
+        className='flex flex-col gap-4'>
           <div >
             <label htmlFor="username" className="block text-black text-lg font-bold mb-2">Username</label>
             <input type="text" onChange={e=>setUsername(e.target.value)}
@@ -186,6 +188,13 @@ const Signup = () => {
             className="shadow appearance-none border border-[#160194] rounded-md w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" placeholder='janecollins@gmail.com' />
           </div>
 
+
+{/* className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" */}
+          <div className="mt-1">
+            <label htmlFor="password" className="block text-back text-lg font-bold mb-2">Password</label>
+            <input type="password" onChange={e=>setPassword(e.target.value)}
+            className="shadow appearance-none border border-[#160194] rounded-md w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"  placeholder='Password'/>
+          </div>
           <div onSubmit={handleSubmitAdmin}>
             <label htmlFor="admin" className="block text-black text-lg font-bold mb-2">Admin</label>
             <div className="shadow appearance-none border border-[#160194] rounded-md w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline">
@@ -195,12 +204,6 @@ const Signup = () => {
               </label>
 
             </div>
-          </div>
-{/* className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" */}
-          <div className="mt-1">
-            <label htmlFor="password" className="block text-back text-lg font-bold mb-2">Password</label>
-            <input type="password" onChange={e=>setPassword(e.target.value)}
-            className="shadow appearance-none border border-[#160194] rounded-md w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"  placeholder='Password'/>
           </div>
           {/* <div className=" mt-2">
             <label htmlFor="password" className="block text-black text-lg font-bold mb-2">Confirm Password</label>
@@ -213,7 +216,7 @@ const Signup = () => {
           </div>
         </form>
       </div>
-
+    </div>
     </div>
   )
 }

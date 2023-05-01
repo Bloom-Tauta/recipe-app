@@ -11,6 +11,7 @@ class CreateRecipes < ActiveRecord::Migration[7.0]
       t.text :instructions
       t.string :youtube_code
       t.integer :user_id
+      t.boolean :is_local
       t.boolean :approved, default: false
 
       t.timestamps

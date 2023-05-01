@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_135037) do
     t.text "instructions"
     t.string "youtube_code"
     t.integer "user_id"
+    t.boolean "is_local"
     t.boolean "approved", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

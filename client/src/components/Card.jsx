@@ -1,15 +1,39 @@
 import { BsStarHalf } from 'react-icons/bs'
 import { BsStarFill } from 'react-icons/bs'
+import { RiDeleteBinLine, RiEdit2Line } from 'react-icons/ri'
 import { useNavigate } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
-
+import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 
 
 function Card({recipe}){
 
-
     const navigate = useNavigate()
+
+    function deleteRecipe(e) {
+            e.preventDefault();
+            fetch(`/recipess/${e.target.id}`,{
+              method: "DELETE",
+            })
+            .then((res) => {
+              res.json();
+              if (res.status === 204) {
+                Swal.fire({
+                  title: "Your have been successfully deleted the recipe",
+                  icon: "success",
+                  timer: 2000,
+                });
+              } else {
+                Swal.fire({
+                  title: "There was an error deleting the recipe",
+                  icon: "error",
+                  timer: 2000,
+                });
+              }
+            });
+          }
 
     return(
         <div className='relative'>
@@ -44,10 +68,29 @@ function Card({recipe}){
             <div className='h-4 bg-black/50 w-[90%] mx-auto my-1'></div>
         </div>
         }
-        <div className='flex gap-1'>
+        {/* {admin && ( */}
+             <div className='mt-1 ml-4 shadow-lg shadow-black justify-end border border-white flex gap-3'>
+              <div className='flex items-center'>
+                <div >
+                  <RiEdit2Line/>
+                </div>
+                <button className="btn-btn">
+                 <Link to={`/update/${recipe.id}`}>Update</Link>
+                </button>
+              </div>
+              <div className='flex items-center'>
+                <div>
+                  <RiDeleteBinLine/>
+                </div>
+                <button onClick={deleteRecipe} id={recipe.id} className="border  px-2 text-center rounded-lg">Delete</button>
+              </div>
+            </div>
+            {/* )} */}
+
+        {/* <div className='flex gap-1'>
                 <button className='border w-1/2 mx-auto block p-2 my-1 bg-green-400'>Update</button>
                 <button className='border w-1/2 mx-auto block p-2 my-1 bg-red-600'>Delete</button>
-            </div>
+            </div> */}
         </div>
     )
 }

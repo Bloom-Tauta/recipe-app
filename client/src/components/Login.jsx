@@ -127,20 +127,21 @@ const Login = () => {
 }
   return (
 
-
-    <div className=' bg-white py-4 mt-1 mx-5 mb-1 rounded-3xl'>
-    <div className='bg-[#49D5F3] opacity-80 w-[50%] h-[90%] rounded-3xl flex flex-wrap flex-col items-center ml-auto mr-auto mt-2 p-20'>
+    <div className='bg-gray-50 min-h-screen flex items-center justify-center'>
+    <div className='bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-20'>
+      <div className='sm:block hidden w-full'>
+      <h2 className='font-bold text-2xl text-center'>Login</h2>
     <form  onSubmit={handleSubmit}
-    className='bg-white shadow-md rounded-3xl px-8 pt-6 pb-6 mb-4 w-full relative'>
+     className='flex flex-col gap-4'>
       <div className="mb-4">
         <label htmlFor="username" className="block text-black text-lg font-bold mb-2">Username</label>
         <input type="text" onChange={e => setUsername(e.target.value)}
-         className="shadow appearance-none border border-[#160194] outline-none rounded-3xl w-full py-2 px-3 text-black leading-tight focus:outile-none focus:shadow-outline" placeholder='Username' />
+          className='p-2 rounded-xl border' placeholder='Username' />
       </div>
       <div className="mb-3 mt-4">
         <label htmlFor="password" className="block text-black text-lg font-bold mb-2">Password</label>
         <input type="password" onChange={e => setPassword(e.target.value)}
-        className="shadow  outline-none appearance-none border border-[#160194] rounded-3xl w-full py-2 px-3 text-black mb-3  focus:outline-none focus:shadow-outline"  placeholder=' password'/>
+         className='p-2 rounded-xl border'  placeholder=' password'/>
       </div>
       <div className="flex items-center flex-col">
       <a href='#signup' className="inline-block align-baseline font-bold text-sm text-[#160194] hover:text-blue-800 mb-2">Forgot Password?</a>
@@ -150,6 +151,7 @@ const Login = () => {
       </div>
 
     </form>
+  </div>
   </div>
   </div>
 

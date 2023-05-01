@@ -14,9 +14,9 @@ function Footer(){
           <div className="flex flex-wrap items-center justify-between">
             <div className="w-full">
               <h4 className="text-3xl text-white font-semibold text-center">
-                Let's keep in touch!
+               Get in touch with us
               </h4>
-              <h5 className="text-lg mt-0 mb-2 text-gray-400">
+              <h5 className="text-lg mt-0 mb-2 text-white">
                 Reach us on any of these platforms.
               </h5>
             </div>
