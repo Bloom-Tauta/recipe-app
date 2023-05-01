@@ -156,7 +156,7 @@ const Signup = () => {
       alert('Please enter all required fields');
       return;
     }
-    const userData = { email, password, username, isAdmin};
+    const userData = { email, password, username, admin:isAdmin};
     signup(userData);
     console.log(userData)
   };

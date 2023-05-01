@@ -24,30 +24,14 @@ import { AuthContext } from './context/AuthContext';
 
 
 function App() {
-
-  // const [recipes, setRecipes] =useState([])
+  const [recipes, setRecipes] = useState([])
   const [reviews, setReviews] = useState([]);
   const [search, setSearch] = useState('')
   function handleSearch(value){
     setSearch(value)
   }
 
-  // const { token } = useContext(AuthContext);
-  // function postRecipe(recipeFormData){
-  //   fetch('http://localhost:3000/recipes', {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${token}`,
-
-  //     },
-  //     body: JSON.stringify(recipeFormData)
-  // })
-  // .then(response => response.json())
-  // .then(data =>{
-  //   setRecipes([...recipes, data])
-  //   })
-  // }
+ 
 
   function postReviews(reviewsFormData){
     fetch('http://localhost:3000/reviews', {
@@ -69,15 +53,15 @@ function App() {
       <Navbar search={search} handleSearch={handleSearch} />
       <div className='min-h-[70vh]'>
       <Routes>
-        <Route path="/" element={<LandingPage search={search}/>}/>
+        <Route path="/" element={<LandingPage recipes={recipes} setRecipes={setRecipes} search={search}/>}/>
         <Route path="/admindashboard" element={<AdminDashboard/>}/>
         <Route path="/viewmeal/:id" element={<RecipeDetailPage />}/>
         <Route path="/share" element={<Share/>}/>
-        <Route path="/signup" element={<Signup/>}/>
-        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<Signup />}/>
+        <Route path="/login" element={<Login />}/>
         <Route path="/reviews" element={<ReviewsForm postReviews={postReviews}/>}/>
         <Route path="/home" element={<HomePage/>}/>
-        <Route path="/addrecipe" element={<AddRecipeForm/>}/>
+        <Route path="/addrecipe" element={<AddRecipeForm recipes={recipes} setRecipes={setRecipes}/>}/>
         <Route path="/dash" element={<Dashboard/>}/>
         <Route path="/submitted" element={<SubmittedRecipes/>}/>
         {/* <Route path="/user" element={<UserDashboard/>}/> */}

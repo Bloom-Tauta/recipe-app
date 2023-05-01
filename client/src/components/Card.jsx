@@ -12,28 +12,28 @@ function Card({recipe}){
 
     const navigate = useNavigate()
 
-    function deleteRecipe(e) {
-            e.preventDefault();
-            fetch(`/recipess/${e.target.id}`,{
-              method: "DELETE",
-            })
-            .then((res) => {
-              res.json();
-              if (res.status === 204) {
-                Swal.fire({
-                  title: "Your have been successfully deleted the recipe",
-                  icon: "success",
-                  timer: 2000,
-                });
-              } else {
-                Swal.fire({
-                  title: "There was an error deleting the recipe",
-                  icon: "error",
-                  timer: 2000,
-                });
-              }
-            });
-          }
+    // function deleteRecipe(e) {
+    //         e.preventDefault();
+    //         fetch(`/recipes/${e.target.id}`,{
+    //           method: "DELETE",
+    //         })
+    //         .then((res) => {
+    //           res.json();
+    //           if (res.status === 204) {
+    //             Swal.fire({
+    //               title: "Your have been successfully deleted the recipe",
+    //               icon: "success",
+    //               timer: 2000,
+    //             });
+    //           } else {
+    //             Swal.fire({
+    //               title: "There was an error deleting the recipe",
+    //               icon: "error",
+    //               timer: 2000,
+    //             });
+    //           }
+    //         });
+    //       }
 
     return(
         <div className='relative'>
@@ -69,7 +69,7 @@ function Card({recipe}){
         </div>
         }
         {/* {admin && ( */}
-             <div className='mt-1 ml-4 shadow-lg shadow-black justify-end border border-white flex gap-3'>
+             {/* <div className='mt-1 ml-4 shadow-lg shadow-black justify-end border border-white flex gap-3'>
               <div className='flex items-center'>
                 <div >
                   <RiEdit2Line/>
@@ -84,7 +84,7 @@ function Card({recipe}){
                 </div>
                 <button onClick={deleteRecipe} id={recipe.id} className="border  px-2 text-center rounded-lg">Delete</button>
               </div>
-            </div>
+            </div> */}
             {/* )} */}
 
         {/* <div className='flex gap-1'>
