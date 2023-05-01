@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import React, { useState , useEffect} from "react";
-import { useParams } from "react-router-dom";
-import { GoPin } from "react-icons/go"
-import { BsShareFill, BsFacebook, BsFillHeartFill,BsTwitter } from "react-icons/bs"
-import{ RiWhatsappFill } from "react-icons/ri"
-import Share from "./Share"
-=======
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { GoPin } from "react-icons/go";
@@ -19,7 +11,6 @@ import { RiWhatsappFill, RiEdit2Line, RiDeleteBinLine } from "react-icons/ri";
 import Share from "./Share";
 import Swal from 'sweetalert2';
 import { AuthContext } from "../context/AuthContext";
->>>>>>> 617beb9f2636356a69cf3c6cc74c0cb3463b8f37
 
 function RecipeDetails() {
   const [recipe, setRecipe] = useState(null);
