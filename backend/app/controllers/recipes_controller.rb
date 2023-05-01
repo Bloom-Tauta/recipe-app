@@ -49,7 +49,6 @@ class RecipesController < ApplicationController
 
       def destroy
         @recipe = Recipe.find(params[:id])
-        byebug
         if current_user.admin==true
           @recipe.destroy
           render json: { message: "Recipe deleted!" }, status: :no_content

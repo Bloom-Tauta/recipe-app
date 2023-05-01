@@ -7,8 +7,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const CLOUDNAME = "dmplbwbdq";
-const APIKEY = "453385796196836";
-const APISECRET = "5Y845Iagk1foUqu453jJJ2GioeI";
+
+
 
 function AddRecipeForm({ recipes, setRecipes }) {
   const { token } = useContext(AuthContext);
