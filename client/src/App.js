@@ -69,7 +69,7 @@ function App() {
       <div className='min-h-[70vh]'>
       <Routes>
         <Route path="/" element={<LandingPage recipes={recipes} setRecipes={setRecipes} search={search}/>}/>
-        <Route path="/admindashboard" element={<AdminDashboard/>}/>
+        {/* <Route path="/admindashboard" element={<AdminDashboard/>}/> */}
         <Route path="/viewmeal/:id" element={<RecipeDetailPage />}/>
         <Route path="/share" element={<Share/>}/>
         <Route path="/signup" element={<Signup />}/>
