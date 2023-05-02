@@ -16,7 +16,7 @@ import Signup from './components/Signup';
 import AuthProvider from './context/AuthContext';
 // import Admin from './components/Admin';
 import AddRecipeForm from './components/AddRecipeForm';
-import AdminDashboard from './components/AdminDashboard';
+// import AdminDashboard from './components/AdminDashboard';
 import Dashboard from './components/Dashboard';
 
 import SubmittedRecipes from './components/SubmittedRecipes';
@@ -72,7 +72,7 @@ function App() {
       <div className='min-h-[70vh]'>
       <Routes>
         <Route path="/" element={<LandingPage search={search}/>}/>
-        <Route path="/admindashboard" element={<AdminDashboard/>}/>
+        {/* <Route path="/admindashboard" element={<AdminDashboard/>}/> */}
         <Route path="/viewmeal/:id" element={<RecipeDetailPage />}/>
         <Route path="/share" element={<Share/>}/>
         <Route path="/signup" element={<Signup/>}/>
@@ -86,7 +86,7 @@ function App() {
       </Routes>
       </div>
       </AuthProvider>
-      <Dashboard/>
+      {/* <Dashboard/> */}
       <Footer />
     </div>
 

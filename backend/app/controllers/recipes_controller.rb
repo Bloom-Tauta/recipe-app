@@ -64,7 +64,7 @@ class RecipesController < ApplicationController
         Recipe.find(params[:id])
     end
     def recipe_params
-        params.permit(:recipe_name, :recipe_category,  :description, :recipe_thumb, :country_of_origin, :number_of_people_served, :ingredients: [], : instructions: [], :user_id, :approved, :is_local, :youtube_code)
+        params.permit(:recipe_name, :recipe_category,  :description, :recipe_thumb, :country_of_origin, :number_of_people_served, :ingredients [], :instructions [], :user_id, :approved, :is_local, :youtube_code)
     end
     def render_not_found_response
         render json: { error: "Recipe not found" }, status: :not_found

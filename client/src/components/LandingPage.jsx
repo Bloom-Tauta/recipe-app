@@ -120,7 +120,7 @@ function LandingPage({search}){
     const [currentPage, setCurrentPage] = useState(0)
 
     useEffect(() =>{
-        fetch("http://localhost:3001/meals",{
+        fetch("http://localhost:3000/recipes",{
         })
         .then((response) =>response.json())
         .then((data) =>{
