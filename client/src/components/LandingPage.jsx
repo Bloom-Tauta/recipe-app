@@ -9,7 +9,7 @@ function LandingPage({search, recipes, setRecipes}){
 
 
 
-    const [itemsPerPage, setItemsPerPage] = useState(8)
+    const [itemsPerPage, setItemsPerPage] = useState(6)
    
     const [currentPage, setCurrentPage] = useState(0)
     const [searchBy, setSearchBy] = useState("name")

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :favorites, only: [:create]
+  resources :favorites, only: [:index, :show, :update, :destroy, :create]
   
   resources :users, only: [:create, :index]
   post "/login", to: "users#login"

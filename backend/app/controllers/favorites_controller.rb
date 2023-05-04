@@ -13,7 +13,7 @@ class FavoritesController < ApplicationController
     #   end
 
     def index
-        @favorites = Facvorite.all
+        @favorites = Favorite.all
         render json: @favorites
     end
 
