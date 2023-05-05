@@ -1,76 +1,53 @@
 
 import './App.css';
 import { Route, Routes } from "react-router-dom"
-import React,{ useState,useContext} from 'react';
+import React,{ useState} from 'react';
 import LandingPage from './components/LandingPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-
+import Contact from './components/Contact';
 import Share from './components/Share';
-import ReviewsForm from './components/ReviewsForm';
 import RecipeDetailPage from './components/RecipeDetailPage';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import AuthProvider from './context/AuthContext';
-// import Admin from './components/Admin';
 import AddRecipeForm from './components/AddRecipeForm';
 import AdminDashboard from './components/AdminDashboard';
-import Dashboard from './components/Dashboard';
-
 import SubmittedRecipes from './components/SubmittedRecipes';
 import HomePage from './components/HomePage';
-// import UserDashboard from './components/UserDashboard';
-import { AuthContext } from './context/AuthContext';
 import UserDashboard from './components/UserDashboard';
-import Admin from './components/Admin';
+import About from './components/About';
+import Users from './components/Users';
 
 
 function App() {
   const [recipes, setRecipes] = useState([])
-  const [reviews, setReviews] = useState([]);
   const [search, setSearch] = useState('')
   function handleSearch(value){
     setSearch(value)
   }
 
-
-
-  function postReviews(reviewsFormData){
-    fetch('http://localhost:3000/reviews', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(reviewsFormData)
-  })
-  .then(response => response.json())
-  .then(data =>{
-    setReviews([...reviews, data])
-    })
-  }
-
   return (
     <div className="App">
-      <AuthProvider>
+
       <Navbar search={search} handleSearch={handleSearch} />
-      <div className='min-h-[70vh]'>
+      <div className='min-h-[70vh] flex flex-col'>
       <Routes>
-        <Route path="/" element={<LandingPage recipes={recipes} setRecipes={setRecipes} search={search}/>}/>
-        <Route path="/admindashboard" element={<AdminDashboard/>}/>
+        <Route path="/home" element={<LandingPage recipes={recipes} setRecipes={setRecipes} search={search}/>}/>
+        <Route path="/admins" element={<AdminDashboard/>}/>
         <Route path="/viewmeal/:id" element={<RecipeDetailPage />}/>
         <Route path="/share" element={<Share/>}/>
         <Route path="/signup" element={<Signup />}/>
         <Route path="/login" element={<Login />}/>
-        <Route path="/reviews" element={<ReviewsForm postReviews={postReviews}/>}/>
-        <Route path="/home" element={<HomePage/>}/>
+        <Route path="/" element={<HomePage/>}/>
         <Route path="/addrecipe" element={<AddRecipeForm recipes={recipes} setRecipes={setRecipes}/>}/>
-        <Route path="/dash" element={<Dashboard/>}/>
         <Route path="/submitted" element={<SubmittedRecipes/>}/>
         <Route path="/user" element={<UserDashboard/>}/>
-        <Route path="/admin" element={<Admin/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/contact" element={<Contact/>}/>
+        <Route path="/allusers" element={<Users/>}/>
       </Routes>
       </div>
-      </AuthProvider>
+
       <Footer />
     </div>
 

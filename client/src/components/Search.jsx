@@ -8,9 +8,9 @@ function Search({search, handleSearch}){
             <div>
                 <div className="flex">
                     <input value={search} onChange={(e) => handleSearch(e.target.value)}
-                     type="text" placeholder="Search recipe"
+                     type="text" placeholder="Search recipe by name, ingredients..."
                     className="border border-black rounded-lg p-2 outline-none"/>
-                    <span className="py-2.5 mr-1 px-1 rounded-lg text-3xl ">
+                    <span className="py-2.5 mr-1 px-1 rounded-lg text-2xl ">
                         <BiSearchAlt2/>
                     </span>
                 </div>

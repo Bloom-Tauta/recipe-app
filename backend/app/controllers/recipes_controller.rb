@@ -1,17 +1,17 @@
 class RecipesController < ApplicationController
 
-  # before_action :authenticate_admin, only: [:destroy, :approve, :index, :create, :show, :update]
-  skip_before_action :authorized, only: [:index, :show]
-    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+    # before_action :authenticate_admin, only: [:destroy, :approve, :index, :create, :show, :update]
+   # skip_before_action :authorized, only: [:index, :show]
     def index
-        @recipes=Recipe.all
-        render json: @recipes.map { |recipe| RecipeSerializer.new(recipe).serializable_hash[:data][:attributes] }
+        @recipes = Recipe.all
+        render json: @recipes
     end
+
     def show
         @recipe= find_recipe
-        render json: RecipeSerializer.new(@recipe).serializable_hash[:data][:attributes]
+        render json: @recipe, serializer: CustomRecipeSerializer, include: ['reviews', 'reviews.user.usename']
     end
+
     def create
         @recipe=Recipe.create!(recipe_name: recipe_params[:recipe_name],
          recipe_category: recipe_params[:recipe_category],
@@ -67,10 +67,5 @@ class RecipesController < ApplicationController
     def recipe_params
         params.permit(:recipe_name, :recipe_category,  :description, :recipe_thumb, :country_of_origin, :number_of_people_served, :ingredients, :instructions,  :approved,  :youtube_code)
     end
-    def render_not_found_response
-        render json: { error: "Recipe not found" }, status: :not_found
-    end
-    def render_unprocessable_entity_response(invalid)
-        render json: { errors: invalid.record.errors }, status: :unprocessable_entity
-    end
+
 

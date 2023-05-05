@@ -1,9 +1,4 @@
 class ReviewsController < ApplicationController
-    # before_action :authorized
-    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-
-    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-
     #GET /reviews
 
     def index
@@ -16,7 +11,7 @@ class ReviewsController < ApplicationController
     def show
         @review = find_review
         if @review.present?
-          render json: @review, status: :ok
+          render json: @review, status: :created, serializer: CustomeReviewSerializer, include: ['user.username']
         else
           render json: { error: "Review not found" }, status: :not_found
         end
@@ -29,7 +24,7 @@ class ReviewsController < ApplicationController
       @review = Review.create(review_params)
 
       if @review.save
-        render json: @review, status: :created
+        render json: @review, status: :created, serializer: CustomeReviewSerializer, include: ['user.username']
       else
         render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
       end
@@ -52,17 +47,4 @@ class ReviewsController < ApplicationController
     def review_params
         params.permit(:ratings, :comments, :recipe_id, :user_id)
     end
-
-    def render_not_found_response
-        render json: { error: "Review not found" }, status: :not_found
-    end
-
-    def render_unprocessable_entity_response(invalid)
-        render json: { errors: invalid.record.errors }, status: :unprocessable_entity
-    end
-
-    def authorized
-        render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
-    end
-
 end

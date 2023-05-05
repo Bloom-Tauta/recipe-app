@@ -7,12 +7,12 @@ function About() {
       <div className="bg-white shadow-md rounded-md p-6 flex flex-col gap-10">
         <div>
           <h1 className="text-2xl font-bold mb-4">
-            <div className= "flex flex-col justify-center items-center" > 
+            <div className= "flex flex-col justify-center items-center" >
             <span className="text-black">Recipe Sharing</span>
              <span className="text-orange-600 ">Made Easy</span>
 
             </div>
-            
+
              </h1>
           <p className="text-lg mb-4">
             Our recipe-sharing app allows you to organize your favorite recipes in a digital recipe book, making it easy to access them from anywhere, share them with others, and keep them all in one convenient location.
@@ -25,7 +25,7 @@ function About() {
           </p>
         </div>
         <div className="flex flex-col justify-center items-center"  >
-          <button type="button" className=" rounded-full bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <button type="button" className=" rounded-full bg-orange-600 hover:bg-slate-300 text-white font-bold py-2 px-4 rounded">
             Get Recipe Share App
           </button>
         </div>

@@ -1,48 +1,77 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { AiOutlineBackward } from 'react-icons/ai'
 
 
-function AdminDashboard() {
-  const [admin, setAdmin] = useState({});
-  const [name, setName] = useState("");
+function UserDashboard() {
+  const [user, setUser] = useState({});
+
   const [email, setEmail] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
 
+
+  const userType = localStorage.getItem("user");
+  const token = localStorage.getItem("jwt");
+  const userId = localStorage.getItem("userID");
+
+
+  useEffect(() =>{
+    fetch(`http://localhost:3000/users/${userId}`,{
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    .then(response => response.json())
+    .then((data) =>{
+        setUser(data);
+    })
+  })
+
   useEffect(() => {
-    fetch("/adminme", {
-      credentials: "include",
+    fetch("/me", {
+      method: "GET",
+      headers :{
+        'Content-Type': 'application/json',
+        Authorization : 'Bearer ' + localStorage.getItem('jwt')
+      }
     })
       .then((res) => res.json())
       .then((data) => {
-        setAdmin(data);
+      //  console.log(data);
+        setUser(data);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-  }, []);
-  const handleUpdate = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await fetch(`/admins/${admin.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email }),
-      });
-      const data = await response.json();
-      console.log("Success:", data);
-      setAdmin({ ...admin, name, email }); // update the state
-      setIsUpdating(false);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  },[token]);
+
+// console.log(userId);
+
+
+  function handleUpdate(e){
+    e.preventDefault()
+    fetch(`/users/${userId}`,{
+      method: "PATCH",
+      headers :{
+        'Content-Type': 'application/json',
+        Authorization : 'Bearer ' + localStorage.getItem('jwt')
+      },
+      body: JSON.stringify({email:email})
+    }).then(res=>res.json())
+    .then(data=>{
+     // console.log(data)
+      setUser(data)
+      setIsUpdating(false)
+    })
+  }
+
+
 
   const handleCancel = () => {
     setIsUpdating(false);
-    setName(admin.name);
-    setEmail(admin.email);
+
+     setEmail(user.email);
   };
 
   const renderForm = () => {
@@ -50,14 +79,14 @@ function AdminDashboard() {
       <form onSubmit={handleUpdate} className="mx-auto my-10 max-w-lg">
         <div className="mb-4">
           <label htmlFor="name" className="block text-gray-600 font-bold mb-2">
-            Name
+            Username
           </label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+
+            name="username"
+            value={user.username}
+
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
@@ -67,7 +96,7 @@ function AdminDashboard() {
           </label>
           <input
             type="email"
-            id="email"
+
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -96,39 +125,41 @@ function AdminDashboard() {
   const renderDetails = () => {
     return (
       <div className="mx-auto my-10 max-w-lg border-t border-gray-200 pt-4">
-        <h2 className="text-3xl font-semibold mb-4">Welcome, {admin.name}</h2>
+        <h2 className="text-3xl font-semibold mb-4">Welcome, {userType}</h2>
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <p className="text-gray-600">Name:</p>
-          <p className="text-gray-900">{admin.name}</p>
+          <p className="text-gray-900">{user?.username}</p>
         </div>
         <hr className="my-4" />
         <div className="flex items-center justify-between mt-2">
           <p className="text-gray-600">Email:</p>
-          <p className="text-gray-900">{admin.email}</p>
+          <p className="text-gray-900">{user?.email}</p>
         </div>
+        <div className="flex justify-between">
+
+            <a href="/home" className="text-black hover:text-orange-500 mt-5 flex items-center gap-1">  <AiOutlineBackward size={20}/> Back Home</a>
+        </div>
+        <div className="flex gap-3">
         <button
-          onClick={() => setIsUpdating(true)}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline"
-        >
-          Update Profile
-        </button>
-        <NavLink className="block mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline" to='/admin'>Submitted Recipes</NavLink>
-        <NavLink className="block mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline mb-5" to='/addrecipe'>Create a recipe</NavLink>
-        {/* <NavLink className="block mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline" to='/newrecipe'>View Users</NavLink> */}
-        {/* <div className="absolute bottom-0 w-full bg-white py-2 px-4"> */}
-                <a href="/" className="text-blue-500 hover:text-blue-700 mt-5">Back Home</a>
-            {/* </div> */}
+            onClick={() => setIsUpdating(true)}
+            className="bg-orange-500 hover:bg-slate-300 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline"
+          >
+            Update Profile
+          </button>
+          <NavLink className="block mt-4 bg-orange-500 hover:bg-slate-300 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline" to='/addrecipe'>Create a recipe</NavLink>
+          <NavLink className="block mt-4 bg-orange-500 hover:bg-slate-300  text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline" to='/allusers'>All Users </NavLink>
+        </div>
       </div>
     );
   };
 
   return (
-    <div className="adminAdminDashboard">
+    <div className="userdashboard">
 
       {isUpdating ? renderForm() : renderDetails()}
     </div>
   );
 }
 
-export default AdminDashboard;
+export default UserDashboard;

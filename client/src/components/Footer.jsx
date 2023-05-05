@@ -8,7 +8,7 @@ import { FaInstagram } from "react-icons/fa"
 
 function Footer(){
     return(
-        <footer className="bg-[#4F9FD9] py-6">
+        <footer className="bg-black py-6">
 
         <div className=" w-full lg:w-7xl mx-auto px-4 text-center">
           <div className="flex flex-wrap items-center justify-between">
@@ -61,7 +61,7 @@ function Footer(){
             <div className=" lg:w-8/12 px-4 ">
               <ul className="flex flex-wrap list-none pl-0 mb-0 gap-5">
                 <li className="nav-item">
-                  <NavLink to="about"
+                  <NavLink to="/about"
                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   >
                     <span className="ml-2">About Us</span>
