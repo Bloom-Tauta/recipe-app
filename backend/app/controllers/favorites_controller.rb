@@ -59,5 +59,4 @@ class FavoritesController < ApplicationController
     def find_favorite
         favorite.find_by(id: params[:id])
     end
-    
 end
