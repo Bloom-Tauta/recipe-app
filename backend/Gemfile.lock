@@ -232,7 +232,7 @@ DEPENDENCIES
   faker (~> 3.2)
   jbuilder
   jsonapi-serializer (~> 2.2)
-  jwt
+  jwt (~> 2.3)
   pg (~> 1.1)
   puma (~> 5.0)
   pundit
@@ -247,7 +247,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.2.1p31
+   ruby 2.7.4p191
 
 BUNDLED WITH
    2.4.12
