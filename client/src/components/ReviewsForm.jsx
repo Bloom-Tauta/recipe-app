@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import { BiStar } from 'react-icons/bi'
 
-const ReviewsForm = ({postReviews}) => {
+const ReviewsForm = ({postReviews, id}) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
-  const [remark, setRemark] = useState("");
+  const [remark, setRemark] = useState("")
 
 
   function handleSubmit(e){
     e.preventDefault();
-    const reviewsFormData = (e) => {
-      // rating,
-      // remark,
-      // comment
-
+    const reviewsFormData = {
+      ratings: rating,
+      comments: comment,
+      user_id: localStorage.getItem("userID"),
+      recipe_id: id
     }
+
     postReviews(reviewsFormData)
   }
 
@@ -46,7 +47,7 @@ const ReviewsForm = ({postReviews}) => {
   };
 
   return (
-    <div className='flex flex-col items-center  justify-center border border-black px-12 py-8 mx-auto max-w-lg mt-4'>
+    <form onSubmit={handleSubmit} className='flex flex-col items-center  justify-center border border-black px-12 py-8 mx-auto mt-4'>
         <h3 className=' '>Your ratings</h3>
         <div className='flex items-center '>
             <div className='text-start p-6 flex flex-row'>
@@ -76,18 +77,15 @@ const ReviewsForm = ({postReviews}) => {
           cols={50}
           className='bg-gray-50 border border-gray-300
           text-gray-900 sm:text-sm
-          focus:ring-primary-600 p-2'
+          focus:ring-primary-600 p-2 outline-none'
+          required
         />
       </div>
       <div className="flex flex-row items-center gap-3 justify-end mt-4">
-          <input type="submit" value="Cancel"
-          onClick={handleSubmit}
-          className="text-blue-500 hover:underline"/>
           <button type="submit"
-        onClick={handleSubmit}
           className="border border-black p-2 bg-green-100 rounded-lg hover:bg-green-800 ">Submit</button>
         </div>
-    </div>
+    </form>
   );
 };
 

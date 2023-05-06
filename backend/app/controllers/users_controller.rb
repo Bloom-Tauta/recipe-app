@@ -1,51 +1,65 @@
 class UsersController < ApplicationController
-  skip_before_action :authorized, only: [:create, :login]
-  # before_action :authorized, only: [:create, :destroy]
+  # skip_before_action :authorized, only: [:create, :login]
+  before_action :set_current_user
+
+
 
   def index
-    @users= User.all
-    render json: @users
+    users= User.all
+    render json: users
+  end
+
+  def update
+    user = User.find(params[:id])
+    user.assign_attributes(user_params)
+    if user.save
+      render json: user, status: :ok
+    else
+      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  
+
+  def show
+    user = User.find(params[:id])
+    render json: user, status: :ok
   end
 
   def create
-    @user = User.new(user_params)
-
-    if @user.save
-      token = encode_token({ user_id: @user.id, admin: @user.admin })
-      @from = "leah.wanjiku@student.moringaschool.com"
-      @subject = "New User Account"
-      @content = "Thank you for registering with us #{@user.username}. Your account has been created successfully"
+    user = User.create!(user_params)
+      from = "leah.wanjiku@student.moringaschool.com"
+      subject = "New User Account"
+      content = "Thank you for registering with us #{user.username}. Your account has been created successfully"
       # EmailService.call(from: @from, to: @user.email, subject: @subject, content: @content)
-      render json: { user: @user.as_json(except: [:created_at, :updated_at]), token: token }, status: :created
-    else
-      render json: { error: @user.errors.full_messages }, status: :unprocessable_entity
+      render json: user, status: :created
+  end
+
+    # def login
+    #   user = User.find_by(username: user_params[:username])
+    #   if user && user.authenticate(user_params[:password])
+    #     token = JWT.encode({ username: user.username }, 'my-secret-key', 'HS256')
+
+    #     cookies.signed[:jwt] = { value: token, httponly: true, secure: false }
+
+    #     render json: user, status: :ok
+    #   else
+    #     render json: { error: 'Invalid username or password' }, status: :unauthorized
+    #   end
+    # end
+
+    # def logout
+    #   cookies.delete(:jwt, httponly: true)
+    #   render json: { message: 'Logged out successfully' }
+    # end
+
+    def me
+      render json: @current_user
     end
-  end
 
-    def login
-      @user = User.find_by(username: params[:username])
-      if @user && @user.authenticate(params[:password])
-        token = encode_token({ user_id: @user.id,admin: @user.admin })
-        render json: { user: @user.as_json(except: [:created_at, :updated_at]), token: token, authorized: true  }
-      else
-        render json: { error: 'Invalid username or password' }, status: :unauthorized
-      end
+    private
+
+    def user_params
+      params.permit(:username, :password, :email, :admin)
     end
-
-    def logout
-      session.delete(:user_id)
-      render json: { message: 'Logged out successfully' }
-    end
-
-      private
-
-  def user_params
-    params.permit(:username, :password, :email, :admin)
-  end
-  def authorized
-    render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
-  end
-  def logged_in?
-    !!current_user
-  end
 end

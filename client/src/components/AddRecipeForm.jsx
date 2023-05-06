@@ -66,7 +66,7 @@ function AddRecipeForm({ recipes, setRecipes }) {
     })
       .then((response) => response.json())
       .then((data) => {
-      //  setRecipes(recipes=> [...recipes, data])
+      // setRecipes(recipes=> [...recipes, data])
        navigate("/")
       });
   }

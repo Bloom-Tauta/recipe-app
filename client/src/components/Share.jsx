@@ -21,17 +21,13 @@ const Share = ({ url}) => {
   };
 
   const handleShare = () => {
-    // Logic to share information via selected social media
-    const phone = '+254742604943'
-    let shareUrl = `http://localhost:4000/viewmeal/${id}`;
-    const message = encodeURIComponent(`Check out this recipe: ${shareUrl}`)
-    // let url = `https://wa.me/${phone}/?text=${message}`
 
-    // const message = `Check out this recipe: ${url}`;
+    let shareUrl = `https://localhost:4000/viewmeal/${id}`;
+    const message = encodeURIComponent(`Check out this recipe: ${shareUrl}`)
 
     switch (selectedSocialMedia) {
       case 'whatsapp':
-        shareUrl = `https://wa.me/${phone}/?text=${message}`;
+        shareUrl = `https://wa.me/?text=${message}`;
         break;
       case 'twitter':
         shareUrl = `https://twitter.com/intent/tweet?text=${message}`;

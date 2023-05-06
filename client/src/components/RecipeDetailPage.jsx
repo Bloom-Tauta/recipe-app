@@ -1,19 +1,21 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext} from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { GoPin } from "react-icons/go";
-import {
-  BsShareFill,
-  BsFacebook,
-  BsTwitter,
-  BsFillHeartFill,
-} from "react-icons/bs";
-import { RiWhatsappFill, RiEdit2Line, RiDeleteBinLine } from "react-icons/ri";
-import Share from "./Share";
-import Swal from 'sweetalert2';
+import { BsFillHeartFill,BsStarFill } from "react-icons/bs";
+import { RiDeleteBinLine } from "react-icons/ri"
+import Loading from "./Loading";
 import { AuthContext } from "../context/AuthContext";
+import Swal from 'sweetalert2';
 
-function RecipeDetails() {
+
+import Share from "./Share";
+import ReviewsForm from "./ReviewsForm";
+
+// import { AuthContext } from "../context/AuthContext";
+
+function RecipeDetailPage() {
   const [recipe, setRecipe] = useState(null);
+  const [reviews, setReviews] = useState([]);
   const {token} = useContext(AuthContext)
 
   const { id } = useParams();
@@ -21,15 +23,42 @@ function RecipeDetails() {
 
   useEffect(() => {
     fetch(`http://localhost:3000/recipes/${id}`)
-      .then((res) => res.json())
-      .then((data) => setRecipe(data));
-  }, []);
+      .then((res) => {
+        if(res.status<400) {
+          res.json().then(data => {
+            setRecipe(data)
+            setReviews(data.reviews)
+          })
+        } else {
+
+        }
+      })
+  }, [id]);
+
+  function postReviews(reviewsFormData){
+    fetch('http://localhost:3000/reviews', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+      },
+      body: JSON.stringify(reviewsFormData)
+  })
+  .then(response => response.json())
+  .then(data =>{
+      setReviews([...reviews, data])
+    })
+  }
 
   let ingredients = [],
     instructions = [];
   if (recipe) {
     ingredients = recipe.ingredients?.split("\r\n") || []
     instructions = recipe.instructions?.split("\r\n") || []
+  }
+
+  function handleClick(){
+    document.querySelector('#ratings').scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'});
   }
 
   function deleteRecipe() {
@@ -42,11 +71,11 @@ function RecipeDetails() {
       res.json();
       if (res.status === 204) {
         Swal.fire({
-          title: "Your have been successfully deleted the recipe",
+          title: "Your have successfully deleted the recipe",
           icon: "success",
           timer: 2000,
         });
-        navigate("/")
+        navigate("/home")
       } else {
         Swal.fire({
           title: "There was an error deleting the recipe",
@@ -58,8 +87,9 @@ function RecipeDetails() {
   }
 
   return (
-    <>
-      {recipe && (
+    <div className="flex-grow flex flex-col">
+      { recipe ?
+        <>
         <div className="bg-slate-200">
           <div className="p-4 grid  md:grid-cols-2 gap-4">
             <div className="flex flex-col">
@@ -77,7 +107,7 @@ function RecipeDetails() {
                   alt={recipe.strMeal}
                 />
               </div>
-              <div className="rounded my-4 bg-slate-100  flex items-center gap-4">
+              <div className=" rounded my-4 bg-slate-100  flex items-center gap-2">
                 <Share />
                 {/* <div className="py-1  px-4 text-sm flex items-center gap-4"><BsShareFill /> Share</div>
                             <div className="grid grid-cols-3 gap-4 w-max text-xl py-2 px-6">
@@ -85,20 +115,39 @@ function RecipeDetails() {
                                 <button className="hover:text-orange-500"><BsFacebook /></button>
                                 <button className="hover:text-orange-500"><BsTwitter /></button>
                             </div> */}
-                <div className="flex items-center gap-2 border rounded-lg p-2 bg-slate-200">
-                  <button className="">Add to favorites</button>
+                <div className="flex items-center gap-2 border rounded-lg p-2 bg-slate-200" >
+                  <button onClick={() => {
+                    fetch(`http://localhost:3000/favorites`, {
+                      method: 'POST',
+                      headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem('jwt')}`
+                      },
+                      body:  JSON.stringify({
+                        user_id: localStorage.getItem('userID'),
+                        recipe_id: id
+                      })
+                    })
+                    .then(response => {
+                      if(response.status < 400) {
+                        response.json().then(data => {
+                          navigate("/home")
+                        })
+                      } else if(response.status === 401) {
+
+                      } else {
+
+                      }
+                    })
+                  }} className="">Add to favorites</button>
                   <BsFillHeartFill className="text-red-500" />
                 </div>
-                <div className="mt-1 ml-4 shadow-lg shadow-black justify-end border border-white flex gap-3">
-                  <div className="flex items-center">
-                    <div>
-                      <RiEdit2Line />
-                    </div>
-                    <button className="btn-btn">
-                      <Link to={`/update/${recipe.id}`}>Update</Link>
-                    </button>
-                  </div>
-                  <div className="flex items-center">
+                <div onClick={handleClick} className="flex items-center gap-2 border rounded-lg p-2 bg-slate-200">
+                  <button className="">Rate</button>
+                  <BsStarFill className="text-yellow-500" />
+                </div>
+                <div className="flex items-center">
                     <div>
                       <RiDeleteBinLine />
                     </div>
@@ -110,8 +159,8 @@ function RecipeDetails() {
                       Delete
                     </button>
                   </div>
-                </div>
               </div>
+
             </div>
             <div className="flex items-center justify-center flex-col">
               <h2 className="text-center my-2 font-bold text-orange-500">
@@ -178,10 +227,28 @@ function RecipeDetails() {
               allowFullScreen
             ></iframe>
           </div>
+
+          <div id="ratings"className='my-8 grid grid-cols-1 md:grid-cols-2'>
+            <ReviewsForm postReviews={postReviews} id={id} />
+            <div>
+              {
+                reviews.map((review, index) => {
+                  return (
+                    <div key={index}>
+                    <h2>{review.ratings}</h2>
+                    <h2>{review.comments}</h2>
+                    </div>
+                  )
+                })
+              }
+            </div>
+          </div>
         </div>
-      )}
-    </>
-  );
+        </>
+    : <Loading />
+    }
+    </div>
+  )
 }
 
-export default RecipeDetails;
+export default RecipeDetailPage;

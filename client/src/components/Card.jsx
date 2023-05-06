@@ -1,39 +1,16 @@
 import { BsStarHalf } from 'react-icons/bs'
 import { BsStarFill } from 'react-icons/bs'
-import { RiDeleteBinLine, RiEdit2Line } from 'react-icons/ri'
 import { useNavigate } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
-import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
-
-
+import { AuthContext } from '../context/AuthContext';
+import React, { useContext } from 'react'
 
 function Card({recipe}){
 
     const navigate = useNavigate()
 
-    // function deleteRecipe(e) {
-    //         e.preventDefault();
-    //         fetch(`/recipes/${e.target.id}`,{
-    //           method: "DELETE",
-    //         })
-    //         .then((res) => {
-    //           res.json();
-    //           if (res.status === 204) {
-    //             Swal.fire({
-    //               title: "Your have been successfully deleted the recipe",
-    //               icon: "success",
-    //               timer: 2000,
-    //             });
-    //           } else {
-    //             Swal.fire({
-    //               title: "There was an error deleting the recipe",
-    //               icon: "error",
-    //               timer: 2000,
-    //             });
-    //           }
-    //         });
-    //       }
+    const { user } = useContext(AuthContext)
+
 
     return(
         <div className='relative'>
@@ -41,7 +18,7 @@ function Card({recipe}){
         <div className=' mt-4 ml-4 shadow-lg shadow-black' onClick={() => navigate(`/viewmeal/${recipe.id}`)}>
             <img src={recipe.recipe_thumb} alt={recipe.recipe_name} className=''/>
             <h2 className='text-center p-1'>{recipe.recipe_name}</h2>
-            <div className='flex gap-3 items-center pl-4'>
+            <div className='flex gap-10 items-center pl-4'>
                 <div className='flex text-yellow-400 mx-auto block'>
                     <BsStarFill/>
                     <BsStarFill/>
@@ -49,12 +26,33 @@ function Card({recipe}){
                     <BsStarFill/>
                     <BsStarHalf/>
                 </div>
-                <div className='absolute top-5 right-2 text-red-800'>
+                { user &&
+                <div onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    fetch("http://localhost:3000/favorites", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify({
+                            user_id: user.id,
+                            recipe_id: recipe.id
+                        })
+                    })
+                    .then(response => {
+                        if(response.status < 400) {
+                            navigate("/")
+                        }
+                    })
+                }} className='absolute top-5 right-2 text-red-800'>
                     <FaHeart size={32}/>
                 </div>
+                }
             </div>
             <div className='p-3'>
-            <button className='border w-1/2 mx-auto block p-3 bg-red-400'>View More</button>
+            <button className='border w-1/2 mx-auto block p-3 bg-orange-600'>View More</button>
             </div>
         </div>
         :
