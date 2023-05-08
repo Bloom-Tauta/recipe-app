@@ -8,15 +8,15 @@
 # User.create(username: "admins", email: "admin@gmail.com", admin: true, password: "admin")
 
 50.times do
-  uname = Faker::Name.first_name
-  User.create(
-    {
-      username: uname,
-      email: "#{uname.downcase}@#{Faker::Internet.domain_name}",
-      password: "password",
-      admin: false
-    }
-  )
+  # uname = Faker::Name.first_name
+  # User.create(
+  #   {
+  #     username: uname,
+  #     email: "#{uname.downcase}@#{Faker::Internet.domain_name}",
+  #     password: "password",
+  #     admin: false
+  #   }
+  # )
   end
 
   recipes = [
