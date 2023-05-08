@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-User.create(username: "admins", email: "admin@gmail.com", admin: true, password: "admin")
+# User.create(username: "admins", email: "admin@gmail.com", admin: true, password: "admin")
 
 50.times do
   uname = Faker::Name.first_name
