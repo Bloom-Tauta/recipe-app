@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_08_123715) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_09_092641) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -40,8 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_123715) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "recipe_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_favorites_on_recipe_id"
@@ -77,8 +80,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_123715) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.boolean "admin", default: false
     t.string "password_digest"
+    t.boolean "admin", default: false
     t.boolean "favourites", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

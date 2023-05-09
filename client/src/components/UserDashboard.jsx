@@ -133,8 +133,8 @@ function UserDashboard() {
           >
             Update Profile
           </button>
-          <NavLink className="block mt-4 bg-orange-500 hover:bg-slate-300 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline" to='/addrecipe'>Create a recipe</NavLink>
-          <NavLink className="block mt-4 bg-orange-500 hover:bg-slate-300  text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline" to='/#favorite'>Favorites </NavLink>
+          <NavLink className="block mt-4 bg-orange-500 hover:bg-slate-300 text-white font-bold py-2 px-4 rounded[mt-4] focus:outline-none focus:shadow-outline" to='/addrecipe'>Create a recipe</NavLink>
+          <NavLink className="block mt-4 bg-orange-500 hover:bg-slate-300  text-white font-bold py-2 px-4 rounded[mt-4] focus:outline-none focus:shadow-outline" to='/#favorite'>Favorites </NavLink>
         </div>
       </div>
     );
