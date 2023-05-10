@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # skip_before_action :authorized, only: [:create, :login]
-  before_action :set_current_user
+  before_action :current_user
 
 
 
@@ -60,6 +60,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-      params.permit(:username, :password, :email, :admin)
+      params.permit(:username, :password, :email, :admin, :favourites)
     end
 end

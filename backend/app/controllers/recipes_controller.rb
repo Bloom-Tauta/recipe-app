@@ -14,15 +14,15 @@ class RecipesController < ApplicationController
 
     def create
         @recipe=Recipe.create!(recipe_name: recipe_params[:recipe_name],
-         recipe_category: recipe_params[:recipe_category],
-          description: recipe_params[:description],
-          recipe_thumb: recipe_params[:recipe_thumb],
-          country_of_origin: recipe_params[:country_of_origin],
-          number_of_people_served: recipe_params[:number_of_people_served],
+        recipe_category: recipe_params[:recipe_category],
+        description: recipe_params[:description],
+        recipe_thumb: recipe_params[:recipe_thumb],
+        country_of_origin: recipe_params[:country_of_origin],
+        number_of_people_served: recipe_params[:number_of_people_served],
         ingredients: recipe_params[:ingredients],
-      instructions:recipe_params[:instructions],
-      youtube_code: recipe_params[:youtube_code],
-      user_id: current_user["id"])
+        instructions:recipe_params[:instructions],
+        youtube_code: recipe_params[:youtube_code],
+        user_id: current_user["id"])
 
         render json: @recipe , status: :created
     end
@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
         @recipe = find_recipe
         @recipe.update!(recipe_params)
         render json: @recipe
-      end
+    end
       # def destroy
       #   @recipe = find_recipe
       #   @recipe.destroy
