@@ -4,20 +4,11 @@ This is a recipes web app where users can share theri favorite recipes to friend
 
 ### Things you may want to cover when running the application:
 
-* Ruby version (2.7.4)
-
-* System dependencies
-
-    Run $ bundle install to get the depencaies for the application.
-    To run the back end server run $ rails s.
-    This will run on port [http://localhost:3000]
-
 * Database creation
 
     The Database was created using db diagram out of preferrences.
     To view the ERD diagram click the link below:
-    
-
+    https://dbdiagram.io/d/6436777a8615191cfa8d48ee
 
 * Database initialization
 
@@ -25,8 +16,8 @@ This is a recipes web app where users can share theri favorite recipes to friend
 
 * Deployment instructions
 
-Vercel link (frontend) - 
-Render link (backend) - 
+Vercel link (frontend) - https://recipe-share-app.vercel.app/
+Render link (backend) - https://recipe-app-gtmt.onrender.com
 
 ## API Creation Proccess
 
