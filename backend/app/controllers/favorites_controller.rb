@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+    
     # skip_before_action :authorized, only: [:index, :create, :show]
 
     # def create
@@ -33,7 +34,7 @@ class FavoritesController < ApplicationController
         else
             head :no_content
         end
-     end
+        end
     def update
         @favorite = find_favorite
         if @favorite
