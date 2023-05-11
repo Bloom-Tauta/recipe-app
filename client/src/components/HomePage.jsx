@@ -55,5 +55,6 @@ function HomePage(){
 
 export default HomePage;
 
+
 //  bg-[url)]
 // bg-no-repeat  bg-cover
