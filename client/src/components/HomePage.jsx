@@ -8,7 +8,7 @@ function HomePage(){
     const [favorites, setFavorites] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:3000/favorites")
+        fetch("https://recipe-share-k3tx.onrender.com/favorites")
         .then(response =>  {
             if(response.status < 400) {
                 response.json().then(data => {

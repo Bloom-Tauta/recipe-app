@@ -5,7 +5,7 @@ function Users() {
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() =>{
-        fetch('http://localhost:3000/users',{
+        fetch('https://recipe-share-k3tx.onrender.com/users',{
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

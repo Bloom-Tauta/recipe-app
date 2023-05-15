@@ -15,7 +15,7 @@ function LandingPage({search, recipes, setRecipes}){
     const [currentPage, setCurrentPage] = useState(0)
 
     useEffect(() =>{
-        fetch("http://localhost:3000/recipes",{
+        fetch("https://recipe-share-k3tx.onrender.com/recipes",{
         })
         .then((response) =>response.json())
         .then((data) =>{

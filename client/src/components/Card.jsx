@@ -30,7 +30,7 @@ function Card({recipe}){
                 <div onClick={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
-                    fetch("http://localhost:3000/favorites", {
+                    fetch("https://recipe-share-k3tx.onrender.com/favorites", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",

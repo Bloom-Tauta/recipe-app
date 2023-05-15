@@ -22,7 +22,7 @@ const Signup = () => {
   };
 
   function submitDataToApi(data){
-    fetch('http://localhost:3000/users', {
+    fetch('https://recipe-share-k3tx.onrender.com/users', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

@@ -22,7 +22,7 @@ function RecipeDetailPage() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch(`http://localhost:3000/recipes/${id}`)
+    fetch(`https://recipe-share-k3tx.onrender.com/recipes/${id}`)
       .then((res) => {
         if(res.status<400) {
           res.json().then(data => {

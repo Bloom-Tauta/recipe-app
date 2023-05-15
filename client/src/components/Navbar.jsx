@@ -41,7 +41,7 @@ function Navbar({search, handleSearch}){
     }
 
     return(
-        <div className="bg-white drop-shadow-xl p-4 items-center justify-between flex ">
+        <div className="bg-white drop-shadow-xl p-4 items-center   ">
             <span className="text-black text-4xl flex items-center gap-1"><IoMdRestaurant size={40} className="text-orange-600"/>Recipe-Share</span>
             <Search search={search} handleSearch={handleSearch} />
             <div className="flex items-center">

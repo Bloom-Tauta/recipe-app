@@ -56,7 +56,7 @@ function AddRecipeForm({ recipes, setRecipes }) {
     }
     recipeFormData["recipe_thumb"] = mainImageUrl
 
-    fetch("http://localhost:3000/recipes", {
+    fetch("https://recipe-share-k3tx.onrender.com/recipes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

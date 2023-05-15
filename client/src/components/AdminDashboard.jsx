@@ -16,7 +16,7 @@ function UserDashboard() {
 
 
   useEffect(() =>{
-    fetch(`http://localhost:3000/users/${userId}`,{
+    fetch(`https://recipe-share-k3tx.onrender.com/users/${userId}`,{
         method: "GET",
         headers: {
             "Content-Type": "application/json",

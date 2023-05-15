@@ -9,7 +9,7 @@ function SubmittedRecipes() {
     const { id } = useParams()
 
     useEffect(() => {
-        fetch("http://localhost:3000/recipes/")
+        fetch("https://recipe-share-k3tx.onrender.com/recipes/")
         .then(res => res.json())
         .then(data => setRecipe(data))
     }, [])

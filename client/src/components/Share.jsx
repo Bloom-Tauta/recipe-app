@@ -22,7 +22,7 @@ const Share = ({ url}) => {
 
   const handleShare = () => {
 
-    let shareUrl = `https://localhost:4000/viewmeal/${id}`;
+    let shareUrl = `https://recipe-app-gamma-ochre.vercel.app/viewmeal/${id}`;
     const message = encodeURIComponent(`Check out this recipe: ${shareUrl}`)
 
     switch (selectedSocialMedia) {
@@ -39,7 +39,7 @@ const Share = ({ url}) => {
         break;
     }
 
-    if (url !== `http://localhost:4000/viewmeal/${id}`) {
+    if (url !== `https://recipe-app-gamma-ochre.vercel.app/viewmeal/${id}`) {
       window.open(shareUrl, '_blank');
     }
   };
