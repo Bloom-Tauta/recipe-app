@@ -1,29 +1,4 @@
 # class ApplicationController < ActionController::API
-#   wrap_parameters format: []
-#   include ActionController::Cookies
-
-#   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-#   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-
-#   before_action :authorized
-
-#   def authorized
-#     token = cookies.signed[:jwt]
-#     if token.present?
-#       begin
-#         payload = JWT.decode(token, 'my-secret-key', true, { algorithm: 'HS256'}).first
-#         @user = User.find_by(username: payload['username'])
-#       rescue JWT::DecodeError => e
-#         head :unauthorized
-#       end
-#     end
-#     unless @user
-#       render json: { message: 'Please log in' }, status: :unauthorized
-#     end
-#   end
-# end
-
-# class ApplicationController < ActionController::API
 #   #protect_from_forgery with: :null_session
 #     #before_action :authorize
 
@@ -130,47 +105,46 @@ end
 
 # app/controllers/application_controller.rb
 
-class ApplicationController < ActionController::API
-  include JwtToken
+# class ApplicationController < ActionController::API
+#   include JwtToken
 
-  before_action :authenticate_customer
+#   before_action :authenticate_customer
 
-  private
+#   private
 
-  def authenticate_customer
-    header = request.headers['Authorization']
-    if header && header.start_with?('Bearer ')
-      token = header.split(' ').last
+#   def authenticate_customer
+#     header = request.headers['Authorization']
+#     if header && header.start_with?('Bearer ')
+#       token = header.split(' ').last
 
-      begin
-        @decoded = JwtToken.decode(token)
-        @current_customer = Customer.find(@decoded[:customer_id])
-      rescue ActiveRecord::RecordNotFound => e
-        render json: { errors: e.message }, status: :unauthorized
-      rescue JWT::DecodeError => e
-        render json: { errors: e.message }, status: :unauthorized
-      end
-    else
-      render json: { errors: 'Authorization header missing or invalid' }, status: :unauthorized
-    end
-  end
+#       begin
+#         @decoded = JwtToken.decode(token)
+#         @current_customer = Customer.find(@decoded[:customer_id])
+#       rescue ActiveRecord::RecordNotFound => e
+#         render json: { errors: e.message }, status: :unauthorized
+#       rescue JWT::DecodeError => e
+#         render json: { errors: e.message }, status: :unauthorized
+#       end
+#     else
+#       render json: { errors: 'Authorization header missing or invalid' }, status: :unauthorized
+#     end
+#   end
 
-  def authenticate_seller
-    header = request.headers['Authorization']
-    if header && header.start_with?('Bearer ')
-      token = header.split(' ').last
+#   def authenticate_seller
+#     header = request.headers['Authorization']
+#     if header && header.start_with?('Bearer ')
+#       token = header.split(' ').last
 
-      begin
-        @decoded = JwtToken.decode(token)
-        @current_seller = Customer.find(@decoded[:seller_id])
-      rescue ActiveRecord::RecordNotFound => e
-        render json: { errors: e.message }, status: :unauthorized
-      rescue JWT::DecodeError => e
-        render json: { errors: e.message }, status: :unauthorized
-      end
-    else
-      render json: { errors: 'Authorization header missing or invalid' }, status: :unauthorized
-    end
-  end
-  
-end
+#       begin
+#         @decoded = JwtToken.decode(token)
+#         @current_seller = Customer.find(@decoded[:seller_id])
+#       rescue ActiveRecord::RecordNotFound => e
+#         render json: { errors: e.message }, status: :unauthorized
+#       rescue JWT::DecodeError => e
+#         render json: { errors: e.message }, status: :unauthorized
+#       end
+#     else
+#       render json: { errors: 'Authorization header missing or invalid' }, status: :unauthorized
+#     end
+#   end
+# end
