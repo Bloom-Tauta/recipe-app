@@ -1,21 +1,16 @@
+import { BiSearchAlt2 } from "react-icons/bi";
 
-import { BiSearchAlt2 } from "react-icons/bi"
-
-function Search({search, handleSearch}){
-
-    return(
-        <div className='flex items-center'>
-            <div>
-                <div className="flex">
-                    <input value={search} onChange={(e) => handleSearch(e.target.value)}
-                     type="text" placeholder="Search recipe by name, ingredients..."
-                    className="border border-black rounded-lg p-2 outline-none"/>
-                    <span className="py-2.5 mr-1 px-1 rounded-lg text-2xl ">
-                        <BiSearchAlt2/>
-                    </span>
-                </div>
-            </div>
-        </div>
-    )
+function Search({ search, handleSearch }) {
+	return (
+		<div className="flex items-center">
+			<label htmlFor="search" className="flex justify-center items-center gap-1 border border-slate-300 rounded-xl px-2 py-3">
+				<input type="text" id="search" value={search} onChange={(e) => handleSearch(e.target.value)} placeholder="Search recipe..." className="focus:outline-none" />
+				<span role="button" className="text-2xl cursor-pointer">
+					<BiSearchAlt2 role="icon" className="text-slate-500" />
+				</span>
+			</label>
+		</div>
+	);
 }
 export default Search;
+
