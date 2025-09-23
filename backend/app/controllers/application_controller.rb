@@ -33,7 +33,6 @@
 #       end
 #     end
 
-
 #     def logged_in?
 #       !!@current_user
 #     end
@@ -42,13 +41,9 @@
 #       render json: { logged_in: logged_in?, current_user: @current_user }, include: :books
 #     end
 
-
-
 #     def authorized_user
 #       render json: { message: 'Please log in ' }, status: :unauthorized unless logged_in? && @current_user.is_a?(User)
 #     end
-
-
 
 #     def authorize
 #       set_current_user
@@ -65,14 +60,15 @@
 #   end
 
 class ApplicationController < ActionController::Base
-  before_action :authorized
+  # before_action :authorized
 
   def encode_token(payload)
-  JWT.encode(payload, 'my_s3cr3t')
-end
+    JWT.encode(payload, 'my_s3cr3t')
+  end
 
- def decoded_token
-  if auth_header
+  def decoded_token
+    return unless auth_header
+
     token = auth_header.split(' ')[1]
     begin
       JWT.decode(token, 'my_s3cr3t', true, algorithm: 'HS256')
@@ -80,27 +76,27 @@ end
       nil
     end
   end
-end
 
-def auth_header
-  request.headers['Authorization']
-end
+  def auth_header
+    request.headers['Authorization']
+  end
 
-def current_user
-  if decoded_token
+  def current_user
+    return unless decoded_token
+
     user_id = decoded_token[0]['user_id']
     @user = User.find_by(id: user_id)
   end
-end
 
-def logged_in?
-  !!current_user
-end
+  def logged_in?
+    !!current_user
+  end
 
-private
-def authorized
-  render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
-end
+  private
+
+  def authorized
+    render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
+  end
 end
 
 # app/controllers/application_controller.rb

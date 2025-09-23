@@ -1,3 +1,3 @@
 class ReviewSerializer < ActiveModel::Serializer
-    attributes :id, :user_id, :ratings, :comments
-  end
+    attributes :id, :ratings, :comments, :user_id, :created_at, :updated_at
+end
