@@ -13,7 +13,7 @@ function LandingPage({ search, recipes, setRecipes }) {
 			.then((response) => response.json())
 			.then((data) => {
 				setRecipes(organizePages([...data], itemsPerPage));
-				// setRecipes(data);
+				// console.log(data);
 			});
 	}, []);
 

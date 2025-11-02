@@ -17,7 +17,9 @@ gem 'active_model_serializers'
 gem "rack-cors"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.4", ">= 7.0.4.3"
+gem "rails", "~> 7.0.4"
+# gem "activesupport", "= 7.0.7.2"
+# gem "rails", "= 7.0.7.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -80,3 +82,5 @@ end
 gem "faker", "~> 3.2"
 
 gem "httparty", "~> 0.23.1"
+
+gem "logger", "~> 1.4"
