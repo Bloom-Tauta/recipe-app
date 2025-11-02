@@ -77,10 +77,4 @@ group :test do
   gem "webdrivers"
 end
 
-# gem "sqlite3", "~> 1.6"
-
 gem "faker", "~> 3.2"
-
-gem "httparty", "~> 0.23.1"
-
-gem "logger", "~> 1.4"

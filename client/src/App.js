@@ -25,38 +25,19 @@ function App() {
 	}
 
 	return (
-		<div className="App">
+		<div className="App h-screen flex flex-col">
 			<Navbar search={search} handleSearch={handleSearch} />
-			<div className="min-h-[70vh] flex flex-col">
+			<div className="grow">
 				<Routes>
-					<Route
-						path="/recipes"
-						element={
-							<LandingPage
-								recipes={recipes}
-								setRecipes={setRecipes}
-								search={search}
-							/>
-						}
-					/>
+					<Route path="/recipes" element={<LandingPage recipes={recipes} setRecipes={setRecipes} search={search} />} />
 					<Route path="/admins" element={<AdminDashboard />} />
-					<Route
-						path="/viewmeal/:id"
-						element={<RecipeDetailPage />}
-					/>
+					<Route path="/viewmeal/:id" element={<RecipeDetailPage />} />
 					<Route path="/share" element={<Share />} />
 					<Route path="/signup" element={<Signup />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/about" element={<About />} />
 					<Route path="/" element={<HomePage />} />
-					<Route
-						path="/addrecipe"
-						element={
-							<AddRecipeForm
-								recipes={recipes}
-								setRecipes={setRecipes}
-							/>
-						}
-					/>
+					<Route path="/addrecipe" element={<AddRecipeForm recipes={recipes} setRecipes={setRecipes} />} />
 					<Route path="/submitted" element={<SubmittedRecipes />} />
 					<Route path="/user" element={<UserDashboard />} />
 					<Route path="/about" element={<About />} />
@@ -64,11 +45,9 @@ function App() {
 					<Route path="/allusers" element={<Users />} />
 				</Routes>
 			</div>
-
 			<Footer />
 		</div>
 	);
 }
 
 export default App;
-

@@ -4,8 +4,9 @@ import { TbRotateClockwise } from 'react-icons/tb'
 function Loading() {
 
     return (
-        <div className='flex items-center justify-center bg-slate-900/20  flex-grow'>
-            <div className='animate-spin'><TbRotateClockwise size={25 } /></div>
+        <div className='flex flex-col items-center justify-center h-full w-full'>
+            <div className='animate-spin'><TbRotateClockwise size={25} /></div>
+            <p className='text-3xl'>Loading...</p>
         </div>
     )
 }

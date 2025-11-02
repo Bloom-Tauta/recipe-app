@@ -1,5 +1,6 @@
 import Card from "./Card";
 import React, { useState, useEffect } from "react";
+import Loading from "./Loading";
 
 function LandingPage({ search, recipes, setRecipes }) {
 	const itemsPerPage = 9;
@@ -9,7 +10,7 @@ function LandingPage({ search, recipes, setRecipes }) {
 	const [currentPage, setCurrentPage] = useState(0);
 
 	useEffect(() => {
-		fetch("http://localhost:3001/meals")
+		fetch("http://localhost:3000/recipes")
 			.then((response) => response.json())
 			.then((data) => {
 				setRecipes(organizePages([...data], itemsPerPage));
@@ -31,9 +32,7 @@ function LandingPage({ search, recipes, setRecipes }) {
 	if (recipes.length > 0) {
 		filteredRecipe = organizePages(
 			recipes.flat().filter((recipe) => {
-				return recipe[searchBy]
-					.toLowerCase()
-					.includes(search.toLowerCase());
+				return recipe[searchBy].toLowerCase().includes(search.toLowerCase());
 			}),
 			itemsPerPage
 		);
@@ -44,35 +43,30 @@ function LandingPage({ search, recipes, setRecipes }) {
 	}
 
 	return (
-		<div className="">
+		<div className="h-full">
 			<div className="mt-2 flex justify-end w-full gap-3 mr-6">
 				<div className="flex gap-2">
 					<label>Search by:</label>
 					<select value={searchBy} onChange={handleChange}>
 						<option value="recipe_name">Name</option>
-						<option value="country_of_origin">
-							Country of origin
-						</option>
+						<option value="country_of_origin">Country of origin</option>
 						{/* <option  value="ratings">Ratings</option> */}
 						<option value="ingredients">Ingredients</option>
-						<option value="number_of_people_served">
-							Number of people served
-						</option>
+						<option value="number_of_people_served">Number of people served</option>
 					</select>
 				</div>
 			</div>
-			<div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap- place-content-stretch md:w-full mx-auto">
-				{/* to be replaced by : filteredRecipe */}
-				{filteredRecipe.length > 0 &&
-					filteredRecipe[currentPage].map((recipe, index) => {
-						return <Card key={index} recipe={recipe} />;
-					})}
+			<div className="h-full">
+				{filteredRecipe.length === 0 ? (
+					<Loading />
+				) : (
+					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-2 place-content-stretch md:w-full mx-auto">
+						{/* to be replaced by : filteredRecipe */}
+						{filteredRecipe[currentPage]?.map((recipe, index) => <Card key={index} recipe={recipe} />)}
+					</div>
+				)}
 			</div>
-			<Pagination
-				totalPages={filteredRecipe.length}
-				currentPage={currentPage}
-				onPageChange={setCurrentPage}
-			/>
+			<Pagination totalPages={filteredRecipe.length} currentPage={currentPage} onPageChange={setCurrentPage} />
 		</div>
 	);
 }
@@ -100,9 +94,7 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
 		<nav className="my-10 font-bold">
 			<ul className="flex justify-center gap-2">
 				{currentPage > 0 && (
-					<li
-						className="text-blue-900 cursor-pointer"
-						onClick={() => onPageChange(currentPage - 1)}>
+					<li className="text-blue-900 cursor-pointer" onClick={() => onPageChange(currentPage - 1)}>
 						Previous
 					</li>
 				)}
@@ -113,9 +105,7 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
 						) : (
 							<li
 								className={`rounded-full text-sm hover:ring-1 flex items-center justify-center w-6 h-6 ${
-									pageNumber === currentPage
-										? "text-blue-900 bg-white ring-1 ring-blue-900"
-										: "text-blue-900"
+									pageNumber === currentPage ? "text-blue-900 bg-white ring-1 ring-blue-900" : "text-blue-900"
 								} cursor-pointer`}
 								onClick={() => onPageChange(pageNumber)}>
 								{pageNumber + 1}
@@ -124,9 +114,7 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
 					</React.Fragment>
 				))}
 				{currentPage < totalPages - 1 && (
-					<li
-						className="text-blue-900 cursor-pointer"
-						onClick={() => onPageChange(currentPage + 1)}>
+					<li className="text-blue-900 cursor-pointer" onClick={() => onPageChange(currentPage + 1)}>
 						Next
 					</li>
 				)}

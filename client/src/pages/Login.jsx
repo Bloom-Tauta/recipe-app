@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
 	// const{login}=useContext(AuthContext)
-	const [username, setUsername] = useState("test");
+	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(null);
 	const navigate = useNavigate();
@@ -61,13 +61,9 @@ const Login = () => {
 			<div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-20">
 				<div className="sm:block hidden w-full">
 					<h2 className="font-bold text-2xl text-center">Login</h2>
-					<form
-						onSubmit={handleSubmit}
-						className="flex flex-col gap-4">
+					<form onSubmit={handleSubmit} className="flex flex-col gap-4">
 						<div className="mb-4">
-							<label
-								htmlFor="username"
-								className="block text-black text-lg font-bold mb-2">
+							<label htmlFor="username" className="block text-black text-lg font-bold mb-2">
 								Username
 							</label>
 							<input
@@ -75,13 +71,11 @@ const Login = () => {
 								name="username"
 								onChange={(e) => setUsername(e.target.value)}
 								className="p-2 rounded-xl border"
-								placeholder="Username"
+								placeholder="John Doe"
 							/>
 						</div>
 						<div className="mb-3 mt-4">
-							<label
-								htmlFor="password"
-								className="block text-black text-lg font-bold mb-2">
+							<label htmlFor="password" className="block text-black text-lg font-bold mb-2">
 								Password
 							</label>
 							<input
@@ -92,7 +86,7 @@ const Login = () => {
 								placeholder=" password"
 							/>
 						</div>
-						<div className="flex items-center flex-col">
+						<div className="flex items-center flex-col gap-5">
 							<a
 								href="#signup"
 								className="inline-block align-baseline font-bold text-sm text-[#160194] hover:text-blue-800 mb-2">
@@ -100,7 +94,7 @@ const Login = () => {
 							</a>
 							<button
 								disabled={!password || !username}
-								className="bg-[#0C54BF] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+								className="w-full bg-[#0C54BF] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-gray-300 disabled:cursor-not-allowed">
 								Login
 							</button>
 
@@ -121,3 +115,4 @@ const Login = () => {
 };
 
 export default Login;
+

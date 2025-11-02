@@ -88,6 +88,11 @@ function Navbar({ search, handleSearch }) {
 								className="font-bold p-1 text-orange-600 hover:text-white hover:bg-orange-600 rounded-lg hover:border-none">
 								Login
 							</NavLink>
+							<NavLink
+								to="/about"
+								className="font-bold p-1 text-orange-600 hover:text-white hover:bg-orange-600 rounded-lg hover:border-none">
+								About
+							</NavLink>
 						</>
 					)}
 				</ul>
