@@ -6,10 +6,22 @@ import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const CLOUDNAME = "dmplbwbdq";
-
-function AddRecipeForm({ recipes, setRecipes }) {
+function AddRecipeForm() {
 	const { token } = useContext(AuthContext);
+	const [recipe, setRecipe] = useState({
+		name: "",
+		category: "",
+		description: "",
+		youtubeUrl: "",
+		image: "",
+		countryOfOrigin: "",
+		numberOfPeopleServed: "",
+		ingredients: {
+			name: "",
+			measure: "",
+			image: null,
+		},
+	})
 	const [recipeName, setRecipeName] = useState("");
 	const [recipeCategory, setRecipeCategory] = useState("");
 	const [description, setDescription] = useState("");
@@ -37,7 +49,18 @@ function AddRecipeForm({ recipes, setRecipes }) {
 		);
 	}
 
+	function handleChange(e) {
+		const { name, value } = e.currentTarget;
+		setRecipe((prev) => (
+			{
+				...prev,
+				[name]: value,
+			}
+		))
+	}
+
 	async function postRecipe(recipeFormData) {
+		const CLOUDNAME = process.env.REACT_APP_CLOUDNAME;
 		console.log(recipeFormData);
 		const imageData = new FormData();
 		imageData.append("file", mainImage);
@@ -86,25 +109,25 @@ function AddRecipeForm({ recipes, setRecipes }) {
 	const [steps, setSteps] = useState([""]);
 	// const [recipeImage, setRecipeImage] = useState(null);
 
-	const handleRecipeNameChange = (e) => {
-		setRecipeName(e.target.value);
-	};
+	// const handleRecipeNameChange = (e) => {
+	// 	setRecipeName(e.target.value);
+	// };
 
-	const handleRecipeCategoryChange = (e) => {
-		setRecipeCategory(e.target.value);
-	};
+	// const handleRecipeCategoryChange = (e) => {
+	// 	setRecipeCategory(e.target.value);
+	// };
 
-	const handleDescriptionChange = (e) => {
-		setDescription(e.target.value);
-	};
+	// const handleDescriptionChange = (e) => {
+	// 	setDescription(e.target.value);
+	// };
 
-	const handleCountryOfOriginChange = (e) => {
-		setCountryOfOrigin(e.target.value);
-	};
+	// const handleCountryOfOriginChange = (e) => {
+	// 	setCountryOfOrigin(e.target.value);
+	// };
 
-	const handleNumberOfPeopleServedChange = (e) => {
-		setNumberOfPeopleServed(e.target.value);
-	};
+	// const handleNumberOfPeopleServedChange = (e) => {
+	// 	setNumberOfPeopleServed(e.target.value);
+	// };
 
 	const handleAddIngredient = () => {
 		setIngredients([
@@ -155,71 +178,62 @@ function AddRecipeForm({ recipes, setRecipes }) {
 	};
 
 	return (
-		<div className=" border-4  bg-slate-100 drop-shadow-lg items-center my-4 mx-auto max-w-3xl">
-			<div className=" border-4  bg-slate-100 drop-shadow-lg items-center  mx-auto max-w-3xl">
+		<div className="border-2 rounded-xl bg-slate-100 drop-shadow-lg items-center my-4 mx-auto max-w-3xl">
+			<div className="rounded-xl border-2 bg-slate-100 drop-shadow-lg items-center  mx-auto max-w-3xl">
 				<div className="flex flex-col items-center  bg-slate-100 drop-shadow-lgjustify-center px-12 py-8 mx-auto max-w-2xl mt-4 mb-4">
 					<div className="flex mb-3 items-center">
-						<div className=" text-orange-500">
+						{/* <div className=" text-orange-500">
 							<FaPlus size={20} />
-						</div>
-						<h3 className="text-xl font-bold leading-tight tracking-tight text-gray-900 text-center md:text-3xl border-b-[10px] border-orange-500">
-							Add a Recipe
+						</div> */}
+						<h3 className="text-xl font-bold leading-tight tracking-tight text-gray-900 text-center md:text-3xl border-b-3 border-orange-500">
+							Create New Recipe
 						</h3>
 					</div>
 					<form onSubmit={handleSubmit}>
 						<div className="grid grid-cols-2">
 							<div className="">
 								<div className="flex flex-col">
-									<label
-										htmlFor="recipename"
-										className="block mb-2 text-sm font-medium text-gray-900">
+									<label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">
 										Recipe Name
 									</label>
 									<input
 										type="text"
-										id="recipename"
+										id="name"
+										name="name"
 										value={recipeName}
-										onChange={(e) =>
-											handleRecipeNameChange(e)
-										}
+										onChange={handleChange}
 										className="outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 p-2 "
-										placeholder="recipe name"
+										placeholder="name"
 										required
 									/>
 								</div>
 								<div className="flex flex-col">
-									<label
-										htmlFor="recipename"
-										className="block mb-2 text-sm font-medium text-gray-900">
+									<label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900">
 										{" "}
 										Recipe Category
 									</label>
 									<input
 										type="text"
-										id="recipecategory"
+										id="category"
+										name="category"
 										value={recipeCategory}
-										onChange={(e) =>
-											handleRecipeCategoryChange(e)
-										}
+										onChange={handleChange}
 										className="outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 p-2 "
-										placeholder="recipe category"
+										placeholder="category"
 										required
 									/>
 								</div>
 								<div className="flex flex-col">
-									<label
-										htmlFor="description"
-										className="block mb-2 text-sm font-medium text-gray-900">
+									<label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900">
 										{" "}
 										Description
 									</label>
 									<textarea
 										type="text"
-										id="recipecategory"
+										id="description"
+										name="description"
 										value={description}
-										onChange={(e) =>
-											handleDescriptionChange(e)
-										}
+										onChange={handleChange}
 										className="outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 p-2"
 										placeholder="description"
 										required></textarea>
@@ -231,15 +245,16 @@ function AddRecipeForm({ recipes, setRecipes }) {
 								) : (
 									<div className="flex-grow">
 										<label
-											htmlFor="main_image"
-											className="border border-orange-400 items-center justify-center text-orange-400 text-center outline-none block h-full">
+											htmlFor="image"
+											className="border border-orange-400 items-center justify-center text-orange-400 text-center outline-none block h-full rounded-lg p-2">
 											<AiOutlineCamera size={26} />
 										</label>
 										<input
 											className="hidden"
-											onChange={handleImageUpload}
+											onChange={handleChange}
 											aria-describedby="file_input_help"
-											id="main_image"
+											id="image"
+											name="image"
 											type="file"
 											required
 										/>
@@ -249,46 +264,42 @@ function AddRecipeForm({ recipes, setRecipes }) {
 							</div>
 						</div>
 						<div className="flex flex-col my-4 ">
-							<label
-								htmlFor="countryoforigin"
-								className="block mb-2 text-sm font-medium text-gray-900">
+							<label htmlFor="countryOfOrigin" className="block mb-2 text-sm font-medium text-gray-900">
 								{" "}
 								Country of Origin
 							</label>
 							<input
 								type="text"
-								id="countryoforigin"
+								id="countryOfOrigin"
+								name="countryOfOrigin"
 								value={countryOfOrigin}
-								onChange={(e) => handleCountryOfOriginChange(e)}
+								onChange={handleChange}
 								className="outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 p-2 "
 								required
+								placeholder="country of origin"
 							/>
 						</div>
 						<div className="flex flex-col my-4">
-							<label
-								htmlFor="numberofpeopleserving"
-								className="block mb-2 text-sm font-medium text-gray-900">
+							<label htmlFor="numberOfPeopleServed" className="block mb-2 text-sm font-medium text-gray-900">
 								{" "}
 								Number of People Served
 							</label>
 							<input
 								type="number"
-								id="numberofpeopleserved"
+								id="numberOfPeopleServed"
+								name="numberOfPeopleServed"
 								value={numberOfPeopleServed}
-								onChange={(e) =>
-									handleNumberOfPeopleServedChange(e)
-								}
+								onChange={handleChange}
 								className="outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 p-2 "
 								required
+								placeholder="number of people served"
 							/>
 						</div>
 						<div>
 							<h2 className="font-bold">Ingredient</h2>
 							<p>
-								Enter one ingredient per line. Include the
-								quantity (i.e. cups, tablespoons) and any
-								special preparation (i.e. sifted, softened,
-								chopped)
+								Enter one ingredient per line. Include the quantity (i.e. cups, tablespoons) and any special preparation
+								(i.e. sifted, softened, chopped)
 							</p>
 							<div>
 								{ingredients.map((ingredient, index) => {
@@ -297,15 +308,9 @@ function AddRecipeForm({ recipes, setRecipes }) {
 											key={index}
 											index={index}
 											ingredient={ingredient}
-											updateIngredients={
-												updateIngredients
-											}
-											handleAddIngredient={
-												handleAddIngredient
-											}
-											handleRemoveIngredient={
-												handleRemoveIngredient
-											}
+											updateIngredients={updateIngredients}
+											handleAddIngredient={handleAddIngredient}
+											handleRemoveIngredient={handleRemoveIngredient}
 										/>
 									);
 								})}
@@ -320,9 +325,8 @@ function AddRecipeForm({ recipes, setRecipes }) {
 						<div className="mt-3">
 							<h2 className="font-bold">Steps</h2>
 							<p>
-								Explain how to make your recipe, including oven
-								temperatures, baking or cooking times, and pan
-								sizes, etc.
+								Explain how to make your recipe, including oven temperatures, baking or cooking times, and pan sizes,
+								etc.
 							</p>
 							<div className="py-2">
 								{steps.map((step, index) => (
@@ -332,17 +336,11 @@ function AddRecipeForm({ recipes, setRecipes }) {
 											<input
 												type="text"
 												value={step}
-												onChange={(e) =>
-													handleStepsChange(e, index)
-												}
+												onChange={(e) => handleStepsChange(e, index)}
 												className="outline-none bg-gray-50 border border-black text-gray-900 sm:text-sm focus:ring-primary-600 p-2 w-full"
 												required
 											/>
-											<button
-												type="button"
-												onClick={() =>
-													handleRemoveSteps(index)
-												}>
+											<button type="button" onClick={() => handleRemoveSteps(index)}>
 												<RxCrossCircled size={26} />
 											</button>
 										</div>
@@ -356,17 +354,15 @@ function AddRecipeForm({ recipes, setRecipes }) {
 									Add Step
 								</button>
 								<div className="flex flex-col my-2">
-									<label htmlFor="url" className="font-bold">
+									<label htmlFor="youtubeUrl" className="font-bold">
 										Youtube Code:
 									</label>
 									<input
 										type="url"
-										name="url"
-										id="url"
+										name="youtubeUrl"
+										id="youtubeUrl"
 										value={youtube}
-										onChange={(e) =>
-											setYouTube(e.target.value)
-										}
+										onChange={handleChange}
 										className="outline-none bg-gray-50 border border-black text-gray-900 sm:text-sm focus:ring-primary-600 p-2 w-full"
 										placeholder="e.g.  https://www.youtube.com/watch?v=moAgOJVQw28"
 										pattern="https://.*"
@@ -375,11 +371,7 @@ function AddRecipeForm({ recipes, setRecipes }) {
 									/>
 								</div>
 								<div className="flex flex-row items-center gap-3 justify-end mt-4">
-									<input
-										type="submit"
-										value="Cancel"
-										className="text-blue-500 hover:underline"
-									/>
+									<input type="submit" value="Cancel" className="text-blue-500 hover:underline" />
 									<button
 										type="submit"
 										className="border border-black p-2 bg-orange-400 hover:bg-green-800 rounded-lg ">
@@ -410,6 +402,7 @@ function Ingredient({
 	}, []);
 
 	async function upload() {
+		const CLOUDNAME = process.env.REACT_APP_CLOUDNAME;
 		const imageData = new FormData();
 		imageData.append("file", ingredientImage);
 		imageData.append("upload_preset", "recipes");
@@ -446,17 +439,19 @@ function Ingredient({
 				<div className="flex flex-col gap-3">
 					<input
 						type="text"
+						name={ingredient.name}
 						value={ingredient.name}
 						onChange={(e) =>
 							updateIngredients(index, "name", e.target.value)
 						}
-						placeholder="Ingredient Name..."
+						placeholder="Name..."
 						className="outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 p-2 w-full"
 						required
 					/>
 					<input
 						type="text"
 						value={ingredient.measure}
+						name={ingredient.measure}
 						onChange={(e) =>
 							updateIngredients(index, "measure", e.target.value)
 						}
@@ -471,7 +466,7 @@ function Ingredient({
 					) : (
 						<div className="min-h-[20vh] flex border text-center">
 							<label
-								className="border border-orange-400 items-center justify-center text-orange-400 text-center block w-full"
+								className="border border-orange-400 items-center justify-center text-orange-400 text-center block w-full rounded-lg p-2"
 								htmlFor={`ingredient${index}`}>
 								<AiOutlineCamera size={26} />
 							</label>
@@ -498,5 +493,13 @@ function Ingredient({
 	);
 }
 
-export default AddRecipeForm;
 
+
+
+
+
+
+
+
+
+export default AddRecipeForm;

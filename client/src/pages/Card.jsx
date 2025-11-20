@@ -1,24 +1,18 @@
-import { BsStarHalf } from "react-icons/bs";
-import { BsStarFill } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { BsStarHalf, BsStarFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import React, { useContext } from "react";
 
 function Card({ recipe }) {
 	const navigate = useNavigate();
-
 	const { user } = useContext(AuthContext);
 
 	return (
-		<div className="relative">
+		<div className="relative bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden group w-full">
 			{recipe.id ? (
-				<div className=" mt-4 ml-4 shadow-lg shadow-black">
-					<img
-						src={recipe.recipe_thumb}
-						alt={recipe.recipe_name}
-						className=""
-					/>
+				<div className=" shadow-lg shadow-black w-full">
+					<img src={recipe.recipe_thumb} alt={recipe.recipe_name} className="" />
 					<h2 className="text-center p-1">{recipe.recipe_name}</h2>
 					<div className="flex gap-10 pl-4">
 						<div className="text-yellow-400 flex items-center justify-center mx-auto">
@@ -61,16 +55,22 @@ function Card({ recipe }) {
 							View More
 						</button>
 					</div>
+					<div className="flex gap-1">
+						<button className="border w-1/2 mx-auto block p-2 my-1 bg-green-400">Update</button>
+						<button className="border w-1/2 mx-auto block p-2 my-1 bg-red-600">Delete</button>
+					</div>
 				</div>
 			) : (
-				<div className="max-w-md ml-3 mt-3 animate-pulse">
-					<div className="h-32 w-full bg-black/50"></div>
-					<div className="h-4 bg-black/50 w-[90%] mx-auto my-1"></div>
-					<div className="flex gap-3">
-						<div className="h-3 bg-black/50 w-1/2"></div>
-						<div className="h-3 bg-black/50 w-1/2"></div>
+				<div className="max-w-md p-2 flex flex-col">
+					<div className="animate-pulse">
+						<div className="h-32 w-full bg-black/50"></div>
+						<div className="h-4 bg-black/50 w-[90%] mx-auto my-1"></div>
+						<div className="flex gap-3">
+							<div className="h-3 bg-black/50 w-1/2"></div>
+							<div className="h-3 bg-black/50 w-1/2"></div>
+						</div>
+						<div className="h-4 bg-black/50 w-[90%] mx-auto my-1"></div>`
 					</div>
-					<div className="h-4 bg-black/50 w-[90%] mx-auto my-1"></div>
 				</div>
 			)}
 			{/* {admin && (
@@ -96,16 +96,8 @@ function Card({ recipe }) {
 					</div>
 				</div>
 			)} */}
-			<div className="flex gap-1">
-				<button className="border w-1/2 mx-auto block p-2 my-1 bg-green-400">
-					Update
-				</button>
-				<button className="border w-1/2 mx-auto block p-2 my-1 bg-red-600">
-					Delete
-				</button>
-			</div>
 		</div>
 	);
 }
-export default Card;
 
+export default Card;

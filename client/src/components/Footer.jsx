@@ -1,66 +1,59 @@
 import { NavLink } from "react-router-dom";
 import { MdCopyright } from "react-icons/md";
-import { FaFacebook } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 function Footer() {
 	return (
-		<footer className="bg-black w-full px-4 py-6 lg:w-7xl text-center">
-			<div className="flex flex-wrap items-center justify-between">
-				<div className="w-full">
-					<h4 className="text-3xl text-white font-semibold text-center">Get in touch with us</h4>
-					<h5 className="text-lg mt-0 mb-2 text-white">Reach us on any of these platforms.</h5>
-				</div>
-				<div className=" w-full px-8 text-center">
-					<ul className="flex flex-wrap list-none pl-0 mb-0 justify-center text-center">
-						<li className="nav-item">
-							<NavLink to="#" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
-								<FaTwitter size={20} className="mr-5" />
-								<span>Twitter</span>
-							</NavLink>
-						</li>
-						<li className="nav-item">
-							<NavLink to="#" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
-								<FaFacebook size={20} className="mr-5" />
-								<span>Facebook</span>
-							</NavLink>
-						</li>
-						<li className="nav-item">
-							<NavLink to="/" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
-								<FaInstagram size={20} className="mr-5" />
-								<span>Instagram</span>
-							</NavLink>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<hr className=" w-full my-6 border-gray-700" />
-			<div className=" w-full flex flex-wrap items-center justify-center">
-				<div className="w-full lg:w-4/12 px-4">
-					<div className="flex flex-wrap justify-center text-lg text-gray-500 gap-2 font-semibold">
-						<MdCopyright />
-						<span className="text-white">2023 Recipe-Share</span>
-					</div>
-				</div>
-				<div className="lg:w-8/12 items-center">
-					<ul className="flex flex-row list-none gap-4">
-						<li className="nav-item">
-							<NavLink to="/about" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
-								<span className="ml-2">About Us</span>
-							</NavLink>
-						</li>
+		<footer className="bg-black text-white w-full px-6 py-10">
+			<div className="max-w-6xl mx-auto flex flex-col items-center text-center gap-4">
+				<h4 className="text-2xl md:text-3xl font-semibold">Get in touch with us</h4>
+				<h5 className="text-md md:text-lg text-gray-300">Reach us on any of these platforms.</h5>
+				<ul className="flex gap-6 mt-4 flex-wrap justify-center">
+					<li>
+						<NavLink className="flex items-center gap-2 hover:text-gray-400">
+							<FaTwitter size={22} />
+							<span className="text-sm md:text-base">Twitter</span>
+						</NavLink>
+					</li>
 
-						<li className="nav-item">
-							<NavLink to="contact" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
-								<span className="ml-2">Contact Us</span>
-							</NavLink>
-						</li>
-					</ul>
+					<li>
+						<NavLink className="flex items-center gap-2 hover:text-gray-400">
+							<FaFacebook size={22} />
+							<span className="text-sm md:text-base">Facebook</span>
+						</NavLink>
+					</li>
+
+					<li>
+						<NavLink className="flex items-center gap-2 hover:text-gray-400">
+							<FaInstagram size={22} />
+							<span className="text-sm md:text-base">Instagram</span>
+						</NavLink>
+					</li>
+				</ul>
+			</div>
+
+			<hr className="border-gray-700 my-8" />
+
+			<div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+				<div className="flex items-center gap-2 text-gray-400 text-sm md:text-base">
+					<MdCopyright />
+					<span>2023 Recipe-Share</span>
 				</div>
+				<ul className="flex gap-6 text-sm md:text-base">
+					<li>
+						<NavLink to="/about" className="hover:text-gray-400">
+							About Us
+						</NavLink>
+					</li>
+					<li>
+						<NavLink to="/contact" className="hover:text-gray-400">
+							Contact Us
+						</NavLink>
+					</li>
+				</ul>
 			</div>
 		</footer>
 	);
 }
-export default Footer;
 
+export default Footer;

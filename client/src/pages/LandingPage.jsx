@@ -2,7 +2,12 @@ import Card from "./Card";
 import React, { useState, useEffect } from "react";
 import Loading from "./Loading";
 
-function LandingPage({ search, recipes, setRecipes }) {
+function LandingPage({search}) {
+	const [ recipes, setRecipes] = useState([]);
+	// const [search, setSearch] = useState("");
+	// function handleSearch(value) {
+	// 	setSearch(value);
+	// }
 	const itemsPerPage = 9;
 
 	const [searchBy, setSearchBy] = useState("recipe_name");
@@ -13,8 +18,7 @@ function LandingPage({ search, recipes, setRecipes }) {
 		fetch("http://localhost:3000/recipes")
 			.then((response) => response.json())
 			.then((data) => {
-				setRecipes(organizePages([...data], itemsPerPage));
-				// console.log(data);
+				setRecipes(data);
 			});
 	}, []);
 
@@ -25,8 +29,6 @@ function LandingPage({ search, recipes, setRecipes }) {
 		}
 		return temp;
 	}
-
-	//filter by name
 
 	let filteredRecipe = recipes;
 	if (recipes.length > 0) {
@@ -56,16 +58,19 @@ function LandingPage({ search, recipes, setRecipes }) {
 					</select>
 				</div>
 			</div>
-			<div className="h-full">
+			<>
+				{/* to be replaced by : filteredRecipe */}
 				{filteredRecipe.length === 0 ? (
 					<Loading />
 				) : (
-					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-2 place-content-stretch md:w-full mx-auto">
-						{/* to be replaced by : filteredRecipe */}
-						{filteredRecipe[currentPage]?.map((recipe, index) => <Card key={index} recipe={recipe} />)}
+					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 place-content-stretch md:w-full mx-auto p-2">
+						{filteredRecipe.length > 0 &&
+							filteredRecipe[currentPage].map((recipe, index) => {
+								return <Card key={index} recipe={recipe} />;
+							})}
 					</div>
 				)}
-			</div>
+			</>
 			<Pagination totalPages={filteredRecipe.length} currentPage={currentPage} onPageChange={setCurrentPage} />
 		</div>
 	);
@@ -123,5 +128,5 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
 	);
 }
 
-export default LandingPage;
 
+export default LandingPage;

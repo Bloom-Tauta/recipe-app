@@ -18,7 +18,6 @@ import About from "./pages/About";
 import Users from "./pages/Users";
 
 function App() {
-	const [recipes, setRecipes] = useState([]);
 	const [search, setSearch] = useState("");
 	function handleSearch(value) {
 		setSearch(value);
@@ -29,7 +28,7 @@ function App() {
 			<Navbar search={search} handleSearch={handleSearch} />
 			<div className="grow">
 				<Routes>
-					<Route path="/recipes" element={<LandingPage recipes={recipes} setRecipes={setRecipes} search={search} />} />
+					<Route path="/recipes" element={<LandingPage search={search} />} />
 					<Route path="/admins" element={<AdminDashboard />} />
 					<Route path="/viewmeal/:id" element={<RecipeDetailPage />} />
 					<Route path="/share" element={<Share />} />
@@ -37,7 +36,7 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/" element={<HomePage />} />
-					<Route path="/addrecipe" element={<AddRecipeForm recipes={recipes} setRecipes={setRecipes} />} />
+					<Route path="/addrecipe" element={<AddRecipeForm />} />
 					<Route path="/submitted" element={<SubmittedRecipes />} />
 					<Route path="/user" element={<UserDashboard />} />
 					<Route path="/about" element={<About />} />
