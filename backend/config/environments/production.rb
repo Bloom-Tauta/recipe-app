@@ -89,4 +89,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Railway url
+  config.hosts << "recipe-app-production-6058.up.railway.app"
 end
