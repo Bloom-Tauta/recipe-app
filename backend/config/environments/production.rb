@@ -91,5 +91,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Railway url
-  config.hosts << "recipe-app-production-6058.up.railway.app"
+  config.hosts.clear
 end
