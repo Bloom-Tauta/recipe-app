@@ -7,6 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function AddRecipeForm() {
+	const url = process.env.REACT_APP_RAILWAY_URL;
 	const { token } = useContext(AuthContext);
 	const [recipe, setRecipe] = useState({
 		name: "",
@@ -77,7 +78,7 @@ function AddRecipeForm() {
 		}
 		recipeFormData["recipe_thumb"] = mainImageUrl;
 
-		fetch("http://localhost:3000/recipes", {
+		fetch(`${url}/recipes`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

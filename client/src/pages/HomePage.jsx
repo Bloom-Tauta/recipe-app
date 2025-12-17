@@ -4,10 +4,11 @@ import { NavLink } from "react-router-dom";
 import recipe from "../images/recipe.jpg";
 
 function HomePage() {
+	const url = process.env.REACT_APP_RAILWAY_URL;
 	const [favorites, setFavorites] = useState([]);
 
 	useEffect(() => {
-		fetch("http://localhost:3000/favorites?_limit=10")
+		fetch(`${url}/favorites?_limit=10`)
 			.then((res) => res.json())
 			.then((data) => {
 				setFavorites(data);

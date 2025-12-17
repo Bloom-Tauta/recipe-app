@@ -7,7 +7,7 @@ const ReviewsForm = ({postReviews, id}) => {
   const [remark, setRemark] = useState("")
 
 
-  function handleSubmit(e){
+  function handleSubmit(e) {
     e.preventDefault();
     const reviewsFormData = {
       ratings: rating,

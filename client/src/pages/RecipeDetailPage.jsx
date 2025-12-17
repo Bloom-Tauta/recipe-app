@@ -13,6 +13,7 @@ import ReviewsForm from "./ReviewsForm";
 // import { AuthContext } from "../context/AuthContext";
 
 function RecipeDetailPage() {
+	const url = process.env.REACT_APP_RAILWAY_URL;
 	const [recipe, setRecipe] = useState(null);
 	const [reviews, setReviews] = useState([]);
 	const { token } = useContext(AuthContext);
@@ -21,13 +22,13 @@ function RecipeDetailPage() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		fetch(`http://localhost:3000/recipes/${id}`)
+		fetch(`${url}/recipes/${id}`)
 			.then((res) => res.json())
 			.then((data) => setRecipe(data));
 	}, [id]);
 
 	function postReviews(reviewsFormData) {
-		fetch("http://localhost:3000/reviews", {
+		fetch(`${url}/reviews`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -57,7 +58,7 @@ function RecipeDetailPage() {
 	}
 
 	function deleteRecipe() {
-		fetch(`/recipes/${id}`, {
+		fetch(`${url}/recipes/${id}`, {
 			method: "DELETE",
 			headers: {
 				authorization: `Bearer ${token}`,

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Login = () => {
+	const url = process.env.REACT_APP_RAILWAY_URL;
 	// const{login}=useContext(AuthContext)
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -14,7 +15,7 @@ const Login = () => {
 		// send Data to rails
 		e.preventDefault();
 
-		fetch("http://localhost:3000/login", {
+		fetch(`${url}/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -115,4 +116,3 @@ const Login = () => {
 };
 
 export default Login;
-

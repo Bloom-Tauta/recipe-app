@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Loading from "./Loading";
 
 function LandingPage({search}) {
+	const url = process.env.REACT_APP_RAILWAY_URL;
 	const [ recipes, setRecipes] = useState([]);
 	// const [search, setSearch] = useState("");
 	// function handleSearch(value) {
@@ -15,10 +16,10 @@ function LandingPage({search}) {
 	const [currentPage, setCurrentPage] = useState(0);
 
 	useEffect(() => {
-		fetch("http://localhost:3000/recipes")
+		fetch(`${url}/recipes`)
 			.then((response) => response.json())
 			.then((data) => {
-				setRecipes(data);
+				console.log(data);
 			});
 	}, []);
 
@@ -127,6 +128,7 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
 		</nav>
 	);
 }
+
 
 
 export default LandingPage;

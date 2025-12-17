@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { AiOutlineBackward } from "react-icons/ai";
 
 function UserDashboard() {
+	const vercelUrl = process.env.REACT_APP_VERCEL_URL;
 	const [user, setUser] = useState({});
 
 	const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ function UserDashboard() {
 	const userId = localStorage.getItem("userID");
 
 	useEffect(() => {
-		fetch(`http://localhost:3000/users/${userId}`, {
+		fetch(`${url}/users/${userId}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -26,7 +27,7 @@ function UserDashboard() {
 	});
 
 	useEffect(() => {
-		fetch("/me", {
+		fetch(`${url}/me`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -47,7 +48,7 @@ function UserDashboard() {
 
 	function handleUpdate(e) {
 		e.preventDefault();
-		fetch(`/users/${userId}`, {
+		fetch(`${url}/users/${userId}`, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json",
@@ -147,12 +148,12 @@ function UserDashboard() {
 						Update Profile
 					</button>
 					<NavLink
-						className="block mt-4 bg-orange-500 hover:bg-slate-300 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline"
+						className="block mt-4 bg-orange-500 hover:bg-slate-300 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 						to="/addrecipe">
 						Create a recipe
 					</NavLink>
 					<NavLink
-						className="block mt-4 bg-orange-500 hover:bg-slate-300  text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline"
+						className="block mt-4 bg-orange-500 hover:bg-slate-300  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 						to="/allusers">
 						All Users{" "}
 					</NavLink>
@@ -167,5 +168,6 @@ function UserDashboard() {
 		</div>
 	);
 }
+
 
 export default UserDashboard;

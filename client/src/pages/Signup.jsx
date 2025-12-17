@@ -3,12 +3,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
+	const url = process.env.REACT_APP_RAILWAY_URL;
 	const [isAdmin, setIsAdmin] = useState(false);
-	const [ userData, setUserData ] = useState({
+	const [userData, setUserData] = useState({
 		username: "",
 		email: "",
 		password: "",
-	})
+	});
 	const navigate = useNavigate();
 
 	const handleChange = (e) => {
@@ -16,8 +17,8 @@ const Signup = () => {
 		setUserData((prev) => ({
 			...prev,
 			[name]: value,
-		}))
-	}
+		}));
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -32,7 +33,7 @@ const Signup = () => {
 	};
 
 	function submitDataToApi(data) {
-		fetch("http://localhost:3000/users", {
+		fetch(`${url}/users`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -143,8 +144,5 @@ const Signup = () => {
 		</div>
 	);
 };
-
-
-
 
 export default Signup;

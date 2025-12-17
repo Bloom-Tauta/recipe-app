@@ -4,6 +4,7 @@ import { AiOutlineBackward } from 'react-icons/ai'
 
 
 function UserDashboard() {
+  const url = process.env.REACT_APP_RAILWAY_URL;
   const [user, setUser] = useState({});
 
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ function UserDashboard() {
   const userId = localStorage.getItem("userID");
 
   useEffect(() => {
-    fetch("/me", {
+    fetch(`${url}/me`, {
       method: "GET",
       headers :{
         'Content-Type': 'application/json',
@@ -37,7 +38,7 @@ function UserDashboard() {
 
   function handleUpdate(e){
     e.preventDefault()
-    fetch(`/users/${userId}`,{
+    fetch(`${url}/users/${userId}`,{
       method: "PATCH",
       headers :{
         'Content-Type': 'application/json',
