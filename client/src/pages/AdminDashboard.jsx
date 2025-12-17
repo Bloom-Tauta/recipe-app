@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { AiOutlineBackward } from "react-icons/ai";
 
 function UserDashboard() {
-	const vercelUrl = process.env.REACT_APP_VERCEL_URL;
+	const url = process.env.REACT_APP_RAILWAY_URL;
 	const [user, setUser] = useState({});
 
 	const [email, setEmail] = useState("");
@@ -168,6 +168,5 @@ function UserDashboard() {
 		</div>
 	);
 }
-
 
 export default UserDashboard;
