@@ -19,7 +19,7 @@ function LandingPage({search}) {
 		fetch(`${url}/recipes`)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
+				setRecipes(data);
 			});
 	}, []);
 

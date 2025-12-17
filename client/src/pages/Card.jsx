@@ -10,7 +10,7 @@ function Card({ recipe }) {
 
 	return (
 		<div className="relative bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden group w-full">
-			{recipe.id ? (
+			{recipe ? (
 				<div className=" shadow-lg shadow-black w-full">
 					<img src={recipe.recipe_thumb} alt={recipe.recipe_name} className="" />
 					<h2 className="text-center p-1">{recipe.recipe_name}</h2>
