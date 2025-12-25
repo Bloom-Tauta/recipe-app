@@ -58,6 +58,9 @@ function Navbar({ search, handleSearch }) {
 
 				<nav className="hidden md:flex">
 					<ul className="flex gap-4 items-center justify-center text-base font-semibold">
+						<NavLink to="/" className="text-orange-600 hover:bg-orange-600 hover:text-white rounded-md">
+							Home
+						</NavLink>
 						<NavLink to="/recipes" className="text-orange-600 hover:bg-orange-600 hover:text-white rounded-md">
 							Recipes
 						</NavLink>
@@ -70,9 +73,7 @@ function Navbar({ search, handleSearch }) {
 									Favorite Recipes
 								</button>
 
-								<NavLink
-									to="/addrecipe"
-									className="text-orange-600 hover:bg-orange-600 hover:text-white rounded-md">
+								<NavLink to="/addrecipe" className="text-orange-600 hover:bg-orange-600 hover:text-white rounded-md">
 									Add Recipe
 								</NavLink>
 
@@ -185,5 +186,6 @@ function Navbar({ search, handleSearch }) {
 		</header>
 	);
 }
+
 
 export default Navbar;
